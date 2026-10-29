@@ -6,8 +6,8 @@
 
 <!-- ============ SEO / DISCOVERY ============ -->
 <title>Inquiry Calculator — Free Online Basic, Scientific &amp; Finance Calculator + AI Math Solver</title>
-<meta name="description" content="Inquiry Calculator is a free online calculator with a basic calculator, scientific calculator (sin, cos, tan, log, powers, factorials), loan &amp; savings calculators and an AI maths solver that reads a photo or a snapshot of your screen. No sign-up, works on phone and desktop.">
-<meta name="keywords" content="online calculator, free calculator, scientific calculator, basic calculator online, math calculator, loan calculator, mortgage calculator, compound interest calculator, savings calculator, tip calculator, percentage calculator, AI math solver, AI maths helper, solve maths with AI, homework calculator, snapshot calculator, screenshot maths solver, trigonometry calculator, log calculator, fraction calculator, finance calculator, split the bill calculator, engineering calculator, student calculator">
+<meta name="description" content="Inquiry Calculator is a free online calculator: basic and scientific keypads, loan, savings, salary, fuel, GST, percentage, BMI, date and unit converters, plus an AI maths solver that reads a photo or a snapshot of your browser tab. Light and dark mode, no sign-up, works on phone and desktop.">
+<meta name="keywords" content="online calculator, free calculator, scientific calculator, basic calculator online, math calculator, maths calculator, loan calculator, mortgage calculator, compound interest calculator, savings calculator, tip calculator, percentage calculator, discount calculator, GST calculator, salary calculator, hourly rate calculator, fuel cost calculator, recipe converter calculator, quadratic equation solver, standard deviation calculator, statistics calculator, roman numeral converter, random number generator, BMI calculator, age calculator, date calculator, unit converter, AI math solver, AI maths helper, solve maths with AI, homework calculator, snapshot calculator, screenshot maths solver, trigonometry calculator, log calculator, fraction calculator, finance calculator, split the bill calculator, dark mode calculator, engineering calculator, student calculator">
 <meta name="author" content="Inquiry Calculator">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="theme-color" content="#f1eeea">
@@ -23,8 +23,20 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Inquiry Calculator — Free Online Calculators + AI Solver">
 <meta name="twitter:description" content="Basic, scientific and finance calculators in one page, plus an AI that solves maths from a photo or a snapshot of your screen.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' rx='7.5' fill='%231d1d20'/%3E%3Cpath d='M7 9.6h14' stroke='%23fff' stroke-width='1.7' stroke-linecap='round' opacity='.5'/%3E%3Cg fill='%23fff' opacity='.85'%3E%3Ccircle cx='9.4' cy='14.4' r='1.5'/%3E%3Ccircle cx='14' cy='14.4' r='1.5'/%3E%3Ccircle cx='9.4' cy='19.1' r='1.5'/%3E%3Ccircle cx='14' cy='19.1' r='1.5'/%3E%3C/g%3E%3Ccircle cx='18.6' cy='14.4' r='1.75' fill='%23ee7a4b'/%3E%3Ccircle cx='18.6' cy='19.1' r='1.75' fill='%233f82e0'/%3E%3C/svg%3E">
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' rx='7.5' fill='%231d1d20'/%3E%3Ccircle cx='14' cy='14' r='6' fill='none' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%231d1d20'/%3E%3Ctext x='16' y='22.5' font-family='Helvetica,Arial,sans-serif' font-size='14.5' font-weight='700' letter-spacing='-0.7' fill='%23fff' text-anchor='middle'%3EIC%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%231d1d20'/%3E%3Ctext x='16' y='22.5' font-family='Helvetica,Arial,sans-serif' font-size='14.5' font-weight='700' letter-spacing='-0.7' fill='%23fff' text-anchor='middle'%3EIC%3C/text%3E%3C/svg%3E">
+<script>
+/* theme boot — runs before paint so there is no flash */
+(() => {
+  try {
+    const saved = localStorage.getItem('ic.theme');
+    const sys = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    const t = saved || sys;
+    document.documentElement.dataset.theme = t;
+    document.documentElement.style.colorScheme = t;
+  } catch { document.documentElement.dataset.theme = 'light'; }
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@800&family=Inter:wght@400;500;600&display=swap">
@@ -48,6 +60,11 @@
         "Loan / mortgage repayment calculator",
         "Savings and compound interest calculator",
         "Tip and bill split calculator",
+        "Salary, fuel cost and GST calculators",
+        "Percentage, discount, BMI, age and date calculators",
+        "Quadratic solver and statistics calculator",
+        "Recipe scaler, Roman numerals and random number generator",
+        "Light and dark theme",
         "AI maths solver with photo and tab snapshot analysis"
       ]
     },
@@ -87,17 +104,44 @@
 
 <style>
 :root{
+  color-scheme:light;
   --paper:#f1eeea; --ink:#151515; --ink-soft:rgba(21,21,21,.62); --line:rgba(21,21,21,.08);
   --blue:#3f82e0; --sel:#ee7a4b; --pill:#1d1d20; --key:#2b2c31; --key-fn:#3b3c43;
+  /* theme surfaces */
+  --surface:rgba(255,255,255,.72); --surface-2:rgba(255,255,255,.86); --surface-3:#ffffff;
+  --surface-solid:#ffffff; --surface-sunk:#f8f5f1; --surface-tint:#fbf9f7;
+  --hairline:rgba(21,21,21,.09); --hairline-2:rgba(21,21,21,.13); --hairline-3:rgba(21,21,21,.07);
+  --glass:rgba(241,238,234,.82); --chip:rgba(21,21,21,.05); --chip-hover:rgba(21,21,21,.09);
+  --shadow-card:0 20px 44px -40px rgba(0,0,0,.6);
+  --shadow-soft:0 12px 30px -24px rgba(21,21,21,.65);
+  --grain-opacity:.5; --grid-line:rgba(21,21,21,.08);
+  --mark-bg:linear-gradient(160deg,#ffffff,#e6e1da); --mark-ink:#141416; --mark-ring:rgba(255,255,255,.65);
+  --nav-ring:rgba(255,255,255,.16); --nav-btn:rgba(255,255,255,.1); --nav-btn-hover:rgba(255,255,255,.17);
   --font:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
   --display:"Bricolage Grotesque","Inter",system-ui,sans-serif;
   --ease:cubic-bezier(.22,1,.36,1);
   --slide:.55s;
 }
+html[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#0e0e11; --ink:#f2f1ee; --ink-soft:rgba(242,241,238,.58); --line:rgba(255,255,255,.1);
+  --blue:#5590ea; --sel:#f1844f; --pill:#1b1b20; --key:#2b2c31; --key-fn:#3b3c43;
+  --surface:rgba(255,255,255,.05); --surface-2:rgba(255,255,255,.075); --surface-3:rgba(255,255,255,.1);
+  --surface-solid:#17171b; --surface-sunk:#141418; --surface-tint:#141418;
+  --hairline:rgba(255,255,255,.11); --hairline-2:rgba(255,255,255,.16); --hairline-3:rgba(255,255,255,.08);
+  --glass:rgba(14,14,17,.8); --chip:rgba(255,255,255,.07); --chip-hover:rgba(255,255,255,.12);
+  --shadow-card:0 24px 50px -34px rgba(0,0,0,.95);
+  --shadow-soft:0 14px 34px -24px rgba(0,0,0,.9);
+  --grain-opacity:0; --grid-line:rgba(255,255,255,.055);
+  --mark-bg:linear-gradient(160deg,#ffffff,#dedad3); --mark-ink:#141416; --mark-ring:rgba(255,255,255,.4);
+  --nav-ring:rgba(255,255,255,.13); --nav-btn:rgba(255,255,255,.08); --nav-btn-hover:rgba(255,255,255,.15);
+}
+html{background:var(--paper)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{overscroll-behavior-y:none}
 html,body{background:var(--paper);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}
 body.noscroll{overflow:hidden}
+body,html,.home,.side,.mini-card,.cbox,.askbar,.nav-in,.chathead,.mini-out,.mini-note,.mini-related{transition:background-color .35s ease, color .35s ease, border-color .35s ease}
 button{font:inherit;color:inherit;border:0;cursor:pointer;background:none}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--blue);outline-offset:2px}
@@ -108,13 +152,13 @@ a{color:inherit}
 .pin{position:relative;min-height:inherit;overflow:hidden}
 .pin::before{ /* drafting grid, fading out from the centre */
   content:"";position:absolute;inset:0;pointer-events:none;
-  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);
   background-size:36px 36px;
   -webkit-mask-image:radial-gradient(ellipse 36% 42% at 50% 56%,#000,transparent);
           mask-image:radial-gradient(ellipse 36% 42% at 50% 56%,#000,transparent);
 }
 .pin::after,.page::after{ /* paper grain */
-  content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:multiply;
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:var(--grain-opacity);mix-blend-mode:multiply;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .45  0 0 0 0 .4  0 0 0 .22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
@@ -125,17 +169,43 @@ a{color:inherit}
   padding:0 8px 0 22px;background:var(--pill);border-radius:18px;color:#fff;box-shadow:0 14px 40px -18px rgba(0,0,0,.5);
 }
 .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:.95rem;letter-spacing:-.01em;white-space:nowrap;margin-right:auto;color:#fff;text-decoration:none}
-.logo .mark{display:grid;place-items:center;flex:none;transition:transform .5s var(--ease)}
-.logo .mark svg{width:23px;height:23px;display:block}
-.logo:hover .mark{transform:rotate(-6deg) scale(1.06)}
-.wordmark{display:inline-flex;gap:.3em}
-.wm-2{font-weight:400;opacity:.72}
+.logo .mark{
+  display:grid;place-items:center;flex:none;width:28px;height:28px;border-radius:9px;
+  background:var(--mark-bg);color:var(--mark-ink);
+  font-family:var(--display);font-weight:800;font-size:.79rem;letter-spacing:-.07em;line-height:1;padding-bottom:.5px;
+  box-shadow:0 2px 8px -3px rgba(0,0,0,.7), inset 0 0 0 1px rgba(255,255,255,.65);
+  transition:transform .45s var(--ease), box-shadow .45s var(--ease);
+}
+.logo:hover .mark{transform:rotate(-5deg) scale(1.05);box-shadow:0 4px 12px -4px rgba(0,0,0,.8), inset 0 0 0 1px #fff}
+.wordmark{display:inline-flex;gap:.28em;align-items:baseline}
+.wm-2{font-weight:400;opacity:.62}
+.logo:focus-visible{outline:2px solid #fff;outline-offset:4px;border-radius:8px}
 .tab{padding:8px 14px;border-radius:10px;font-size:.88rem;color:rgba(255,255,255,.62);white-space:nowrap;background:none;text-decoration:none}
 .tab:hover{color:#fff}
 .tab.on{color:#fff;background:rgba(255,255,255,.1)}
-.cta{margin-left:8px;padding:10px 18px;border-radius:12px;background:var(--blue);color:#fff;font-weight:600;font-size:.9rem;text-decoration:none;white-space:nowrap}
-.cta:hover{filter:brightness(1.08)}
+.cta{margin-left:6px;display:inline-flex;align-items:center;gap:7px;padding:10px 17px;border-radius:12px;background:var(--blue);color:#fff;font-weight:600;font-size:.9rem;text-decoration:none;white-space:nowrap;transition:filter .2s, transform .2s var(--ease), background .2s}
+.cta:hover{filter:brightness(1.09);transform:translateY(-1px)}
+.cta.ghost{background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);font-weight:500;color:rgba(255,255,255,.9)}
+.cta.ghost:hover{background:rgba(255,255,255,.16);filter:none}
+@media (max-width:1180px){ .nav-in{gap:4px} .tab{padding:8px 10px;font-size:.85rem} .cta{padding:9px 13px;font-size:.86rem} }
+@media (max-width:1040px){ .cta.ghost{padding:9px 11px} }
+@media (max-width:560px){
+  .wordmark{display:none}
+  .nav-in{padding-left:12px;gap:4px}
+  .cta{padding:9px 12px;font-size:.84rem;margin-left:4px}
+  .cta svg{display:none}
+}
 .tabs{display:flex;gap:2px}
+.themebtn{
+  width:36px;height:36px;border-radius:11px;display:grid;place-items:center;flex:none;
+  background:var(--nav-btn);color:#fff;box-shadow:inset 0 0 0 1px var(--nav-ring);
+  transition:background .2s, transform .3s var(--ease);
+}
+.themebtn:hover{background:var(--nav-btn-hover);transform:rotate(-15deg)}
+.themebtn:active{transform:scale(.92)}
+.themebtn .t-sun{display:none}
+html[data-theme="dark"] .themebtn .t-sun{display:block}
+html[data-theme="dark"] .themebtn .t-moon{display:none}
 
 /* ---------- Headline ---------- */
 .title-wrap{position:absolute;top:116px;left:0;right:0;z-index:1;transition:translate var(--slide) var(--ease)}
@@ -185,11 +255,11 @@ kbd{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.75rem;padding:1
 .rail-list{display:grid;gap:8px;margin-bottom:26px}
 .rail-link{
   display:flex;align-items:center;justify-content:space-between;gap:10px;
-  padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.72);border:1px solid var(--line);
+  padding:14px 16px;border-radius:14px;background:var(--surface);border:1px solid var(--line);
   text-decoration:none;font-weight:500;font-size:.95rem;box-shadow:0 10px 24px -22px rgba(0,0,0,.6);
   transition:background .2s,transform .2s;
 }
-.rail-link:hover{background:#fff;transform:translateY(-2px)}
+.rail-link:hover{background:var(--surface-3);transform:translateY(-2px)}
 .rail-link small{display:block;font-weight:400;font-size:.78rem;color:var(--ink-soft);margin-top:2px}
 .rail-link span{color:var(--blue);font-weight:600}
 .rail-tip{font-size:.8rem;line-height:1.75;color:var(--ink-soft);border-left:2px solid var(--sel);padding-left:12px;overflow-wrap:anywhere}
@@ -262,12 +332,19 @@ kbd{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.75rem;padding:1
   .sk-left{translate:calc(-160% * var(--k)) 0}
   .sk-right{translate:calc(160% * var(--k)) 0}
   .foot{translate:0 calc(180% * var(--k))}
+  .hero-cta{translate:0 calc(180% * var(--k))}
   .rail{translate:calc((100% + 14vw) * (1 - var(--k))) -50%;right:2.5vw;width:min(32vw,352px)}
   .stage.open .face1{display:none}
   .stage.open .face2{display:block}
   .stage.open .canvas .sel{animation:pop .4s var(--ease)}
   @keyframes pop{from{transform:scale(.985)}to{transform:scale(1)}}
 }
+.hero-cta{display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap;transition:translate var(--slide) var(--ease)}
+.hbtn{display:inline-flex;align-items:center;gap:7px;padding:10px 16px;border-radius:11px;font-size:.85rem;font-weight:600;text-decoration:none;background:var(--surface);border:1px solid var(--hairline-2);color:var(--ink);transition:transform .2s var(--ease), background .2s, box-shadow .2s}
+.hbtn:hover{transform:translateY(-2px);background:var(--surface-3);box-shadow:var(--shadow-soft)}
+.hbtn.primary{background:var(--blue);border-color:transparent;color:#fff;box-shadow:0 12px 26px -18px rgba(63,130,224,.9)}
+.hbtn.primary:hover{filter:brightness(1.08);background:var(--blue)}
+@media (max-width:820px){.hero-cta{margin-top:14px}}
 .cue{margin-top:6px}
 @media (max-width:820px){.cue{display:none}}
 
@@ -285,141 +362,292 @@ kbd{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.75rem;padding:1
 .ask-eg a{color:var(--blue);text-decoration:none}
 .ask-eg a:hover{text-decoration:underline}
 
-/* ---------- Chat page — glass ---------- */
+/* ---------- dark-theme touch-ups ---------- */
+html[data-theme="dark"] .logo .mark{box-shadow:0 2px 10px -3px rgba(0,0,0,.9), inset 0 0 0 1px var(--mark-ring)}
+html[data-theme="dark"] .sel i{background:var(--paper)}
+html[data-theme="dark"] .calc{box-shadow:0 34px 64px -30px rgba(0,0,0,.95), inset 0 0 0 1px rgba(255,255,255,.09)}
+html[data-theme="dark"] .pin::before{opacity:.85}
+html[data-theme="dark"] .ai-band{background:#16161a;border:1px solid var(--line);border-radius:0}
+html[data-theme="dark"] .ai-band .hin{z-index:1}
+html[data-theme="dark"] .qic{background:rgba(85,144,234,.18)}
+html[data-theme="dark"] .qcard:nth-child(3n) .qic{background:rgba(241,132,79,.18);color:#f2a077}
+html[data-theme="dark"] .mini-out{box-shadow:0 24px 50px -30px #000}
+html[data-theme="dark"] .mini-modes button.on{background:var(--ink);color:var(--paper)}
+html[data-theme="dark"] .btn-icon{background:var(--nav-btn);color:#fff}
+html[data-theme="dark"] .chatpage::before{background:radial-gradient(60% 50% at 8% 0%,rgba(85,144,234,.16),transparent 70%),radial-gradient(50% 44% at 96% 10%,rgba(241,132,79,.12),transparent 72%),var(--paper)}
+html[data-theme="dark"] .turn .body pre{background:#0b0c0e}
+html[data-theme="dark"] .guide p,html[data-theme="dark"] .mini-note p{color:var(--ink-soft)}
+html[data-theme="dark"] .social a{background:var(--chip);color:var(--ink)}
+html[data-theme="dark"] .hero-input{background:var(--surface-solid);border-color:var(--hairline-2)}
+html[data-theme="dark"] .brand-row .brand-txt b{color:var(--ink)}
+
+/* ---------- Chat page ---------- */
 body[data-view="chat"]{overflow:hidden}
-body[data-view="chat"] .nav .tabs{display:none}
-@media (max-width:820px){body[data-view="chat"] .nav{display:none}}
-.chatpage{position:relative;display:grid;grid-template-columns:282px 1fr;height:100svh;padding-top:78px;isolation:isolate}
-.chatpage::before{
-  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:
-    radial-gradient(58% 48% at 6% 2%, rgba(63,130,224,.22), transparent 72%),
-    radial-gradient(50% 42% at 98% 12%, rgba(238,122,75,.17), transparent 72%),
-    radial-gradient(85% 60% at 50% 110%, rgba(63,130,224,.13), transparent 70%),
-    var(--paper);
-}
-.side{
-  display:flex;flex-direction:column;min-height:0;padding:16px 14px 14px;text-align:left;
-  background:rgba(255,255,255,.44);
-  -webkit-backdrop-filter:blur(26px) saturate(1.6);backdrop-filter:blur(26px) saturate(1.6);
-  border-right:1px solid rgba(255,255,255,.7);
-  box-shadow:inset -1px 0 0 rgba(21,21,21,.05), 8px 0 30px -28px rgba(21,21,21,.55);
-}
+body[data-view="chat"] .nav{display:none}
+.chatpage{display:grid;grid-template-columns:272px 1fr;height:100svh;padding-top:0;background:var(--paper)}
+
+/* sidebar */
+.side{display:flex;flex-direction:column;min-height:0;padding:14px 10px 12px;text-align:left;background:var(--surface-sunk);border-right:1px solid var(--hairline-3)}
 .sideclose{display:none}
+.sidebrand{display:flex;align-items:center;gap:9px;padding:4px 8px 14px;text-decoration:none;font-weight:600;font-size:.88rem;color:var(--ink);letter-spacing:-.01em}
+.icmini{width:23px;height:23px;border-radius:7px;background:var(--mark-bg);color:var(--mark-ink);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:.63rem;letter-spacing:-.06em}
 .newchat{
-  display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px;border-radius:14px;
-  background:linear-gradient(150deg,#33343a,#141417);color:#fff;font-weight:600;font-size:.92rem;margin-bottom:14px;
-  border:1px solid rgba(255,255,255,.15);
-  box-shadow:0 14px 28px -18px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.18);
-  transition:transform .24s var(--ease), box-shadow .24s var(--ease), filter .24s;
+  display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:10px 12px;border-radius:11px;
+  background:var(--surface-3);color:var(--ink);font-weight:600;font-size:.87rem;border:1px solid var(--hairline-2);
+  box-shadow:0 1px 2px rgba(0,0,0,.12);
+  transition:background .18s, border-color .18s, box-shadow .18s, transform .18s var(--ease);
 }
-.newchat:hover{transform:translateY(-1px);filter:brightness(1.16);box-shadow:0 18px 32px -18px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.22)}
-.newchat:active{transform:scale(.985)}
-.chats{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:3px;padding-right:4px;scrollbar-width:thin;scrollbar-color:rgba(21,21,21,.16) transparent}
+.newchat:hover{background:var(--surface-3);border-color:var(--hairline-2);box-shadow:0 4px 12px -8px rgba(21,21,21,.5);transform:translateY(-1px)}
+.newchat:active{transform:scale(.99)}
+.sidelabel{font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft);padding:16px 9px 7px;font-weight:600}
+.chats{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:1px;padding-right:2px;scrollbar-width:thin;scrollbar-color:rgba(21,21,21,.16) transparent}
 .chats::-webkit-scrollbar,.chatwrap::-webkit-scrollbar{width:9px}
-.chats::-webkit-scrollbar-thumb,.chatwrap::-webkit-scrollbar-thumb{background:rgba(21,21,21,.16);border-radius:99px;border:3px solid transparent;background-clip:content-box}
+.chats::-webkit-scrollbar-thumb,.chatwrap::-webkit-scrollbar-thumb{background:rgba(21,21,21,.15);border-radius:99px;border:3px solid transparent;background-clip:content-box}
 .chats::-webkit-scrollbar-thumb:hover,.chatwrap::-webkit-scrollbar-thumb:hover{background:rgba(21,21,21,.3);background-clip:content-box}
-.chatitem{
-  display:flex;align-items:center;gap:8px;padding:10px 8px 10px 12px;border-radius:11px;font-size:.88rem;text-align:left;
-  color:var(--ink);width:100%;border:1px solid transparent;
-  transition:background .2s, border-color .2s, transform .2s var(--ease), box-shadow .2s;
+.chatitem{color:var(--ink-soft);
+  display:flex;align-items:center;gap:8px;padding:9px 8px 9px 10px;border-radius:9px;font-size:.865rem;text-align:left;
+  color:rgba(21,21,21,.82);width:100%;border:1px solid transparent;
+  transition:background .15s, border-color .15s, color .15s;
 }
-.chatitem:hover{background:rgba(255,255,255,.66);border-color:rgba(255,255,255,.9);transform:translateX(2px);box-shadow:0 8px 20px -18px rgba(21,21,21,.6)}
-.chatitem.on{background:rgba(255,255,255,.85);border-color:rgba(255,255,255,.95);font-weight:500;box-shadow:0 10px 22px -20px rgba(21,21,21,.65)}
+.chatitem:hover{background:var(--chip);color:var(--ink)}
+.chatitem.on{background:var(--surface-3);border-color:var(--hairline);color:var(--ink);font-weight:500;box-shadow:0 1px 2px rgba(21,21,21,.05)}
 .chatitem b{flex:1;min-width:0;font-weight:inherit;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.chatitem .del{flex:none;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;color:var(--ink-soft);font-size:1rem;line-height:1;opacity:0;transform:scale(.85);transition:opacity .18s, transform .18s var(--ease), background .18s, color .18s}
-.chatitem:hover .del,.chatitem.on .del{opacity:1;transform:none}
-.chatitem .del:hover{background:rgba(192,57,43,.12);color:#c0392b}
-.side-empty{font-size:.82rem;color:var(--ink-soft);padding:10px 12px;line-height:1.55}
-.side-foot{display:flex;flex-wrap:wrap;gap:6px;padding-top:12px;border-top:1px solid rgba(21,21,21,.07)}
-.side-foot a{font-size:.78rem;color:var(--ink-soft);text-decoration:none;padding:6px 10px;border-radius:9px;background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.9);transition:color .2s, background .2s, transform .2s var(--ease)}
-.side-foot a:hover{color:var(--ink);background:#fff;transform:translateY(-1px)}
+.chatitem .del{flex:none;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;color:var(--ink-soft);font-size:1rem;line-height:1;opacity:0;transition:opacity .15s, background .15s, color .15s}
+.chatitem:hover .del,.chatitem.on .del{opacity:1}
+.chatitem .del:hover{background:rgba(192,57,43,.1);color:#c0392b}
+.side-empty{font-size:.82rem;color:var(--ink-soft);padding:10px 6px;line-height:1.55}
+.side-foot{display:flex;flex-wrap:wrap;gap:4px;padding:10px 2px 0;border-top:1px solid rgba(21,21,21,.07);margin-top:8px}
+.side-foot a{font-size:.76rem;color:var(--ink-soft);text-decoration:none;padding:6px 8px;border-radius:7px;transition:color .15s, background .15s}
+.side-foot a:hover{color:var(--ink);background:var(--chip)}
 
-.chatmain{display:flex;flex-direction:column;min-height:0;min-width:0;background:rgba(255,255,255,.16)}
-.chathead{
-  display:flex;align-items:center;gap:10px;padding:12px 22px;
-  background:rgba(255,255,255,.4);
-  -webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);
-  border-bottom:1px solid rgba(255,255,255,.65);
-  box-shadow:0 14px 28px -28px rgba(21,21,21,.55);
+/* main column */
+.chatmain{display:flex;flex-direction:column;min-height:0;min-width:0}
+.chathead{display:flex;align-items:center;gap:8px;padding:0 16px;height:54px;flex:none;border-bottom:1px solid var(--hairline-3);background:var(--glass);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+.chathead h2{font-family:var(--font);font-weight:600;font-size:.92rem;letter-spacing:-.01em;margin:0;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;color:var(--ink);padding-left:2px}
+.ibtn{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;flex:none;color:var(--ink-soft);border:1px solid transparent;background:transparent;text-decoration:none;transition:background .16s,color .16s,border-color .16s,transform .2s var(--ease)}
+.ibtn:hover{background:var(--chip);color:var(--ink);border-color:var(--hairline)}
+.ibtn:active{transform:scale(.94)}
+.ibtn .t-sun{display:none}
+html[data-theme="dark"] .ibtn .t-sun{display:block}
+html[data-theme="dark"] .ibtn .t-moon{display:none}
+.snapbtn{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:9px;background:transparent;border:1px solid var(--hairline-2);font-size:.82rem;font-weight:500;color:var(--ink-soft);transition:background .16s, border-color .16s, color .16s}
+.snapbtn:hover{background:var(--surface-3);border-color:var(--hairline-2);color:var(--ink)}
+.snapbtn:active{transform:scale(.98)}
+.chatwrap{flex:1;min-height:0;overflow-y:auto;padding:26px 22px 4px;scroll-behavior:smooth}
+.log{width:min(720px,100%);margin:0 auto;display:flex;flex-direction:column;gap:24px;min-height:100%}
+
+/* messages */
+.turn{display:flex;gap:12px;max-width:100%;animation:msgIn .26s var(--ease) both}
+@keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.turn.user{justify-content:flex-end}
+.turn.user .bubble{
+  max-width:min(82%,580px);padding:11px 15px;border-radius:18px 18px 5px 18px;font-size:.94rem;line-height:1.62;
+  background:var(--chip-hover);color:var(--ink);overflow-wrap:anywhere;border:1px solid var(--hairline-3);
 }
-.chathead h2{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.02em;margin:0;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left}
-.snapbtn{
-  display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:11px;font-size:.83rem;font-weight:500;color:var(--ink);
-  background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);
-  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
-  box-shadow:0 8px 20px -18px rgba(21,21,21,.6);
-  transition:transform .22s var(--ease), background .22s, box-shadow .22s;
-}
-.snapbtn:hover{background:#fff;transform:translateY(-1px);box-shadow:0 12px 24px -18px rgba(21,21,21,.65)}
-.snapbtn:active{transform:scale(.97)}
-.chatwrap{flex:1;min-height:0;overflow-y:auto;padding:24px 22px 8px;scroll-behavior:smooth}
-.log{width:min(760px,100%);margin:0 auto;display:flex;flex-direction:column;gap:14px;min-height:100%}
-.msg{
-  width:fit-content;max-width:min(88%,700px);padding:13px 17px;border-radius:18px;font-size:.95rem;line-height:1.62;
-  text-align:left;overflow-wrap:anywhere;align-self:flex-start;
-  background:rgba(255,255,255,.6);
-  -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
-  border:1px solid rgba(255,255,255,.85);
-  box-shadow:0 16px 34px -26px rgba(21,21,21,.55), inset 0 1px 0 rgba(255,255,255,.9);
-  animation:rise .36s var(--ease) both;
-}
-@keyframes rise{from{opacity:0;transform:translateY(10px) scale(.99)}to{opacity:1;transform:none}}
-.msg.u{
-  align-self:flex-end;color:#fff;border-color:rgba(255,255,255,.24);
-  background:linear-gradient(152deg,rgba(78,145,234,.97),rgba(44,96,180,.98));
-  box-shadow:0 18px 36px -24px rgba(44,96,180,.85), inset 0 1px 0 rgba(255,255,255,.3);
-}
-.msg p{margin:0 0 9px}.msg>:last-child{margin-bottom:0}
-.msg ul,.msg ol{padding-left:20px;margin:0 0 9px}
-.msg h1,.msg h2,.msg h3{font-size:1rem;margin:10px 0 6px}
-.msg code{background:rgba(21,21,21,.07);padding:1px 5px;border-radius:5px;font-size:.86em}
-.msg.u code{background:rgba(255,255,255,.18)}
-.msg pre{overflow-x:auto;background:rgba(11,12,14,.92);color:#e8e8ec;padding:12px;border-radius:12px;margin:0 0 9px;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-.msg pre code{background:none;padding:0}
-.msg img{max-width:240px;border-radius:12px;display:block;margin-bottom:8px;border:1px solid rgba(255,255,255,.5)}
-.msg .att-note{font-size:.78rem;opacity:.72;margin-bottom:6px}
-.typing{display:inline-flex;gap:5px;padding:3px 0}
-.typing i{width:6px;height:6px;border-radius:50%;background:#9a9a9a;animation:bl 1.15s infinite ease-in-out}
+.turn.ai{align-items:flex-start}
+.ava{width:27px;height:27px;border-radius:8px;background:var(--pill);color:var(--ink);display:grid;place-items:center;flex:none;margin-top:1px;box-shadow:0 1px 2px rgba(21,21,21,.18)}
+.ava svg{width:15px;height:15px}
+.turn .body{flex:1;min-width:0;font-size:.945rem;line-height:1.68;padding-top:2px;overflow-wrap:anywhere}
+.turn .body>:first-child{margin-top:0}
+.turn .body p{margin:0 0 10px}
+.turn .body ul,.turn .body ol{padding-left:21px;margin:0 0 10px;display:flex;flex-direction:column;gap:3px}
+.turn .body li::marker{color:var(--ink-soft)}
+.turn .body h1,.turn .body h2,.turn .body h3,.turn .body h4{font-family:var(--font);font-size:.98rem;font-weight:650;margin:14px 0 6px;letter-spacing:-.01em}
+.turn .body strong{font-weight:650}
+.turn .body code{background:var(--chip);padding:1.5px 5px;border-radius:5px;font-size:.86em}
+.turn .body pre{overflow-x:auto;background:#16171a;color:#e9e9ee;padding:13px 14px;border-radius:11px;margin:0 0 10px;font-size:.85rem;line-height:1.55}
+.turn .body pre code{background:none;padding:0;font-size:1em;color:inherit}
+.turn .body img{max-width:240px;border-radius:10px;display:block;margin-bottom:8px;border:1px solid var(--hairline)}
+.turn .body table{border-collapse:collapse;margin:0 0 10px;font-size:.88rem}
+.turn .body th,.turn .body td{border:1px solid var(--hairline-2);padding:5px 9px;text-align:left}
+.turn .body th{background:var(--chip)}
+.turn .body a{color:var(--blue);text-decoration:none}
+.turn .body a:hover{text-decoration:underline}
+.bubble .att-note{font-size:.76rem;opacity:.65;margin-bottom:6px}
+.bubble img{max-width:230px;border-radius:10px;display:block;margin-bottom:8px}
+.bubble p{margin:0 0 8px}.bubble>:last-child{margin-bottom:0}
+.typing{display:inline-flex;gap:4px;padding:9px 0 4px}
+.typing i{width:6px;height:6px;border-radius:50%;background:rgba(21,21,21,.38);animation:bl 1.15s infinite ease-in-out}
 .typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
-@keyframes bl{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-2px)}}
-.welcome{max-width:640px;margin:5vh auto 0;text-align:center;color:var(--ink-soft);animation:rise .55s var(--ease) both}
-.welcome h3{font-family:var(--display);color:var(--ink);font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:-.03em;margin-bottom:8px}
-.welcome p{font-size:.92rem;line-height:1.6;margin-bottom:18px}
-.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
-.chips button{
-  padding:9px 15px;border-radius:999px;font-size:.83rem;color:var(--ink);
-  background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.9);
-  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
-  box-shadow:0 8px 20px -20px rgba(21,21,21,.6);
-  transition:transform .22s var(--ease), background .22s, box-shadow .22s;
-}
-.chips button:hover{background:#fff;transform:translateY(-2px);box-shadow:0 14px 26px -20px rgba(21,21,21,.6)}
-.chips button:active{transform:scale(.97)}
+@keyframes bl{0%,80%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-2px)}}
 
-.composer{width:min(760px,100%);margin:0 auto;padding:10px 22px 18px}
-.attached{display:none;align-items:center;gap:10px;font-size:.8rem;color:var(--ink-soft);margin-bottom:8px}
-.attached img{width:52px;height:40px;object-fit:cover;border-radius:9px;border:1px solid rgba(255,255,255,.9);box-shadow:0 8px 18px -14px rgba(21,21,21,.7)}
-.attached button{color:#c0392b;font-size:.78rem;text-decoration:underline}
-.bar{
-  display:flex;align-items:flex-end;gap:6px;padding:8px;border-radius:19px;
-  background:rgba(29,29,32,.9);
-  -webkit-backdrop-filter:blur(26px) saturate(1.6);backdrop-filter:blur(26px) saturate(1.6);
-  border:1px solid rgba(255,255,255,.14);
-  box-shadow:0 26px 52px -32px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.17);
-  transition:border-color .25s, box-shadow .25s;
+/* empty state */
+.welcome{width:min(700px,100%);margin:auto;text-align:center;padding:2vh 0 1vh}
+.welcome .glyph{width:42px;height:42px;border-radius:12px;background:var(--mark-bg);color:var(--mark-ink);display:grid;place-items:center;margin:0 auto 18px;box-shadow:0 10px 24px -14px rgba(0,0,0,.8)}
+.welcome .glyph svg{width:21px;height:21px}
+.welcome h3{font-family:var(--display);color:var(--ink);font-size:clamp(1.55rem,3vw,2.05rem);letter-spacing:-.035em;line-height:1.1;margin-bottom:9px}
+.welcome p{font-size:.9rem;line-height:1.6;color:var(--ink-soft);max-width:460px;margin:0 auto}
+.sugg{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:26px;text-align:left}
+.sugg button{
+  display:flex;align-items:flex-start;gap:10px;padding:13px 14px;border-radius:13px;background:var(--surface);
+  border:1px solid var(--hairline);text-align:left;transition:background .16s, border-color .16s, transform .16s var(--ease), box-shadow .16s;
 }
-.bar:focus-within{border-color:rgba(120,175,255,.55);box-shadow:0 28px 56px -32px rgba(0,0,0,.95), 0 0 0 3px rgba(63,130,224,.16), inset 0 1px 0 rgba(255,255,255,.2)}
-.bar textarea{flex:1;min-width:0;background:none;border:0;outline:0;resize:none;color:#fff;font:inherit;font-size:.95rem;padding:10px 8px;max-height:150px;line-height:1.45;transition:height .18s var(--ease)}
-.bar textarea::placeholder{color:rgba(255,255,255,.42)}
-.ib{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:transparent;color:rgba(255,255,255,.62);flex:none;transition:background .2s, color .2s, transform .18s var(--ease), box-shadow .2s}
-.ib:hover{background:rgba(255,255,255,.1);color:#fff}
-.ib:active{transform:scale(.92)}
-.ib.go{background:linear-gradient(150deg,#5a97ea,#2f6fce);color:#fff;box-shadow:0 10px 20px -12px rgba(63,130,224,.95), inset 0 1px 0 rgba(255,255,255,.32)}
-.ib.go:hover{filter:brightness(1.08);background:linear-gradient(150deg,#5a97ea,#2f6fce)}
-.composer .fine{font-size:.72rem;color:var(--ink-soft);text-align:center;margin-top:8px}
-.menubtn{display:none;transition:background .2s, transform .2s var(--ease)}
-.menubtn:active{transform:scale(.94)}
+.sugg button:hover{background:var(--surface-3);border-color:var(--hairline-2);transform:translateY(-2px);box-shadow:0 10px 24px -20px rgba(21,21,21,.7)}
+.sugg button:active{transform:scale(.99)}
+.sugg .si{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:rgba(63,130,224,.16);color:var(--blue);flex:none}
+.sugg .si svg{width:14px;height:14px}
+.sugg b{display:block;font-size:.86rem;font-weight:600;color:var(--ink);margin-bottom:2px}
+.sugg small{display:block;font-size:.78rem;color:var(--ink-soft);line-height:1.4}
+
+/* composer */
+.composer{position:relative;width:min(720px,100%);margin:0 auto;padding:10px 22px 14px;flex:none}
+.composer::before{content:"";position:absolute;left:0;right:0;top:-34px;height:34px;pointer-events:none;background:linear-gradient(to bottom,transparent,var(--paper))}
+.attached{display:none;align-items:center;gap:10px;font-size:.8rem;color:var(--ink-soft);margin-bottom:8px}
+.attached img{width:50px;height:38px;object-fit:cover;border-radius:8px;border:1px solid rgba(21,21,21,.12)}
+.attached button{color:#c0392b;font-size:.78rem;text-decoration:underline}
+.cbox{
+  background:var(--surface-3);border:1px solid var(--hairline-2);border-radius:17px;padding:9px 10px 8px 15px;
+  box-shadow:var(--shadow-soft), 0 1px 2px rgba(0,0,0,.08);
+  transition:border-color .18s, box-shadow .18s;
+}
+.cbox:focus-within{border-color:rgba(63,130,224,.55);box-shadow:0 14px 32px -24px rgba(21,21,21,.6), 0 0 0 3px rgba(63,130,224,.11)}
+#ain{width:100%;background:none;border:0;outline:0;resize:none;color:var(--ink);font:inherit;font-size:.95rem;line-height:1.5;padding:6px 2px 4px;max-height:168px}
+#ain::placeholder{color:var(--ink-soft)}
+.cbar{display:flex;align-items:center;gap:2px;margin-top:4px}
+.ib{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:transparent;color:var(--ink-soft);flex:none;transition:background .15s, color .15s, transform .15s var(--ease)}
+.ib:hover{background:var(--chip);color:var(--ink)}
+.ib:active{transform:scale(.94)}
+.chint{flex:1;text-align:right;font-size:.72rem;color:var(--ink-soft);padding-right:8px}
+.chint kbd{font-size:.68rem}
+.send{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:var(--blue);color:#fff;flex:none;transition:filter .16s, transform .16s var(--ease), opacity .16s;box-shadow:0 6px 14px -8px rgba(63,130,224,.9)}
+.send:hover{filter:brightness(1.08)}
+.send:active{transform:scale(.94)}
+.send[disabled]{opacity:.45;cursor:default;filter:none;box-shadow:none}
+.composer .fine{font-size:.72rem;color:var(--ink-soft);text-align:center;margin-top:9px}
+.menubtn{display:none}
+
+/* ---------- Home sections ---------- */
+.home{position:relative;background:var(--paper)}
+.home::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:var(--line)}
+.band{position:relative;padding:84px 0;border-bottom:1px solid var(--line)}
+.home>.band:first-child{padding-top:104px}
+.band:last-child{border-bottom:0}
+.hin{width:min(1120px,100%);margin:0 auto;padding:0 22px}
+.band-head{max-width:640px;margin-bottom:34px}
+.kicker{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.kicker::before{content:"";width:18px;height:1px;background:var(--sel)}
+.band h2{font-family:var(--display);font-weight:800;font-size:clamp(28px,4.1vw,46px);line-height:1.02;letter-spacing:-.045em;margin-bottom:12px}
+.lede{font-size:.95rem;line-height:1.65;color:var(--ink-soft);max-width:560px}
+.qgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:11px}
+.qcard[data-mini],.hfoot a[data-mini]{cursor:pointer}
+.qcard{display:flex;align-items:center;gap:12px;padding:15px 16px;background:var(--surface);border:1px solid var(--line);border-radius:15px;text-decoration:none;transition:transform .22s var(--ease),box-shadow .22s,background .22s,border-color .22s}
+.qcard:hover{transform:translateY(-3px);background:var(--surface-3);border-color:rgba(21,21,21,.15);box-shadow:0 20px 40px -32px rgba(0,0,0,.6)}
+.qic{width:34px;height:34px;border-radius:10px;background:rgba(63,130,224,.14);color:var(--blue);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:.9rem;flex:none;letter-spacing:-.03em;line-height:1}
+.qic{font-size:.78rem}
+.qcard .qic{font-size:.78rem}
+.qcard:nth-child(3n) .qic{background:rgba(238,122,75,.12);color:#c85c31}
+.qcard b{display:block;font-size:.9rem;letter-spacing:-.01em;margin-bottom:2px}
+.qcard small{display:block;font-size:.76rem;color:var(--ink-soft);line-height:1.35}
+
+/* AI band */
+.ai-band{background:var(--pill);color:#fff;border-bottom:0;overflow:hidden}
+.ai-band::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 90% at 88% 10%,rgba(63,130,224,.28),transparent 70%),radial-gradient(50% 80% at 8% 100%,rgba(238,122,75,.16),transparent 72%)}
+.ai-band .hin{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+.ai-band h2{color:#fff}
+.ai-band .lede{color:rgba(255,255,255,.6)}
+.ai-band .kicker{color:rgba(255,255,255,.45)}
+.ai-band .kicker::before{background:var(--blue)}
+.aiacts{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}
+.abtn{padding:11px 18px;border-radius:11px;font-size:.88rem;font-weight:600;text-decoration:none;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.16);transition:background .2s,transform .2s var(--ease)}
+.abtn:hover{background:rgba(255,255,255,.17);transform:translateY(-1px)}
+.abtn.primary{background:var(--blue);border-color:transparent;box-shadow:0 12px 26px -16px rgba(63,130,224,.9)}
+.abtn.primary:hover{filter:brightness(1.08);background:var(--blue)}
+.aiprompts{display:flex;flex-direction:column;gap:8px}
+.aiprompts button{
+  display:flex;align-items:center;gap:10px;padding:13px 15px;border-radius:12px;text-align:left;font-size:.86rem;color:#fff;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);transition:background .18s,border-color .18s,transform .18s var(--ease);
+}
+.aiprompts button:hover{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.2);transform:translateX(3px)}
+.aiprompts .p-ic{width:24px;height:24px;border-radius:7px;background:rgba(255,255,255,.1);display:grid;place-items:center;flex:none;color:rgba(255,255,255,.8)}
+
+/* guides */
+.guides{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:14px}
+.guide{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;transition:transform .22s var(--ease),box-shadow .22s,background .22s}
+.guide:hover{transform:translateY(-3px);background:var(--surface-3);box-shadow:0 24px 46px -34px rgba(0,0,0,.55)}
+.guide .tagx{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px}
+.guide h3{font-family:var(--display);font-size:1.16rem;letter-spacing:-.025em;margin-bottom:8px;line-height:1.2}
+.guide p{font-size:.86rem;line-height:1.62;color:var(--ink-soft);flex:1}
+.guide .formula{margin:12px 0;padding:10px 12px;border-radius:9px;background:var(--chip);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.8rem;color:var(--ink);overflow-x:auto}
+.guide a{margin-top:12px;font-size:.82rem;font-weight:600;color:var(--blue);text-decoration:none}
+.guide a:hover{text-decoration:underline}
+
+/* why strip */
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px 28px;margin-top:6px}
+.why>div{display:grid;grid-template-columns:auto 1fr;gap:4px 11px;align-items:center}
+.why .w-ic{width:29px;height:29px;border-radius:9px;background:var(--ink);color:var(--paper);display:grid;place-items:center;flex:none}
+.why b{font-size:.9rem;letter-spacing:-.01em}
+.why p{grid-column:1/-1;font-size:.82rem;color:var(--ink-soft);line-height:1.55}
+
+/* faq reuse .faq */
+.home .faq{margin-top:0;width:100%}
+
+/* home footer */
+.hfoot{padding:40px 0 56px;border-top:1px solid var(--line);margin-top:20px}
+.hfoot-in{width:min(1120px,100%);margin:0 auto;padding:0 22px;display:grid;grid-template-columns:1.3fr repeat(4,1fr);gap:22px;font-size:.83rem}
+.hfoot h4{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px}
+.hfoot a{display:block;text-decoration:none;color:var(--ink-soft);padding:4px 0}
+.hfoot a:hover{color:var(--blue)}
+.hfoot .brandcol b{font-family:var(--display);font-size:1rem;letter-spacing:-.02em;display:block;margin-bottom:6px}
+.hfoot .brandcol p{color:var(--ink-soft);line-height:1.6;max-width:250px;font-size:.82rem}
+.hfoot .copy{grid-column:1/-1;border-top:1px solid var(--line);padding-top:16px;color:var(--ink-soft);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.78rem}
+
+@media (max-width:1024px){.hfoot-in{grid-template-columns:1fr 1fr 1fr}}
+@media (max-width:900px){
+  .ai-band .hin{grid-template-columns:1fr;gap:26px}
+  .hfoot-in{grid-template-columns:1fr 1fr}
+}
+@media (max-width:820px){
+  .band{padding:60px 0}
+  .home{padding-bottom:86px}
+  .hfoot{padding-bottom:96px}
+  .hin{padding:0 16px}
+}
+
+/* ---------- Mini tool pages ---------- */
+.mini-page{padding:118px 18px 78px;text-align:left;min-height:100svh}
+.mini-wrap{width:min(980px,100%);margin:0 auto}
+.backlink{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;color:var(--ink-soft);text-decoration:none;margin-bottom:20px}
+.backlink:hover{color:var(--ink)}
+.mini-head{display:flex;gap:15px;align-items:center;margin-bottom:24px}
+.mini-ic{width:50px;height:50px;border-radius:15px;background:var(--pill);color:var(--ink);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.05rem;flex:none;letter-spacing:-.04em;box-shadow:0 12px 26px -18px rgba(0,0,0,.8)}
+.mini-title{font-family:var(--display);font-size:clamp(1.6rem,3.1vw,2.25rem);letter-spacing:-.04em;line-height:1.05;margin:0}
+.mini-blurb{font-size:.88rem;color:var(--ink-soft);margin-top:7px;max-width:600px;line-height:1.55}
+.mini-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;align-items:start}
+.mini-card{background:var(--surface-3);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:var(--shadow-card)}
+.mini-modes{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+.mini-modes button{padding:7px 12px;border-radius:8px;font-size:.79rem;background:var(--chip);color:var(--ink-soft);transition:background .16s,color .16s}
+.mini-modes button:hover{background:var(--chip-hover);color:var(--ink)}
+.mini-modes button.on{background:var(--pill);color:#fff}
+.mini-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mini-fld{display:block;font-size:.76rem;color:var(--ink-soft)}
+.mini-fld span{display:block;margin-bottom:5px}
+.mini-fld>div{position:relative;display:flex;align-items:center;border:1px solid var(--hairline-2);border-radius:10px;background:var(--surface-tint);transition:border-color .16s,box-shadow .16s}
+.mini-fld>div:focus-within{border-color:rgba(63,130,224,.6);box-shadow:0 0 0 3px rgba(63,130,224,.1)}
+.mini-fld input,.mini-fld select{flex:1;min-width:0;width:100%;background:none;border:0;outline:0;font:inherit;font-size:.92rem;color:var(--ink);padding:10px 11px;border-radius:10px}
+.mini-fld em{font-style:normal;font-size:.76rem;color:var(--ink-soft);padding-right:10px}
+.mini-out{background:var(--pill);color:#fff;border-radius:16px;padding:18px 18px 16px;margin-top:16px}
+.mini-out .olabel{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:6px}
+.mini-out .omain{font-family:var(--display);font-size:clamp(1.7rem,4vw,2.3rem);letter-spacing:-.03em;line-height:1.1;word-break:break-word}
+.mini-rows{display:flex;flex-direction:column;gap:7px;margin-top:14px;border-top:1px solid rgba(255,255,255,.1);padding-top:12px}
+.mini-rows p{display:flex;justify-content:space-between;gap:12px;font-size:.83rem;color:rgba(255,255,255,.58)}
+.mini-rows b{color:#fff;font-weight:600;text-align:right}
+.mini-ask{margin-top:14px;width:100%;padding:11px;border-radius:10px;font-size:.83rem;font-weight:600;color:var(--ink);background:rgba(21,21,21,.05);transition:background .16s}
+.mini-ask:hover{background:var(--chip-hover)}
+.mini-aside{display:flex;flex-direction:column;gap:10px}
+.mini-note{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px}
+.mini-note h2,.mini-related h2{font-family:var(--font);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px}
+.mini-note p{font-size:.84rem;line-height:1.65;color:rgba(21,21,21,.72)}
+.mini-note p+p{margin-top:8px}
+.mini-related{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px}
+.mini-links{display:flex;flex-wrap:wrap;gap:6px}
+.mini-links a{font-size:.8rem;text-decoration:none;padding:7px 11px;border-radius:8px;background:var(--chip);color:var(--ink-soft);transition:background .16s,color .16s}
+.mini-links a:hover{background:var(--pill);color:#fff}
+@media (max-width:840px){
+  .mini-page{padding:88px 14px 48px}
+  body[data-view="mini"] .tabs{display:none}
+  .mini-head{margin-bottom:18px}
+  .mini-grid{grid-template-columns:1fr}
+}
 
 /* ---------- view transitions ---------- */
 @keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
@@ -431,12 +659,12 @@ body[data-view="chat"] .nav .tabs{display:none}
 .sheet{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:20px;background:rgba(21,21,21,.42);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);animation:sheetIn .28s var(--ease) both}
 @keyframes sheetIn{from{opacity:0}to{opacity:1}}
 .sheet[hidden]{display:none}
-.sheet-card{width:min(440px,100%);background:rgba(245,243,240,.94);-webkit-backdrop-filter:blur(22px) saturate(1.4);backdrop-filter:blur(22px) saturate(1.4);animation:cardIn .32s var(--ease) both;border-radius:22px;padding:28px 26px 24px;text-align:center;box-shadow:0 40px 80px -40px rgba(0,0,0,.7);border:1px solid var(--line)}
+.sheet-card{width:min(440px,100%);background:var(--paper);border-color:var(--hairline-2);-webkit-backdrop-filter:blur(22px) saturate(1.4);backdrop-filter:blur(22px) saturate(1.4);animation:cardIn .32s var(--ease) both;border-radius:22px;padding:28px 26px 24px;text-align:center;box-shadow:0 40px 80px -40px rgba(0,0,0,.7);border:1px solid var(--line)}
 .sheet-card h3{font-family:var(--display);font-size:1.35rem;letter-spacing:-.03em;margin-bottom:10px}
 .sheet-card p{font-size:.9rem;line-height:1.6;color:var(--ink-soft);margin-bottom:18px}
 .sheet-card .row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
 .sheet-card .go-btn{padding:12px 20px;border-radius:12px;background:var(--blue);color:#fff;font-weight:600;font-size:.92rem}
-.sheet-card .no-btn{padding:12px 18px;border-radius:12px;background:rgba(21,21,21,.06);font-weight:500;font-size:.92rem}
+.sheet-card .no-btn{padding:12px 18px;border-radius:12px;background:var(--chip);font-weight:500;font-size:.92rem}
 .sheet-card .err{color:#c0392b;font-size:.82rem;margin-top:12px;min-height:1em}
 @keyframes cardIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
 .snapnote{font-size:.76rem;color:var(--ink-soft);margin-top:14px}
@@ -444,9 +672,9 @@ body[data-view="chat"] .nav .tabs{display:none}
 /* ---------- Tools / hub page ---------- */
 .wrap{width:min(1020px,100%);margin:0 auto}
 .tools{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));text-align:left}
-.tool{display:flex;flex-direction:column;background:rgba(255,255,255,.78);border:1px solid var(--line);border-radius:18px;padding:20px;text-decoration:none;transition:transform .2s var(--ease),box-shadow .2s,background .2s}
-.tool:hover{transform:translateY(-4px);background:#fff;box-shadow:0 22px 46px -30px rgba(0,0,0,.5)}
-.tool .ico{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--pill);color:#fff;margin-bottom:12px}
+.tool{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;text-decoration:none;transition:transform .2s var(--ease),box-shadow .2s,background .2s}
+.tool:hover{transform:translateY(-4px);background:var(--surface-3);box-shadow:0 22px 46px -30px rgba(0,0,0,.5)}
+.tool .ico{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--pill);color:var(--ink);margin-bottom:12px;font-family:var(--display);font-weight:800;font-size:.72rem;letter-spacing:-.03em}
 .tool h3{font-family:var(--display);font-size:1.12rem;letter-spacing:-.02em;margin-bottom:6px}
 .tool p{font-size:.87rem;color:var(--ink-soft);line-height:1.55;flex:1}
 .tool span{margin-top:12px;color:var(--blue);font-weight:600;font-size:.82rem}
@@ -456,7 +684,7 @@ body[data-view="chat"] .nav .tabs{display:none}
 .tool.hl span{color:#8fb8f2}
 .faq{width:min(760px,100%);margin:60px auto 0;text-align:left}
 .faq h2{font-size:clamp(28px,4vw,42px);margin-bottom:18px;text-align:center}
-.faq details{background:rgba(255,255,255,.8);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:10px}
+.faq details{background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:10px}
 .faq summary{font-weight:600;font-size:.95rem;cursor:pointer;list-style:none}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"+";float:right;color:var(--ink-soft);font-weight:400}
@@ -465,8 +693,8 @@ body[data-view="chat"] .nav .tabs{display:none}
 .seo-note{width:min(760px,100%);margin:44px auto 0;text-align:left;font-size:.88rem;line-height:1.7;color:var(--ink-soft)}
 .seo-note h2{font-size:clamp(24px,3.4vw,34px);color:var(--ink);text-align:left;margin-bottom:12px}
 .sharebar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:34px}
-.sharebar button,.sharebar a{padding:10px 16px;border-radius:999px;background:rgba(255,255,255,.8);border:1px solid var(--line);font-size:.82rem;text-decoration:none}
-.sharebar button:hover,.sharebar a:hover{background:#fff}
+.sharebar button,.sharebar a{padding:10px 16px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);font-size:.82rem;text-decoration:none}
+.sharebar button:hover,.sharebar a:hover{background:var(--surface-3)}
 .sitefoot{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:.8rem;color:var(--ink-soft);display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
 .sitefoot a{color:var(--ink-soft);text-decoration:none}
 .sitefoot a:hover{color:var(--blue)}
@@ -474,16 +702,21 @@ body[data-view="chat"] .nav .tabs{display:none}
 
 /* ---------- Chat page on small screens ---------- */
 @media (max-width:820px){
-  .chatpage{grid-template-columns:1fr;padding-top:70px}
-  .side{position:fixed;top:0;left:0;bottom:0;width:min(84vw,300px);z-index:70;background:rgba(243,241,238,.88);-webkit-backdrop-filter:blur(26px) saturate(1.5);backdrop-filter:blur(26px) saturate(1.5);box-shadow:24px 0 60px -30px rgba(0,0,0,.5);translate:-102% 0;transition:translate .34s var(--ease);padding-top:80px}
+  .chint{display:none}
+  .chatpage{grid-template-columns:1fr;padding-top:60px}
+  .side{position:fixed;top:0;left:0;bottom:0;width:min(84vw,300px);z-index:70;background:#f8f5f1;box-shadow:24px 0 60px -30px rgba(0,0,0,.5);translate:-102% 0;transition:translate .32s var(--ease);padding-top:16px}
   .chatpage.menu .side{translate:0 0}
   .chatpage.menu::after{content:"";position:fixed;inset:0;z-index:65;background:rgba(21,21,21,.35)}
-  .sideclose{display:block;position:absolute;top:22px;right:16px;width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.7);font-size:1.2rem;line-height:1;color:var(--ink)}
-  .menubtn{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.75)}
-  .chathead{padding:8px 14px}
-  .chatwrap{padding:16px 14px 4px}
-  .composer{padding:6px 14px 14px}
-  .msg{max-width:92%}
+  .sideclose{display:block;position:absolute;top:12px;right:10px;width:32px;height:32px;border-radius:8px;border:1px solid rgba(21,21,21,.1);background:#fff;font-size:1.15rem;line-height:1;color:var(--ink)}
+  .menubtn{display:grid;place-items:center;width:34px;height:34px;border-radius:8px;border:1px solid rgba(21,21,21,.1);background:#fff;flex:none}
+  .chathead{padding:0 12px;height:50px}
+  .chatwrap{padding:18px 14px 4px}
+  .log{gap:20px}
+  .composer{padding:8px 12px 10px}
+  .sugg{grid-template-columns:1fr}
+  .welcome{margin-top:0;padding:3vh 0 0}
+  .turn.user .bubble{max-width:88%}
+  .fine{display:none}
   .askpage{padding-top:110px}
 }
 </style>
@@ -500,19 +733,8 @@ body[data-view="chat"] .nav .tabs{display:none}
 <header class="nav">
   <div class="nav-in">
     <a class="logo" href="#basic" aria-label="Inquiry Calculator home">
-      <span class="mark" aria-hidden="true">
-        <svg viewBox="0 0 28 28" fill="none">
-          <rect x="2.7" y="2.7" width="22.6" height="22.6" rx="7" stroke="currentColor" stroke-width="1.7" opacity=".92"/>
-          <path d="M7.2 9.7h13.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" opacity=".5"/>
-          <g fill="currentColor" opacity=".85">
-            <circle cx="9.6" cy="14.5" r="1.5"/><circle cx="14.2" cy="14.5" r="1.5"/>
-            <circle cx="9.6" cy="19.2" r="1.5"/><circle cx="14.2" cy="19.2" r="1.5"/>
-          </g>
-          <circle cx="18.8" cy="14.5" r="1.8" fill="#ee7a4b"/>
-          <circle cx="18.8" cy="19.2" r="1.8" fill="#3f82e0"/>
-        </svg>
-      </span>
-      <span class="wordmark">Inquiry<span class="wm-2">Calculator</span></span>
+      <span class="mark" aria-hidden="true">IC</span>
+      <span class="wordmark">Inquiry <span class="wm-2">Calculator</span></span>
     </a>
     <nav class="tabs" aria-label="Sections">
       <a class="tab on" data-go="basic" href="#basic">Basic</a>
@@ -520,7 +742,15 @@ body[data-view="chat"] .nav .tabs{display:none}
       <a class="tab" data-go="finance" href="#finance">Finance</a>
       <a class="tab" data-go="tools" href="#tools">All tools</a>
     </nav>
-    <a class="cta" href="#ask">Ask AI</a>
+    <button class="themebtn" id="themebtn" type="button" aria-label="Switch to dark theme" title="Light / dark theme">
+      <svg class="t-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.8 6.8 0 0 0 10.7 10.7z"/></svg>
+      <svg class="t-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6"/></svg>
+    </button>
+    <a class="cta ghost" href="#ask">Ask AI</a>
+    <a class="cta" href="#chat">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 3.2l1.9 4.9 4.9 1.9-4.9 1.9L12 16.8l-1.9-4.9L5.2 10l4.9-1.9z"/><path d="M18.6 16.2l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg>
+      Chat
+    </a>
   </div>
 </header>
 
@@ -601,8 +831,188 @@ body[data-view="chat"] .nav .tabs{display:none}
     <p class="tag">A new way to work out the numbers.</p>
     <p class="hint">Type it, or press <kbd>0–9</kbd> <kbd>+ − × ÷</kbd> <kbd>Enter</kbd> <kbd>Esc</kbd></p>
     <p class="hint cue">Scroll down to expand the calculator ↓</p>
+    <div class="hero-cta">
+      <a class="hbtn primary" href="#chat">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3.5 20.5l1.4-5A8.5 8.5 0 1 1 21 11.5z"/></svg>
+        Open the AI chat
+      </a>
+      <a class="hbtn" href="#ask">Ask one quick question</a>
+    </div>
   </div>
 </div></main>
+
+<div class="home" data-view-id="basic">
+
+  <section class="band" id="everyday" aria-labelledby="everyday-h">
+    <div class="hin">
+      <div class="band-head">
+        <p class="kicker">Everyday calculations</p>
+        <h2 id="everyday-h">The sums people actually look up.</h2>
+        <p class="lede">Percentage, discounts, BMI, age, dates, unit conversions and GST. Each one runs instantly, shows the working, and hands the whole problem to the AI if you want it explained.</p>
+      </div>
+      <div class="qgrid">
+        <a class="qcard" href="#percent" data-mini="percent"><span class="qic" aria-hidden="true">%</span><span><b>Percentage calculator</b><small>X% of Y, what percent, % change</small></span></a>
+        <a class="qcard" href="#discount" data-mini="discount"><span class="qic" aria-hidden="true">−%</span><span><b>Discount calculator</b><small>Sale price and total saving</small></span></a>
+        <a class="qcard" href="#bmi" data-mini="bmi"><span class="qic" aria-hidden="true">BMI</span><span><b>BMI calculator</b><small>Metric and imperial, with ranges</small></span></a>
+        <a class="qcard" href="#age" data-mini="age"><span class="qic" aria-hidden="true">AGE</span><span><b>Age calculator</b><small>Exact years, months and days</small></span></a>
+        <a class="qcard" href="#date" data-mini="date"><span class="qic" aria-hidden="true">±D</span><span><b>Date calculator</b><small>Days between dates, or add days</small></span></a>
+        <a class="qcard" href="#units" data-mini="units"><span class="qic" aria-hidden="true">⇄</span><span><b>Unit converter</b><small>Length, weight, volume, temperature</small></span></a>
+        <a class="qcard" href="#gst" data-mini="gst"><span class="qic" aria-hidden="true">GST</span><span><b>GST calculator</b><small>Add or remove 10% tax</small></span></a>
+        <a class="qcard" href="#finance"><span class="qic" aria-hidden="true">$</span><span><b>Loan &amp; savings</b><small>Repayments, interest, tips</small></span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="more" aria-labelledby="more-h">
+    <div class="hin">
+      <div class="band-head">
+        <p class="kicker">Money, life &amp; study</p>
+        <h2 id="more-h">The rest of the stack.</h2>
+        <p class="lede">The things people search for at 11pm: what a salary is per hour, what a tank of fuel costs, how many grams when you double a recipe, and what x actually equals.</p>
+      </div>
+      <div class="qgrid">
+        <a class="qcard" href="#salary" data-mini="salary"><span class="qic" aria-hidden="true">PAY</span><span><b>Salary calculator</b><small>Yearly, monthly, hourly</small></span></a>
+        <a class="qcard" href="#fuel" data-mini="fuel"><span class="qic" aria-hidden="true">FUEL</span><span><b>Fuel cost calculator</b><small>Trip cost, cost per 100 km</small></span></a>
+        <a class="qcard" href="#recipe" data-mini="recipe"><span class="qic" aria-hidden="true">×2</span><span><b>Recipe scaler</b><small>Scale servings and cooking time</small></span></a>
+        <a class="qcard" href="#roman" data-mini="roman"><span class="qic" aria-hidden="true">IV</span><span><b>Roman numerals</b><small>Numbers to Roman and back</small></span></a>
+        <a class="qcard" href="#quadratic" data-mini="quadratic"><span class="qic" aria-hidden="true">x²</span><span><b>Quadratic solver</b><small>Roots, discriminant, vertex</small></span></a>
+        <a class="qcard" href="#stats" data-mini="stats"><span class="qic" aria-hidden="true">σ</span><span><b>Statistics calculator</b><small>Mean, median, std deviation</small></span></a>
+        <a class="qcard" href="#random" data-mini="random"><span class="qic" aria-hidden="true">RNG</span><span><b>Random number generator</b><small>Draws, picks and giveaways</small></span></a>
+        <a class="qcard" href="#tools"><span class="qic" aria-hidden="true">＋</span><span><b>All calculators</b><small>Every tool on the site</small></span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band ai-band" aria-labelledby="ai-h">
+    <div class="hin">
+      <div>
+        <p class="kicker">Inquiry AI</p>
+        <h2 id="ai-h">Stuck? Show it<br>the question.</h2>
+        <p class="lede">Photograph a worksheet, snapshot the tab you are stuck on, or just type it. The AI reads the problem and walks through the method, step by step.</p>
+        <div class="aiacts">
+          <a class="abtn primary" href="#chat">Open the chat →</a>
+          <a class="abtn" href="#ask">One quick question</a>
+        </div>
+      </div>
+      <div class="aiprompts">
+        <button type="button" data-ask="Solve 3x + 7 = 22 and explain each step"><span class="p-ic" aria-hidden="true">ƒ</span>Solve 3x + 7 = 22, step by step</button>
+        <button type="button" data-ask="A shirt costs $89 and is 30% off. What do I pay, and what did I save?"><span class="p-ic" aria-hidden="true">%</span>A $89 shirt with 30% off — what do I pay?</button>
+        <button type="button" data-ask="Convert 180 pounds to kilograms and show the conversion factor"><span class="p-ic" aria-hidden="true">⇄</span>Convert 180 pounds to kilograms</button>
+        <button type="button" data-ask="Explain compound interest using $5,000 at 6% a year for 8 years"><span class="p-ic" aria-hidden="true">$</span>Compound interest on $5,000 at 6%</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="guides-h">
+    <div class="hin">
+      <div class="band-head">
+        <p class="kicker">Worked out, explained</p>
+        <h2 id="guides-h">The maths behind the buttons.</h2>
+        <p class="lede">Short explanations for the three things people ask about most, so you can check the answer instead of just trusting it.</p>
+      </div>
+      <div class="guides">
+        <article class="guide">
+          <p class="tagx">Percentages</p>
+          <h3>How to work out a percentage change</h3>
+          <p>Subtract the old number from the new one, divide by the old number, then multiply by 100. Going from $120 to $150 is a 25% rise; going back down to $120 is a 20% fall, because the starting point changed.</p>
+          <div class="formula">change % = (new − old) ÷ old × 100</div>
+          <a href="#percent">Try the percentage calculator →</a>
+        </article>
+        <article class="guide">
+          <p class="tagx">Health</p>
+          <h3>What your BMI actually means</h3>
+          <p>BMI compares weight with height using a single number. It is a rough screen, not a diagnosis — muscle, age and body shape all shift it. Under 18.5 is underweight, 18.5–24.9 is the healthy band, 25–29.9 is overweight and 30+ is obese.</p>
+          <div class="formula">BMI = weight (kg) ÷ height² (m²)</div>
+          <a href="#bmi">Try the BMI calculator →</a>
+        </article>
+        <article class="guide">
+          <p class="tagx">Money</p>
+          <h3>Compound interest, without the jargon</h3>
+          <p>Interest earns interest. $5,000 at 6% compounding yearly becomes $7,969 after 8 years, even though you never added a cent — the growth feeds itself. Compounding monthly grows a little faster than compounding yearly.</p>
+          <div class="formula">A = P × (1 + r/n)<sup>nt</sup></div>
+          <a href="#finance">Try the savings calculator →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="why-h">
+    <div class="hin">
+      <div class="band-head">
+        <p class="kicker">Why it works</p>
+        <h2 id="why-h">Built for the two minutes you have.</h2>
+      </div>
+      <div class="why">
+        <div><span class="w-ic" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M6 10h1M10 10h1M14 10h1M18 10h1M7 14h10"/></svg></span><div><b>Keyboard first</b><p>Type the whole expression — numbers, operators, Enter and Esc — without touching the mouse.</p></div></div>
+        <div><span class="w-ic" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h1.7l1.2-2h7.2l1.2 2h1.7A2.5 2.5 0 0 1 21 8.5v8A2.5 2.5 0 0 1 18.5 19h-13A2.5 2.5 0 0 1 3 16.5z"/><circle cx="12" cy="12.5" r="3.4"/></svg></span><div><b>Snapshot to AI</b><p>Capture the tab you are stuck on and let the AI read the question straight off the screen.</p></div></div>
+        <div><span class="w-ic" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v6c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><div><b>No account, no limits</b><p>Nothing to sign up for, nothing to install. Every calculator is free and open instantly.</p></div></div>
+        <div><span class="w-ic" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></span><div><b>Phone, tablet, laptop</b><p>One layout that adapts, with a keypad sized for thumbs and a scroll-free desktop view.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="hfaq">
+    <div class="hin">
+      <div class="faq" style="margin-top:0">
+        <h2 id="hfaq" style="font-size:clamp(26px,3.4vw,38px);text-align:left;margin-bottom:18px">Quick answers</h2>
+        <details open><summary>How do I work out a percentage without a calculator?</summary><p>Divide the percentage by 100 to get a decimal, then multiply by the number. 15% of 240 is 0.15 × 240 = 36. For a quick estimate, 10% is just the number moved one decimal place, and 5% is half of that.</p></details>
+        <details><summary>Can I use the calculator with a keyboard only?</summary><p>Yes. Numbers, + − × ÷, Enter and Esc all work, and the expanded scientific keypad accepts typed expressions such as <code>sin(30)+sqrt(16)</code>.</p></details>
+        <details><summary>Does the AI show its working?</summary><p>It is asked to. Ask a question in the chat and it returns the steps, not just the answer — handy for homework checks where the method matters as much as the result.</p></details>
+        <details><summary>Is anything saved or uploaded?</summary><p>Your chat history stays in this browser's local storage. When you send a question (or a snapshot), only that message and image are sent to the AI to answer it.</p></details>
+        <details><summary>Is it free?</summary><p>Yes — the calculators and the AI are free, with no sign-up.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <footer class="hfoot">
+    <div class="hfoot-in">
+      <div class="brandcol">
+        <b>Inquiry Calculator</b>
+        <p>A calculator, a scientific keypad and an AI maths helper on one page. Free, no sign-up.</p>
+      </div>
+      <div><h4>Calculators</h4><a href="#basic">Basic</a><a href="#scientific">Scientific</a><a href="#finance">Loan &amp; savings</a><a href="#finance">Tip split</a></div>
+      <div><h4>Everyday</h4><a href="#percent">Percentage</a><a href="#discount">Discount</a><a href="#bmi">BMI</a><a href="#age">Age</a><a href="#date">Dates</a><a href="#units">Units</a><a href="#gst">GST</a></div>
+      <div><h4>Money &amp; study</h4><a href="#salary">Salary</a><a href="#fuel">Fuel cost</a><a href="#recipe">Recipe scaler</a><a href="#quadratic">Quadratic solver</a><a href="#stats">Statistics</a><a href="#roman">Roman numerals</a><a href="#random">Random numbers</a></div>
+      <div><h4>AI</h4><a href="#ask">Quick question</a><a href="#chat">Full chat</a><a href="#tools">All tools</a></div>
+      <p class="copy"><span>© <span id="yr2">2026</span> Inquiry Calculator</span><span>Made for people who just need the number.</span></p>
+    </div>
+  </footer>
+</div>
+
+<section class="page mini-page" data-view-id="mini" hidden aria-label="Everyday calculator">
+  <div class="mini-wrap">
+    <a class="backlink" href="#tools">← All calculators</a>
+    <header class="mini-head">
+      <span class="mini-ic" id="minico" aria-hidden="true">%</span>
+      <div>
+        <h1 class="mini-title" id="minititle">Percentage calculator</h1>
+        <p class="mini-blurb" id="miniblurb"></p>
+      </div>
+    </header>
+    <div class="mini-grid">
+      <div class="mini-card">
+        <div class="mini-modes" id="minimodes" role="group" aria-label="Calculation type"></div>
+        <div class="mini-fields" id="minifields"></div>
+        <div class="mini-out" role="status" aria-live="polite">
+          <p class="olabel" id="minilabel">Answer</p>
+          <p class="omain" id="minimain">—</p>
+          <div class="mini-rows" id="minirows"></div>
+        </div>
+        <button class="mini-ask" id="miniask" type="button">Ask the AI to explain this →</button>
+      </div>
+      <aside class="mini-aside">
+        <div class="mini-note">
+          <h2>How it works</h2>
+          <div id="mininote"></div>
+        </div>
+        <div class="mini-related">
+          <h2>Related calculators</h2>
+          <div class="mini-links" id="minilinks"></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
 
 <section class="page mid" data-view-id="scientific" hidden aria-label="Scientific calculator">
   <p class="eyebrow">Scientific calculator</p>
@@ -636,26 +1046,110 @@ body[data-view="chat"] .nav .tabs{display:none}
       <a class="tool" href="#basic">
         <div class="ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M4 10h16"/><path d="M10 4v16"/></svg></div>
         <h3>Basic calculator</h3>
-        <p>The everyday calculator. Scroll to expand it into a full scientific keypad without leaving the page.</p>
+        <p>The everyday calculator. Scroll once and it slides over into a full keypad without leaving the number behind.</p>
         <span>Open →</span>
       </a>
       <a class="tool" href="#scientific">
         <div class="ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 16c4-12 12 8 16-8"/></svg></div>
         <h3>Scientific calculator</h3>
-        <p>sin, cos, tan, log, ln, roots, powers and factorials — with degrees or radians and keyboard entry.</p>
+        <p>sin, cos, tan and their inverses, log, ln, roots, powers, factorials, π, e and ANS — in degrees or radians.</p>
         <span>Open →</span>
       </a>
       <a class="tool" href="#finance">
         <div class="ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 18V8m5 10V5m5 13v-7m5 7V9"/></svg></div>
-        <h3>Finance calculators</h3>
-        <p>Work out a loan repayment, project your savings with compound interest, or split a bill and tip.</p>
+        <h3>Loan, savings &amp; tip</h3>
+        <p>Work out a repayment, project compound interest with monthly contributions, or split a bill and tip.</p>
         <span>Open →</span>
       </a>
-      <a class="tool hl" href="#ask">
+      <a class="tool" href="#percent">
+        <div class="ico"><span aria-hidden="true">%</span></div>
+        <h3>Percentage calculator</h3>
+        <p>What is 15% of 240, 45 is what percent of 180, and how much did it increase or decrease?</p>
+        <span>Open →</span>
+      </a>
+      <a class="tool" href="#discount">
+        <div class="ico"><span aria-hidden="true">−%</span></div>
+        <h3>Discount calculator</h3>
+        <p>Sale price and total saving from a percentage off — including a second markdown for stacked sales.</p>
+        <span>Open →</span>
+      </a>
+      <a class="tool" href="#bmi">
+        <div class="ico"><span aria-hidden="true">BMI</span></div>
+        <h3>BMI calculator</h3>
+        <p>Body mass index in metric or imperial, with the healthy weight range for your height.</p>
+        <span>Open →</span>
+      </a>
+      <a class="tool" href="#age">
+        <div class="ico"><span aria-hidden="true">AGE</span></div>
+        <h3>Age calculator</h3>
+        <p>Exact age in years, months and days, plus the number of days until your next birthday.</p>
+        <span>Open →</span>
+      </a>
+      <a class="tool" href="#date">
+        <div class="ico"><span aria-hidden="true">±D</span></div>
+        <h3>Date calculator</h3>
+        <p>Days between two dates, or add and subtract days, weeks and months from any date.</p>
+        <span>Open →</span>
+      </a>
+      <a class="tool" href="#units">
+        <div class="ico"><span aria-hidden="true">⇄</span></div>
+        <h3>Unit converter</h3>
+        <p>Length, weight, volume and temperature — metres to feet, kilograms to pounds, Celsius to Fahrenheit.</p>
+        <span>Open →</span>
+      </a>
+      <a class="tool" href="#gst">
+        <div class="ico"><span aria-hidden="true">GST</span></div>
+        <h3>GST calculator</h3>
+        <p>Add 10% GST to a price or pull it back out of a tax-inclusive total. Works with any rate.</p>
+        <span>Open →</span>
+      </a>
+      <a class="tool" href="#salary">
+        <div class="ico"><span aria-hidden="true">PAY</span></div>
+        <h3>Salary calculator</h3>
+        <p>Annual salary to hourly, weekly and monthly — or work backwards from an hourly rate.</p>
+        <span>Open →</span>
+      </a>
+      <a class="tool" href="#fuel">
+        <div class="ico"><span aria-hidden="true">FUEL</span></div>
+        <h3>Fuel cost calculator</h3>
+        <p>What a trip costs in fuel, cost per kilometre, and cost per 100 km from a fill-up.</p>
+        <span>Open →</span>
+      </a>
+      <a class="tool" href="#recipe">
+        <div class="ico"><span aria-hidden="true">×2</span></div>
+        <h3>Recipe scaler</h3>
+        <p>Resize a recipe for any number of servings, plus a realistic cooking-time estimate.</p>
+        <span>Open →</span>
+      </a>
+      <a class="tool" href="#quadratic">
+        <div class="ico"><span aria-hidden="true">x²</span></div>
+        <h3>Quadratic solver</h3>
+        <p>Solve ax² + bx + c = 0 with real or complex roots, the discriminant and the vertex.</p>
+        <span>Open →</span>
+      </a>
+      <a class="tool" href="#stats">
+        <div class="ico"><span aria-hidden="true">σ</span></div>
+        <h3>Statistics calculator</h3>
+        <p>Mean, median, mode, range, quartiles and standard deviation from any list of numbers.</p>
+        <span>Open →</span>
+      </a>
+      <a class="tool" href="#roman">
+        <div class="ico"><span aria-hidden="true">IV</span></div>
+        <h3>Roman numerals</h3>
+        <p>Convert between Roman numerals and numbers, with the subtraction rules explained.</p>
+        <span>Open →</span>
+      </a>
+      <a class="tool" href="#random">
+        <div class="ico"><span aria-hidden="true">RNG</span></div>
+        <h3>Random number generator</h3>
+        <p>Random numbers in a range, or a unique draw for giveaways and games.</p>
+        <span>Open →</span>
+      </a>
+      <a class="tool hl" href="#chat">
         <div class="ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 3v4m0 10v4M3 12h4m10 0h4"/><circle cx="12" cy="12" r="3.4"/></svg></div>
-        <h3>Ask the AI</h3>
-        <p>Type a question, attach a photo, or take a snapshot of a browser tab and let the AI walk through the working.</p>
-        <span>Ask anything →</span>
+        <h3>AI chat</h3>
+        <p>Saved conversations, photos and tab snapshots. Ask follow-ups and keep the working in one place.</p>
+        <span>Start a chat →</span>
       </a>
     </div>
 
@@ -684,7 +1178,10 @@ body[data-view="chat"] .nav .tabs{display:none}
       <a href="#basic">Basic calculator</a>
       <a href="#scientific">Scientific calculator</a>
       <a href="#finance">Loan &amp; savings calculator</a>
-      <a href="#ask">AI maths solver</a>
+      <a href="#percent">Percentage calculator</a>
+      <a href="#bmi">BMI calculator</a>
+      <a href="#units">Unit converter</a>
+      <a href="#chat">AI maths solver</a>
       <span>© <span id="yr">2026</span> Inquiry Calculator</span>
     </footer>
   </div>
@@ -706,11 +1203,16 @@ body[data-view="chat"] .nav .tabs{display:none}
 <section class="chatpage" data-view-id="chat" hidden aria-label="AI chat">
   <aside class="side" id="side">
     <button class="sideclose" id="sideclose" type="button" aria-label="Close chat list">×</button>
-    <button class="newchat" id="newchatbtn" type="button"><span aria-hidden="true">＋</span> New chat</button>
+    <a class="sidebrand" href="#basic"><span class="icmini" aria-hidden="true">IC</span> Inquiry Calculator</a>
+    <button class="newchat" id="newchatbtn" type="button">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+      New chat
+    </button>
+    <p class="sidelabel">Recent</p>
     <div class="chats" id="chatlist"></div>
     <div class="side-foot">
       <a href="#tools">All tools</a>
-      <a href="#basic">Calculator</a>
+      <a href="#percent">Percentage</a>
       <a href="#scientific">Scientific</a>
       <a href="#finance">Finance</a>
     </div>
@@ -722,8 +1224,15 @@ body[data-view="chat"] .nav .tabs{display:none}
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
       <h2 id="chattitle">New chat</h2>
+      <a class="ibtn" href="#basic" title="Back to the calculator" aria-label="Back to the calculator">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>
+      </a>
+      <button class="ibtn" id="chatTheme" type="button" title="Light / dark theme" aria-label="Switch theme">
+        <svg class="t-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.8 6.8 0 0 0 10.7 10.7z"/></svg>
+        <svg class="t-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6"/></svg>
+      </button>
       <button class="snapbtn" id="snapbtn" type="button">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h1.7l1.2-2h7.2l1.2 2h1.7A2.5 2.5 0 0 1 21 8.5v8A2.5 2.5 0 0 1 18.5 19h-13A2.5 2.5 0 0 1 3 16.5z"/><circle cx="12" cy="12.5" r="3.4"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h1.7l1.2-2h7.2l1.2 2h1.7A2.5 2.5 0 0 1 21 8.5v8A2.5 2.5 0 0 1 18.5 19h-13A2.5 2.5 0 0 1 3 16.5z"/><circle cx="12" cy="12.5" r="3.4"/></svg>
         Snapshot
       </button>
     </header>
@@ -734,21 +1243,24 @@ body[data-view="chat"] .nav .tabs{display:none}
 
     <div class="composer">
       <div class="attached" id="attached"></div>
-      <div class="bar">
+      <div class="cbox">
         <input type="file" id="afile" accept="image/*" hidden>
-        <button class="ib" id="aattach" type="button" aria-label="Attach an image">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
-        </button>
-        <button class="ib" id="asnap" type="button" aria-label="Snapshot a tab">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h1.7l1.2-2h7.2l1.2 2h1.7A2.5 2.5 0 0 1 21 8.5v8A2.5 2.5 0 0 1 18.5 19h-13A2.5 2.5 0 0 1 3 16.5z"/><circle cx="12" cy="12.5" r="3.4"/></svg>
-        </button>
         <label class="sr" for="ain">Message</label>
-        <textarea id="ain" rows="1" placeholder="Type a problem…"></textarea>
-        <button class="ib go" id="asend" type="button" aria-label="Send">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
-        </button>
+        <textarea id="ain" rows="1" placeholder="Message Inquiry AI…"></textarea>
+        <div class="cbar">
+          <button class="ib" id="aattach" type="button" aria-label="Attach an image" title="Attach an image">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+          </button>
+          <button class="ib" id="asnap" type="button" aria-label="Snapshot a tab" title="Snapshot a tab">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h1.7l1.2-2h7.2l1.2 2h1.7A2.5 2.5 0 0 1 21 8.5v8A2.5 2.5 0 0 1 18.5 19h-13A2.5 2.5 0 0 1 3 16.5z"/><circle cx="12" cy="12.5" r="3.4"/></svg>
+          </button>
+          <span class="chint"><kbd>Enter</kbd> to send · <kbd>Shift</kbd>+<kbd>Enter</kbd> for a new line</span>
+          <button class="send" id="asend" type="button" aria-label="Send message" title="Send">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+          </button>
+        </div>
       </div>
-      <p class="fine">The AI can make mistakes — check anything important.</p>
+      <p class="fine">Inquiry AI can make mistakes. Check anything important.</p>
     </div>
   </main>
 </section>
@@ -1080,12 +1592,16 @@ document.addEventListener('keydown', e => {
    Router
    ========================================================= */
 (() => {
-  const VIEWS = ['basic', 'scientific', 'finance', 'tools', 'ask', 'chat'];
+  const VIEWS = ['basic', 'scientific', 'finance', 'tools', 'ask', 'chat', 'mini'];
+  const TOOL_HASHES = ['percent', 'discount', 'bmi', 'age', 'date', 'units', 'gst',
+    'salary', 'fuel', 'recipe', 'roman', 'quadratic', 'stats', 'random'];
   function route() {
-    const h = location.hash.slice(1), v = VIEWS.includes(h) ? h : 'basic';
+    const h = location.hash.slice(1);
+    const v = TOOL_HASHES.includes(h) ? 'mini' : (VIEWS.includes(h) ? h : 'basic');
     document.body.dataset.view = v;
     document.querySelectorAll('[data-view-id]').forEach(el => { el.hidden = el.dataset.viewId !== v; });
-    document.querySelectorAll('.nav .tab').forEach(t => t.classList.toggle('on', t.dataset.go === v));
+    const tabFor = v === 'mini' ? 'tools' : v;
+    document.querySelectorAll('.nav .tab').forEach(t => t.classList.toggle('on', t.dataset.go === tabFor));
     document.querySelector('.chatpage')?.classList.remove('menu');
     if (v !== 'chat') window.scrollTo(0, 0);
     fitPage(v);
@@ -1094,13 +1610,14 @@ document.addEventListener('keydown', e => {
       scientific: 'Free Scientific Calculator Online — sin, cos, tan, log, powers | Inquiry Calculator',
       finance: 'Free Loan, Savings & Tip Calculators — Work Out Repayments | Inquiry Calculator',
       tools: 'All Calculators & AI Maths Tools | Inquiry Calculator',
+      mini: 'Everyday Calculators — Percentage, BMI, Age, Dates & Units | Inquiry Calculator',
       ask: 'Ask the AI — Maths, Science & Money Questions | Inquiry Calculator',
       chat: 'AI Maths Solver — Chat | Inquiry Calculator'
     })[v] || document.title;
   }
   function fitPage(v) {
     const page = document.querySelector('[data-view-id="' + v + '"]');
-    const shouldFit = ['scientific', 'finance', 'ask', 'chat'].includes(v);
+    const shouldFit = ['scientific', 'finance', 'ask', 'chat', 'mini'].includes(v);
     document.body.classList.remove('noscroll');
     requestAnimationFrame(() => {
       const fits = page && page.getBoundingClientRect().height <= innerHeight + 1;
@@ -1214,25 +1731,35 @@ const AI = (() => {
   }
 
   /* ---------- message rendering ---------- */
+  const AVA = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5 13.8 11.3 12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M18.4 15.8l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/></svg>`;
+
   function bubble(m) {
-    const d = document.createElement('div');
-    d.className = 'msg ' + (m.role === 'user' ? 'u' : '');
+    const turn = document.createElement('div');
+    turn.className = 'turn ' + (m.role === 'user' ? 'user' : 'ai');
     const img = m.img ? `<img src="${m.img}" alt="Attached image">` : '';
     const note = m.note ? `<div class="att-note">${esc(m.note)}</div>` : '';
-    if (m.html) d.innerHTML = m.html;
-    else if (m.role === 'user') d.innerHTML = note + img + md(m.content);
-    else d.innerHTML = md(m.content);
-    return d;
+    if (m.role === 'user') {
+      turn.innerHTML = `<div class="bubble">${note}${img}${md(m.content)}</div>`;
+    } else {
+      turn.innerHTML = `<div class="ava" aria-hidden="true">${AVA}</div><div class="body">${m.html ? m.html : md(m.content)}</div>`;
+    }
+    return turn;
   }
 
+  const SUGG = [
+    ['Solve an equation', '2x² − 5x + 3 = 0, step by step', 'M4 4h16v16H4zM8 8h8M8 12h8M8 16h4'],
+    ['Check a percentage', 'What is 18% of 65, and how do I work it out?', '%'],
+    ['Explain compound interest', 'With a real example using $5,000 at 6% for 8 years', '$'],
+    ['Convert a measurement', 'How many ounces are in 2.5 kilograms?', '⇄']
+  ];
   const WELCOME = `<div class="welcome">
-      <h3>Ask anything.</h3>
-      <p>Maths, science or money — type a question, attach a photo, or snapshot the tab you are looking at. Chats are saved in this browser.</p>
-      <div class="chips">
-        <button type="button">What is 15% of 240?</button>
-        <button type="button">Solve 2x² − 5x + 3 = 0</button>
-        <button type="button">Explain compound interest simply</button>
-        <button type="button">Convert 68°F to Celsius</button>
+      <div class="glyph" aria-hidden="true">${AVA}</div>
+      <h3>Where should we start?</h3>
+      <p>Ask a maths, science or money question. Attach a photo, snapshot a tab, or pick one of these.</p>
+      <div class="sugg">
+        ${SUGG.map(([t, q, ic]) => `<button type="button" data-q="${esc(q)}">
+          <span class="si" aria-hidden="true">${ic.length < 3 ? `<b style="font-size:.8rem">${ic}</b>` : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="${ic}"/></svg>`}</span>
+          <span><b>${t}</b><small>${q}</small></span></button>`).join('')}
       </div>
     </div>`;
 
@@ -1257,9 +1784,9 @@ const AI = (() => {
   }
 
   /* ---------- actions ---------- */
-  function newChat(keepEmpty) {
-    const existing = chats.find(c => !c.msgs.length);
-    if (existing) { active = existing.id; }
+  function newChat() {
+    const empty = chats.find(c => !c.msgs.length);
+    if (empty) { active = empty.id; }
     else { const c = { id: uid(), title: 'New chat', ts: Date.now(), msgs: [] }; chats.unshift(c); active = c.id; }
     save(); renderList(); renderLog();
     if (window.matchMedia('(max-width: 820px)').matches) chatpage.classList.remove('menu');
@@ -1365,8 +1892,8 @@ const AI = (() => {
   /* ---------- send ---------- */
   function addTyping() {
     const d = document.createElement('div');
-    d.className = 'msg';
-    d.innerHTML = '<span class="typing"><i></i><i></i><i></i></span>';
+    d.className = 'turn ai';
+    d.innerHTML = `<div class="ava" aria-hidden="true">${AVA}</div><div class="body"><span class="typing"><i></i><i></i><i></i></span></div>`;
     log.appendChild(d); wrap.scrollTop = wrap.scrollHeight;
     return d;
   }
@@ -1408,7 +1935,17 @@ const AI = (() => {
     }
     const msg = { role: 'assistant', content: reply };
     pushMsg(msg);
-    wait.innerHTML = md(reply);
+    const wb = wait.querySelector('.body');
+    if (wb) {
+      wb.innerHTML = md(reply);
+      if (!failed && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const kids = [...wb.children];
+        kids.forEach((k, i) => {
+          k.style.animation = 'msgIn .3s var(--ease) both';
+          k.style.animationDelay = Math.min(i * 55, 520) + 'ms';
+        });
+      }
+    }
     wrap.scrollTop = wrap.scrollHeight;
     busy = false;
     document.getElementById('asend').disabled = false;
@@ -1422,7 +1959,7 @@ const AI = (() => {
   ta.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } });
   ta.addEventListener('input', () => { ta.style.height = 'auto'; ta.style.height = Math.min(ta.scrollHeight, 150) + 'px'; });
   log.addEventListener('click', e => {
-    const b = e.target.closest('.chips button'); if (b) send(b.textContent);
+    const b = e.target.closest('.sugg button'); if (b) send(b.dataset.q || b.textContent.trim());
   });
   document.getElementById('newchatbtn').addEventListener('click', () => newChat());
   document.getElementById('menubtn').addEventListener('click', () => chatpage.classList.add('menu'));
@@ -1474,10 +2011,500 @@ const AI = (() => {
 })();
 
 /* =========================================================
+   Everyday calculators — percentage, discount, BMI, age,
+   dates, units and GST
+   ========================================================= */
+const MINI = (() => {
+  const num = n => {
+    if (!isFinite(n)) return '—';
+    const r = Number(n.toFixed(6));
+    return r.toLocaleString('en-US', { maximumFractionDigits: 6 });
+  };
+  const money = n => isFinite(n)
+    ? (n < 0 ? '−$' : '$') + Math.abs(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+    : '—';
+  const todayISO = () => {
+    const d = new Date();
+    return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+  };
+  const parseD = s => { const [y, m, d] = String(s).split('-').map(Number); return new Date(y, m - 1, d); };
+  const dayDiff = (a, b) => Math.round((parseD(b) - parseD(a)) / 86400000);
+  const ymd = (from, to) => {
+    let y = to.getFullYear() - from.getFullYear();
+    let m = to.getMonth() - from.getMonth();
+    let d = to.getDate() - from.getDate();
+    if (d < 0) { m--; d += new Date(to.getFullYear(), to.getMonth(), 0).getDate(); }
+    if (m < 0) { y--; m += 12; }
+    return { y, m, d };
+  };
+  const WD = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const longDate = d => `${WD[d.getDay()]}, ${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+
+  /* ---------- units ---------- */
+  const LEN = { 'Millimetre (mm)': .001, 'Centimetre (cm)': .01, 'Metre (m)': 1, 'Kilometre (km)': 1000, 'Inch (in)': .0254, 'Foot (ft)': .3048, 'Yard (yd)': .9144, 'Mile (mi)': 1609.344, 'Nautical mile': 1852 };
+  const MASS = { 'Milligram (mg)': 1e-6, 'Gram (g)': .001, 'Kilogram (kg)': 1, 'Tonne (t)': 1000, 'Ounce (oz)': .028349523125, 'Pound (lb)': .45359237, 'Stone (st)': 6.35029318 };
+  const VOL = { 'Millilitre (mL)': .001, 'Litre (L)': 1, 'Cubic metre (m³)': 1000, 'Fluid ounce (US)': .0295735296, 'Cup (US)': .2365882365, 'Pint (US)': .473176473, 'Gallon (US)': 3.785411784 };
+  const TEMP = ['Celsius (°C)', 'Fahrenheit (°F)', 'Kelvin (K)'];
+  const toC = (v, u) => u === TEMP[1] ? (v - 32) * 5 / 9 : u === TEMP[2] ? v - 273.15 : v;
+  const fromC = (v, u) => u === TEMP[1] ? v * 9 / 5 + 32 : u === TEMP[2] ? v + 273.15 : v;
+
+  const convMode = (name, units, defFrom, defTo) => ({
+    n: name,
+    f: [
+      { k: 'v', l: 'Amount', v: 1 },
+      { k: 'from', l: 'From', type: 'select', opts: Object.keys(units), v: defFrom },
+      { k: 'to', l: 'To', type: 'select', opts: Object.keys(units), v: defTo }
+    ],
+    run: v => {
+      if (!isFinite(v.v)) return null;
+      const out = v.v * units[v.from] / units[v.to];
+      return {
+        label: `${v.v} ${v.from} in ${v.to}`,
+        main: num(out),
+        rows: [['Rate', `1 ${v.from} = ${num(units[v.from] / units[v.to])} ${v.to}`], ['Reverse', `1 ${v.to} = ${num(units[v.to] / units[v.from])} ${v.from}`]]
+      };
+    }
+  });
+
+  const tempMode = {
+    n: 'Temperature',
+    f: [
+      { k: 'v', l: 'Temperature', v: 68 },
+      { k: 'from', l: 'From', type: 'select', opts: TEMP, v: TEMP[1] },
+      { k: 'to', l: 'To', type: 'select', opts: TEMP, v: TEMP[0] }
+    ],
+    run: v => {
+      if (!isFinite(v.v)) return null;
+      const out = fromC(toC(v.v, v.from), v.to);
+      return {
+        label: `${num(v.v)} ${v.from} in ${v.to}`,
+        main: num(out),
+        rows: [['Formula', v.from === v.to ? 'no conversion needed' : `(${num(v.v)} ${v.from === TEMP[1] ? '− 32) × 5/9' : v.from === TEMP[2] ? '− 273.15' : ''}${v.to === TEMP[1] ? ' × 9/5 + 32' : v.to === TEMP[2] ? ' + 273.15' : ''}`], ['Freezing point', `${fromC(0, v.to).toFixed(1)} ${v.to}`]]
+      };
+    }
+  };
+
+  const TOOLS = {
+    percent: {
+      icon: '%', title: 'Percentage calculator',
+      blurb: 'Three ways to work with percentages: a share of a number, one number as a percentage of another, and percentage increase or decrease.',
+      modes: [
+        { n: 'X% of Y', f: [{ k: 'a', l: 'Percentage', v: 15, u: '%' }, { k: 'b', l: 'Of amount', v: 240 }],
+          run: v => ({ label: `${num(v.a)}% of ${num(v.b)}`, main: num(v.a / 100 * v.b),
+            rows: [['Calculation', `${num(v.a)} ÷ 100 × ${num(v.b)}`], ['As a decimal', (v.a / 100).toFixed(3)]] }) },
+        { n: 'X is what % of Y', f: [{ k: 'a', l: 'Amount', v: 45 }, { k: 'b', l: 'Total', v: 180 }],
+          run: v => ({ label: `${num(v.a)} of ${num(v.b)}`, main: num(v.a / v.b * 100) + '%',
+            rows: [['Fraction', `${num(v.a)} ÷ ${num(v.b)}`], ['As a decimal', num(v.a / v.b)]] }) },
+        { n: 'Increase / decrease', f: [{ k: 'a', l: 'From', v: 120 }, { k: 'b', l: 'To', v: 150 }],
+          run: v => { const diff = v.b - v.a, pc = diff / v.a * 100; return { label: 'Change', main: (pc >= 0 ? '+' : '−') + num(Math.abs(pc)) + '%',
+            rows: [['Difference', num(diff)], ['Direction', pc >= 0 ? 'Increase' : 'Decrease'], ['Multiplier', '× ' + num(v.b / v.a)]] }; } }
+      ],
+      note: '<p>A percentage is a fraction of 100, so 15% is the same as 0.15. To take a percentage of a number, divide by 100 then multiply.</p><p>Percentage change always divides by the <b>starting</b> value — that is why a rise from 100 to 150 is +50%, but a fall from 150 back to 100 is only −33.3%.</p>',
+      links: [['Discount', '#discount'], ['GST', '#gst'], ['Tip split', '#finance'], ['Unit converter', '#units']]
+    },
+    discount: {
+      icon: '−%', title: 'Discount calculator',
+      blurb: 'Work out what you actually pay after a percentage discount, how much you save, and what stacked sales really take off.',
+      modes: [
+        { n: 'One discount', f: [{ k: 'p', l: 'Original price', v: 89, u: '$' }, { k: 'd', l: 'Discount', v: 30, u: '%' }],
+          run: v => { const sale = v.p * (1 - v.d / 100); return { label: 'You pay', main: money(sale),
+            rows: [['You save', money(v.p - sale)], ['Discount', `${num(v.d)}% off`], ['Original', money(v.p)]] }; } },
+        { n: 'Stacked discounts', f: [{ k: 'p', l: 'Original price', v: 150, u: '$' }, { k: 'd', l: 'First discount', v: 30, u: '%' }, { k: 'e', l: 'Then another', v: 20, u: '%' }],
+          run: v => { const sale = v.p * (1 - v.d / 100) * (1 - v.e / 100); return { label: 'You pay', main: money(sale),
+            rows: [['You save', money(v.p - sale)], ['Total off', `${num((1 - sale / v.p) * 100)}%`], ['Not', `${num(v.d + v.e)}% — discounts compound`]] }; } }
+      ],
+      note: '<p>A 30% discount means you pay 70% of the price: multiply by 0.7. Two discounts do not add — 30% then 20% is a 44% total saving, because the second discount applies to the reduced price.</p>',
+      links: [['Percentage', '#percent'], ['GST', '#gst'], ['Tip split', '#finance']]
+    },
+    bmi: {
+      icon: 'BMI', title: 'BMI calculator',
+      blurb: 'Body mass index from your height and weight, plus the healthy weight range for that height. A rough screen, not a diagnosis.',
+      modes: [
+        { n: 'Metric', f: [{ k: 'h', l: 'Height', v: 175, u: 'cm' }, { k: 'w', l: 'Weight', v: 72, u: 'kg' }],
+          run: v => {
+            if (!(v.h > 0) || !(v.w > 0)) return null;
+            const m = v.h / 100, bmi = v.w / (m * m);
+            const cat = bmi < 18.5 ? 'Underweight' : bmi < 25 ? 'Healthy range' : bmi < 30 ? 'Overweight' : 'Obese';
+            return { label: 'Your BMI', main: bmi.toFixed(1),
+              rows: [['Category', cat], ['Healthy weight', `${(18.5 * m * m).toFixed(1)}–${(24.9 * m * m).toFixed(1)} kg`], ['Height', `${num(v.h)} cm`]] };
+          } },
+        { n: 'Imperial', f: [{ k: 'ft', l: 'Height', v: 5, u: 'ft' }, { k: 'in', l: '', v: 9, u: 'in' }, { k: 'lb', l: 'Weight', v: 160, u: 'lb' }],
+          run: v => {
+            const inches = (v.ft || 0) * 12 + (v.in || 0), kg = (v.lb || 0) * 0.45359237;
+            if (!(inches > 0) || !(kg > 0)) return null;
+            const m = inches * .0254, bmi = kg / (m * m);
+            const cat = bmi < 18.5 ? 'Underweight' : bmi < 25 ? 'Healthy range' : bmi < 30 ? 'Overweight' : 'Obese';
+            const lb = x => Math.round(x / .45359237);
+            return { label: 'Your BMI', main: bmi.toFixed(1),
+              rows: [['Category', cat], ['Healthy weight', `${lb(18.5 * m * m)}–${lb(24.9 * m * m)} lb`], ['Height', `${v.ft || 0} ft ${v.in || 0} in`]] };
+          } }
+      ],
+      note: '<p>BMI divides weight in kilograms by height in metres squared. It is a population screen: muscular people often read as overweight, and it says nothing about body composition.</p><p>Bands: under 18.5 underweight · 18.5–24.9 healthy · 25–29.9 overweight · 30 and over obese.</p>',
+      links: [['Percentage', '#percent'], ['Unit converter', '#units'], ['Age', '#age']]
+    },
+    age: {
+      icon: 'AGE', title: 'Age calculator',
+      blurb: 'Your exact age in years, months and days, the total number of days you have been around, and how long until the next birthday.',
+      modes: [
+        { n: 'Age on a date', f: [{ k: 'dob', l: 'Date of birth', v: '1995-06-15', type: 'date' }, { k: 'on', l: 'Age on', v: todayISO(), type: 'date' }],
+          run: v => {
+            const a = parseD(v.dob), b = parseD(v.on);
+            if (isNaN(a) || isNaN(b) || b < a) return null;
+            const d = ymd(a, b);
+            const next = new Date(b.getFullYear(), a.getMonth(), a.getDate());
+            if (next < b) next.setFullYear(b.getFullYear() + 1);
+            const days = ymd(a, b).y;
+            return { label: 'Exact age', main: `${d.y} years`,
+              rows: [['In full', `${d.y} yr ${d.m} mo ${d.d} d`], ['Total days', num(dayDiff(v.dob, v.on))], ['Total months', num(days * 12 + d.m)], ['Next birthday', `in ${Math.round((next - b) / 86400000)} days`]] };
+          } }
+      ],
+      note: '<p>Months are counted calendar-style, not as 30-day blocks, and leap days are handled automatically. Your next-birthday countdown treats 29 February birthdays as 1 March in non-leap years.</p>',
+      links: [['Date difference', '#date'], ['Percentage', '#percent'], ['BMI', '#bmi']]
+    },
+    date: {
+      icon: '±D', title: 'Date calculator',
+      blurb: 'Find the number of days between two dates, or add and subtract days from any date and see the weekday you land on.',
+      modes: [
+        { n: 'Days between', f: [{ k: 'a', l: 'From', v: todayISO(), type: 'date' }, { k: 'b', l: 'To', v: '2026-12-25', type: 'date' }],
+          run: v => {
+            const a = parseD(v.a), b = parseD(v.b);
+            if (isNaN(a) || isNaN(b)) return null;
+            const days = dayDiff(v.a, v.b), abs = Math.abs(days);
+            return { label: days < 0 ? 'Days before' : 'Days between', main: num(abs) + (abs === 1 ? ' day' : ' days'),
+              rows: [['Weeks', `${num(Math.floor(abs / 7))} weeks ${abs % 7} days`], ['Months (approx)', (abs / 30.44).toFixed(1)], ['Years (approx)', (abs / 365.25).toFixed(2)], ['Weekdays (approx)', num(Math.round(abs * 5 / 7))]] };
+          } },
+        { n: 'Add / subtract', f: [{ k: 'a', l: 'Start date', v: todayISO(), type: 'date' }, { k: 'n', l: 'Days (use − to subtract)', v: 30 }],
+          run: v => {
+            const a = parseD(v.a);
+            if (isNaN(a)) return null;
+            a.setDate(a.getDate() + Math.round(v.n || 0));
+            return { label: `${v.n >= 0 ? 'After' : 'Before'} ${Math.abs(Math.round(v.n || 0))} days`, main: longDate(a).split(', ')[1],
+              rows: [['Day', WD[a.getDay()]], ['Full date', longDate(a)], ['Weeks', `${(Math.abs(v.n || 0) / 7).toFixed(1)}`]] };
+          } }
+      ],
+      note: '<p>Day counts are calendar days, so daylight-saving changes and weekends are ignored. For workdays, a rough guide is five sevenths of the total minus public holidays.</p>',
+      links: [['Age calculator', '#age'], ['Date difference', '#date'], ['Loan term', '#finance']]
+    },
+    units: {
+      icon: '⇄', title: 'Unit converter',
+      blurb: 'Convert length, weight, volume and temperature. Exact conversion factors, with the reverse rate shown so you can check it.',
+      modes: [
+        convMode('Length', LEN, 'Metre (m)', 'Foot (ft)'),
+        convMode('Weight', MASS, 'Kilogram (kg)', 'Pound (lb)'),
+        convMode('Volume', VOL, 'Litre (L)', 'Gallon (US)'),
+        tempMode
+      ],
+      note: '<p>Conversions use the international definitions: 1 inch is exactly 25.4 mm, 1 pound is exactly 0.45359237 kg, and 1 US gallon is 3.785411784 litres. UK gallons are larger.</p><p>Temperature does not scale like other units — it has an offset, so °C to °F needs both a multiply and an add.</p>',
+      links: [['Percentage', '#percent'], ['BMI', '#bmi'], ['Scientific', '#scientific']]
+    },
+    gst: {
+      icon: 'GST', title: 'GST calculator',
+      blurb: 'Add goods and services tax to a price, or pull it back out of a tax-inclusive total. Set to 10% for Australia; change the rate for anywhere else.',
+      modes: [
+        { n: 'Add GST', f: [{ k: 'a', l: 'Amount, before tax', v: 100, u: '$' }, { k: 'r', l: 'Rate', v: 10, u: '%' }],
+          run: v => { const g = v.a * v.r / 100; return { label: 'Total including GST', main: money(v.a + g),
+            rows: [['GST added', money(g)], ['Before GST', money(v.a)], ['Rate', `${num(v.r)}%`]] }; } },
+        { n: 'Remove GST', f: [{ k: 'a', l: 'Total, including tax', v: 110, u: '$' }, { k: 'r', l: 'Rate', v: 10, u: '%' }],
+          run: v => { const base = v.a / (1 + v.r / 100), g = v.a - base; return { label: 'Amount before GST', main: money(base),
+            rows: [['GST included', money(g)], ['Total paid', money(v.a)], ['Rate', `${num(v.r)}%`]] }; } }
+      ],
+      note: '<p>To add GST, multiply by 1 + rate. To remove it, divide instead of subtracting the rate — inside $110 there is $10 of GST, not $11, because the tax is charged on the pre-tax amount.</p>',
+      links: [['Percentage', '#percent'], ['Discount', '#discount'], ['Tip split', '#finance']]
+    },
+
+    /* ---------- new popular tools ---------- */
+    salary: {
+      icon: 'PAY', title: 'Salary calculator',
+      blurb: 'Turn an annual salary into what actually lands each month, week and hour — or work backwards from an hourly rate.',
+      modes: [
+        { n: 'Yearly to hourly', f: [{ k: 'a', l: 'Annual salary', v: 85000, u: '$' }, { k: 'h', l: 'Hours a week', v: 38 }],
+          run: v => { const wk = v.a / 52, hr = wk / (v.h || 38); return { label: 'Per hour, before tax', main: money(hr),
+            rows: [['Per week (52 wks)', money(wk)], ['Per fortnight', money(wk * 2)], ['Per month', money(v.a / 12)], ['Per day (5 day wk)', money(wk / 5)]] }; } },
+        { n: 'Hourly to yearly', f: [{ k: 'a', l: 'Hourly rate', v: 45, u: '$/h' }, { k: 'h', l: 'Hours a week', v: 38 }],
+          run: v => { const wk = v.a * (v.h || 38), yr = wk * 52; return { label: 'Annual, before tax', main: money(yr),
+            rows: [['Weekly', money(wk)], ['Monthly', money(yr / 12)], ['Fortnightly', money(wk * 2)], ['Days a year', num((v.h || 38) * 52 / 8)]] }; } },
+        { n: 'Monthly budget', f: [{ k: 'a', l: 'Monthly take-home', v: 5200, u: '$' }],
+          run: v => { const r = v.a; return { label: 'Rough 50/30/20 split', main: money(r * .5),
+            rows: [['Needs (50%)', money(r * .5)], ['Wants (30%)', money(r * .3)], ['Savings (20%)', money(r * .2)], ['Per week', money(r * 12 / 52)]] }; } }
+      ],
+      note: '<p>These are gross figures — before income tax, super or student debt. Australian employers must also pay super on top, so your package is worth more than the salary number.</p><p>A quick check: an annual salary ÷ 52 ÷ weekly hours gives the hourly rate. $85,000 ÷ 52 ÷ 38 ≈ $43 an hour.</p>',
+      links: [['Loan repayment', '#finance'], ['Savings', '#finance'], ['GST', '#gst'], ['Percentage', '#percent']]
+    },
+    fuel: {
+      icon: 'FUEL', title: 'Fuel cost calculator',
+      blurb: 'Work out what a trip actually costs in fuel, and what it costs per kilometre or per 100 km.',
+      modes: [
+        { n: 'Trip cost', f: [{ k: 'd', l: 'Distance', v: 450, u: 'km' }, { k: 'e', l: 'Consumption', v: 8.2, u: 'L/100km' }, { k: 'p', l: 'Fuel price', v: 1.95, u: '$/L' }],
+          run: v => { const litres = v.d * v.e / 100, cost = litres * v.p; return { label: 'Fuel for the trip', main: money(cost),
+            rows: [['Litres used', num(litres) + ' L'], ['Cost per km', money(cost / (v.d || 1))], ['Tank needed', litres > 55 ? 'refuel on the way' : 'one tank' ]] }; } },
+        { n: 'Cost per 100 km', f: [{ k: 'd', l: 'Distance on a tank', v: 620, u: 'km' }, { k: 'c', l: 'Cost of the fill', v: 95, u: '$' }],
+          run: v => { const per100 = v.c / (v.d || 1) * 100; return { label: 'Cost per 100 km', main: money(per100),
+            rows: [['Cost per km', money(v.c / (v.d || 1))], ['Per year (15,000 km)', money(per100 * 150)], ['Litres per 100 km at $1.95/L', num(per100 / 1.95)]] }; } }
+      ],
+      note: '<p>Fuel cost is distance × consumption ÷ 100 × price. Real-world use is usually 5–15% higher than the sticker figure, especially with short trips, air conditioning or a loaded car.</p>',
+      links: [['Unit converter', '#units'], ['Percentage', '#percent'], ['Salary calculator', '#salary']]
+    },
+    recipe: {
+      icon: '×2', title: 'Recipe scaler',
+      blurb: 'Scale a recipe up or down for a different number of servings, and get the new amount for every ingredient.',
+      modes: [
+        { n: 'Scale by servings', f: [{ k: 'a', l: 'Original serves', v: 4 }, { k: 'b', l: 'You want to serve', v: 6 }, { k: 'q', l: 'Quantity of one ingredient', v: 250, u: 'g' }],
+          run: v => { const f = v.b / (v.a || 1); return { label: `New amount (×${num(f)})`, main: num(v.q * f) + ' g',
+            rows: [['Scale factor', '× ' + num(f)], ['Half of that', num(v.q * f / 2)], ['For 1 serving', num(v.q / (v.a || 1))]] }; } },
+        { n: 'Cooking time', f: [{ k: 'a', l: 'Original cooking minutes', v: 45 }, { k: 'w', l: 'Weight change', v: 150, u: '%' }],
+          run: v => { const t = v.a * Math.pow(v.w / 100, .6); return { label: 'Rough new cooking time', main: num(Math.round(t)) + ' min',
+            rows: [['Change', (v.w > 100 ? '+' : '') + num(v.w - 100) + '%'], ['Extra time', num(Math.round(t - v.a)) + ' min'], ['Check from', num(Math.round(t * .8)) + ' min']] }; } }
+      ],
+      note: '<p>Scale every ingredient except salt, spices, raising agents and strong flavours — those rarely double with the recipe. Cooking time does not scale linearly with size: a doubled batch needs roughly 1.5× the time, not 2×.</p>',
+      links: [['Unit converter', '#units'], ['Percentage', '#percent'], ['Discount', '#discount']]
+    },
+    roman: {
+      icon: 'IV', title: 'Roman numerals',
+      blurb: 'Convert numbers to Roman numerals and back — handy for tattoos, clock faces, titles and school work.',
+      modes: [
+        { n: 'Number → Roman', f: [{ k: 'a', l: 'Number (1–3999)', v: 2026 }],
+          run: v => {
+            let n = Math.round(v.a);
+            if (!(n > 0 && n < 4000)) return null;
+            const P = [[1000, 'M'], [900, 'CM'], [500, 'D'], [400, 'CD'], [100, 'C'], [90, 'XC'], [50, 'L'], [40, 'XL'], [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']];
+            let out = ''; P.forEach(([d, r]) => { while (n >= d) { out += r; n -= d; } });
+            return { label: 'Roman numeral', main: out, rows: [['Letters', out.length], ['Lower case', out.toLowerCase()]] };
+          } },
+        { n: 'Roman → number', f: [{ k: 'a', l: 'Roman numeral', type: 'text', v: 'MMXXVI' }],
+          run: v => {
+            const map = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 };
+            const t = String(v.a || '').toUpperCase().replace(/[^IVXLCDM]/g, '');
+            if (!t) return null;
+            let total = 0;
+            for (let i = 0; i < t.length; i++) { const c = map[t[i]], nx = map[t[i + 1]] || 0; total += c < nx ? -c : c; }
+            return { label: 'Value', main: num(total), rows: [['Letters used', t.length], ['Cleaned up', t]] };
+          } }
+      ],
+      note: '<p>Roman numerals run I, V, X, L, C, D, M (1, 5, 10, 50, 100, 500, 1,000). A smaller numeral before a larger one is subtracted — IV is 4, IX is 9, XL is 40, CM is 900. The largest standard numeral is MMMCMXCIX, or 3,999.</p>',
+      links: [['Age calculator', '#age'], ['Date calculator', '#date'], ['Scientific', '#scientific']]
+    },
+    quadratic: {
+      icon: 'x²', title: 'Quadratic solver',
+      blurb: 'Solve ax² + bx + c = 0 with the quadratic formula, including the discriminant, vertex and complex roots.',
+      modes: [
+        { n: 'Solve ax² + bx + c = 0', f: [{ k: 'a', l: 'a', v: 1 }, { k: 'b', l: 'b', v: -5 }, { k: 'c', l: 'c', v: 6 }],
+          run: v => {
+            if (!v.a) return null;
+            const d = v.b * v.b - 4 * v.a * v.c;
+            const vertex = -v.b / (2 * v.a);
+            if (d < 0) {
+              const re = (-v.b / (2 * v.a)), im = Math.sqrt(-d) / (2 * v.a);
+              return { label: 'Two complex roots', main: `${num(re)} ± ${num(Math.abs(im))}i`,
+                rows: [['Discriminant', num(d) + ' (negative)'], ['Vertex x', num(vertex)], ['Vertex y', num(v.c - v.b * v.b / (4 * v.a))]] };
+            }
+            const r1 = (-v.b + Math.sqrt(d)) / (2 * v.a), r2 = (-v.b - Math.sqrt(d)) / (2 * v.a);
+            return { label: 'Roots', main: d === 0 ? 'x = ' + num(r1) : `x = ${num(r1)}  or  ${num(r2)}`,
+              rows: [['Discriminant', num(d)], ['Vertex', `(${num(vertex)}, ${num(v.c - v.b * v.b / (4 * v.a))})`], ['Sum of roots', num(r1 + r2)], ['Product of roots', num(r1 * r2)]] };
+          } }
+      ],
+      note: '<p>The quadratic formula is x = (−b ± √(b² − 4ac)) ÷ 2a. The part under the root, b² − 4ac, is the discriminant: positive gives two real roots, zero gives one repeated root, and negative gives a pair of complex roots.</p>',
+      links: [['Scientific calculator', '#scientific'], ['Percentage', '#percent'], ['Statistics', '#stats']]
+    },
+    stats: {
+      icon: 'σ', title: 'Statistics calculator',
+      blurb: 'Paste any list of numbers and get the mean, median, mode, range, standard deviation and quartiles.',
+      modes: [
+        { n: 'Describe a list', f: [{ k: 'a', l: 'Numbers, separated by commas', type: 'text', v: '12, 15, 15, 18, 22, 24, 31' }],
+          run: v => {
+            const arr = String(v.a || '').split(/[ ,;]+/).map(Number).filter(n => isFinite(n)).sort((x, y) => x - y);
+            if (arr.length < 2) return null;
+            const n = arr.length, sum = arr.reduce((x, y) => x + y, 0), mean = sum / n;
+            const sd = Math.sqrt(arr.reduce((t, x) => t + (x - mean) ** 2, 0) / (n - 1));
+            const med = n % 2 ? arr[(n - 1) / 2] : (arr[n / 2 - 1] + arr[n / 2]) / 2;
+            const q = p => { const i = (n - 1) * p, lo = Math.floor(i), hi = Math.ceil(i); return arr[lo] + (arr[hi] - arr[lo]) * (i - lo); };
+            const counts = {}; arr.forEach(x => counts[x] = (counts[x] || 0) + 1);
+            const mode = Object.keys(counts).sort((a, b) => counts[b] - counts[a])[0];
+            return { label: `Mean of ${n} numbers`, main: num(mean),
+              rows: [['Median', num(med)], ['Mode', mode + ' (×' + counts[mode] + ')'], ['Range', num(arr[n - 1] - arr[0])],
+                ['Std deviation', num(sd)], ['Quartiles Q1 / Q3', num(q(.25)) + ' / ' + num(q(.75))], ['Sum', num(sum)]] };
+          } }
+      ],
+      note: '<p>Standard deviation here is the sample version (dividing by n − 1). About two thirds of a normal set sits within one standard deviation of the mean, and 95% within two.</p>',
+      links: [['Scientific calculator', '#scientific'], ['Quadratic solver', '#quadratic'], ['Percentage', '#percent']]
+    },
+    random: {
+      icon: 'RNG', title: 'Random number generator',
+      blurb: 'Pick random numbers for a draw, a game or a decision — with or without repeats, and optionally unique.',
+      modes: [
+        { n: 'Whole numbers', f: [{ k: 'a', l: 'Lowest', v: 1 }, { k: 'b', l: 'Highest', v: 100 }, { k: 'n', l: 'How many', v: 5 }],
+          run: v => {
+            const lo = Math.ceil(Math.min(v.a, v.b)), hi = Math.floor(Math.max(v.a, v.b)), k = Math.min(Math.max(Math.round(v.n || 1), 1), 100);
+            if (hi < lo) return null;
+            const picks = []; for (let i = 0; i < k; i++) picks.push(lo + Math.floor(Math.random() * (hi - lo + 1)));
+            return { label: 'Your numbers', main: picks.join('  ·  '), rows: [['Range', `${num(lo)} to ${num(hi)}`], ['Count', k], ['Odds of any one number', `1 in ${num(hi - lo + 1)}`]] };
+          } },
+        { n: 'Unique draw', f: [{ k: 'a', l: 'Pool size (1 to n)', v: 30 }, { k: 'n', l: 'How many winners', v: 3 }],
+          run: v => {
+            const pool = Math.max(2, Math.round(v.a)), k = Math.min(Math.max(Math.round(v.n || 1), 1), pool);
+            const all = [...Array(pool)].map((_, i) => i + 1);
+            for (let i = all.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [all[i], all[j]] = [all[j], all[i]]; }
+            return { label: 'Unique picks', main: all.slice(0, k).join('  ·  '), rows: [['Pool', pool + ' entries'], ['Winners', k], ['Odds of winning', `1 in ${num(Math.round(pool / k))}`]] };
+          } }
+      ],
+      note: '<p>Everything is drawn in your browser with a uniformly shuffled list, so no result is favoured. Reload or press the answer again for a fresh draw.</p>',
+      links: [['Percentage', '#percent'], ['Statistics', '#stats'], ['Date calculator', '#date']]
+    }
+  };
+
+  /* ---------- renderer ---------- */
+  const el = id => document.getElementById(id);
+  const page = document.querySelector('[data-view-id="mini"]');
+  if (!page) return { open: () => {} };
+  const icoEl = el('minico'), titleEl = el('minititle'), blurbEl = el('miniblurb');
+  const modesEl = el('minimodes'), fieldsEl = el('minifields'), labelEl = el('minilabel');
+  const mainEl = el('minimain'), rowsEl = el('minirows'), noteEl = el('mininote');
+  const linksEl = el('minilinks'), askBtn = el('miniask');
+
+  let cur = null, mode = 0, values = {}, lastOut = null;
+
+  function out(res) {
+    if (!res) { labelEl.textContent = 'Check the numbers'; mainEl.textContent = '—'; rowsEl.innerHTML = '<p><span></span><b>Enter a value above</b></p>'; return; }
+    labelEl.textContent = res.label || 'Answer';
+    mainEl.textContent = res.main;
+    mainEl.style.fontSize = String(res.main).length > 16 ? '1.5rem' : '';
+    rowsEl.innerHTML = (res.rows || []).map(([a, b]) => `<p><span>${a}</span><b>${b}</b></p>`).join('');
+  }
+
+  function compute() {
+    const def = TOOLS[cur], m = def.modes[mode];
+    values = {};
+    fieldsEl.querySelectorAll('[data-k]').forEach(f => {
+      values[f.dataset.k] = f.type === 'number' ? parseFloat(f.value) : f.value;
+    });
+    let res = null;
+    try { res = m.run(values); } catch { res = null; }
+    lastOut = res;
+    out(res);
+  }
+
+  function renderMode() {
+    const def = TOOLS[cur], m = def.modes[mode];
+    modesEl.innerHTML = def.modes.length > 1
+      ? def.modes.map((x, i) => `<button type="button" data-i="${i}" class="${i === mode ? 'on' : ''}">${x.n}</button>`).join('')
+      : '';
+    fieldsEl.innerHTML = m.f.map(f => {
+      if (f.type === 'select') {
+        return `<label class="mini-fld"><span>${f.l || '&nbsp;'}</span><div><select data-k="${f.k}">${f.opts.map(o => `<option${o === f.v ? ' selected' : ''}>${o}</option>`).join('')}</select></div></label>`;
+      }
+      if (f.type === 'date') {
+        return `<label class="mini-fld"><span>${f.l}</span><div><input data-k="${f.k}" type="date" value="${f.v}"></div></label>`;
+      }
+      if (f.type === 'text') {
+        return `<label class="mini-fld" style="grid-column:1/-1"><span>${f.l}</span><div><input data-k="${f.k}" type="text" spellcheck="false" value="${f.v}">${f.u ? `<em>${f.u}</em>` : ''}</div></label>`;
+      }
+      return `<label class="mini-fld"><span>${f.l}</span><div><input data-k="${f.k}" type="number" inputmode="decimal" step="any" value="${f.v}">${f.u ? `<em>${f.u}</em>` : ''}</div></label>`;
+    }).join('');
+    compute();
+  }
+
+  function openTool(id) {
+    if (!TOOLS[id]) return;
+    cur = id; mode = 0;
+    const def = TOOLS[id];
+    icoEl.textContent = def.icon;
+    titleEl.textContent = def.title;
+    blurbEl.textContent = def.blurb;
+    noteEl.innerHTML = def.note;
+    linksEl.innerHTML = def.links.map(([t, h]) => `<a href="${h}">${t}</a>`).join('');
+    document.title = def.title + ' — Free Online Calculator | Inquiry Calculator';
+    renderMode();
+  }
+
+  modesEl.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    mode = +b.dataset.i; renderMode();
+  });
+  fieldsEl.addEventListener('input', compute);
+  fieldsEl.addEventListener('change', compute);
+
+  askBtn.addEventListener('click', () => {
+    const def = TOOLS[cur], m = def.modes[mode];
+    const bits = m.f.map(f => `${f.l || f.k}: ${values[f.k]}`).join(', ');
+    const q = `${def.title}. ${bits}. The answer shown is ${lastOut ? lastOut.main : 'unknown'}. Explain the method step by step and check the answer.`;
+    sessionStorage.setItem('ic.pending', q);
+    location.hash = 'chat';
+  });
+
+  function sync() {
+    const h = location.hash.slice(1);
+    if (TOOLS[h]) openTool(h);
+  }
+  addEventListener('hashchange', sync);
+  sync();
+
+  return { open: openTool, ids: Object.keys(TOOLS) };
+})();
+
+/* =========================================================
+   Theme toggle
+   ========================================================= */
+(() => {
+  const root = document.documentElement;
+  const btn = document.getElementById('themebtn');
+  const meta = document.querySelector('meta[name="theme-color"]');
+  const apply = t => {
+    root.dataset.theme = t;
+    root.style.colorScheme = t;
+    if (meta) meta.setAttribute('content', t === 'dark' ? '#0e0e11' : '#f1eeea');
+    if (btn) {
+      btn.setAttribute('aria-label', t === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+      btn.title = t === 'dark' ? 'Light theme' : 'Dark theme';
+    }
+  };
+  apply(root.dataset.theme === 'dark' ? 'dark' : 'light');
+  const btn2 = document.getElementById('chatTheme');
+  (btn2 || btn) && (btn2 || btn).addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    apply(next);
+    try { localStorage.setItem('ic.theme', next); } catch {}
+  });
+  btn && btn.addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    apply(next);
+    try { localStorage.setItem('ic.theme', next); } catch {}
+  });
+  // follow the OS only if the visitor has never chosen
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    let saved = null;
+    try { saved = localStorage.getItem('ic.theme'); } catch {}
+    if (!saved) apply(e.matches ? 'dark' : 'light');
+  });
+})();
+
+/* =========================================================
    Little extras: share, copy, year
    ========================================================= */
 (() => {
   document.getElementById('yr').textContent = new Date().getFullYear();
+  const yr2 = document.getElementById('yr2'); if (yr2) yr2.textContent = new Date().getFullYear();
+
+  /* in-page jumps scroll smoothly; tools/chat still route normally */
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const id = a.getAttribute('href').slice(1);
+    const target = document.getElementById(id);
+    if (!target || !document.querySelector('.home') || document.body.dataset.view !== 'basic') return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  /* any element with data-ask hands its question to the chat */
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-ask]');
+    if (!b) return;
+    e.preventDefault();
+    const q = b.dataset.ask;
+    if (location.hash.slice(1) === 'chat') { AI.send(q); return; }
+    sessionStorage.setItem('ic.pending', q);
+    location.hash = 'chat';
+  });
   const toast = m => {
     const t = document.createElement('div');
     t.className = 'toast'; t.textContent = m;
@@ -1495,5 +2522,5 @@ const AI = (() => {
   });
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a5212252286e87b5',t:'MTc5MzI2NTkzOA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a5213f8fcc4587b5',t:'MTc5MzI2NzEzNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
