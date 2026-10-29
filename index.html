@@ -23,6 +23,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Inquiry Calculator — Free Online Calculators + AI Solver">
 <meta name="twitter:description" content="Basic, scientific and finance calculators in one page, plus an AI that solves maths from a photo or a snapshot of your screen.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' rx='7.5' fill='%231d1d20'/%3E%3Cpath d='M7 9.6h14' stroke='%23fff' stroke-width='1.7' stroke-linecap='round' opacity='.5'/%3E%3Cg fill='%23fff' opacity='.85'%3E%3Ccircle cx='9.4' cy='14.4' r='1.5'/%3E%3Ccircle cx='14' cy='14.4' r='1.5'/%3E%3Ccircle cx='9.4' cy='19.1' r='1.5'/%3E%3Ccircle cx='14' cy='19.1' r='1.5'/%3E%3C/g%3E%3Ccircle cx='18.6' cy='14.4' r='1.75' fill='%23ee7a4b'/%3E%3Ccircle cx='18.6' cy='19.1' r='1.75' fill='%233f82e0'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' rx='7.5' fill='%231d1d20'/%3E%3Ccircle cx='14' cy='14' r='6' fill='none' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@800&family=Inter:wght@400;500;600&display=swap">
@@ -93,7 +95,9 @@
   --slide:.55s;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{overscroll-behavior-y:none}
 html,body{background:var(--paper);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}
+body.noscroll{overflow:hidden}
 button{font:inherit;color:inherit;border:0;cursor:pointer;background:none}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--blue);outline-offset:2px}
@@ -121,6 +125,11 @@ a{color:inherit}
   padding:0 8px 0 22px;background:var(--pill);border-radius:18px;color:#fff;box-shadow:0 14px 40px -18px rgba(0,0,0,.5);
 }
 .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:.95rem;letter-spacing:-.01em;white-space:nowrap;margin-right:auto;color:#fff;text-decoration:none}
+.logo .mark{display:grid;place-items:center;flex:none;transition:transform .5s var(--ease)}
+.logo .mark svg{width:23px;height:23px;display:block}
+.logo:hover .mark{transform:rotate(-6deg) scale(1.06)}
+.wordmark{display:inline-flex;gap:.3em}
+.wm-2{font-weight:400;opacity:.72}
 .tab{padding:8px 14px;border-radius:10px;font-size:.88rem;color:rgba(255,255,255,.62);white-space:nowrap;background:none;text-decoration:none}
 .tab:hover{color:#fff}
 .tab.on{color:#fff;background:rgba(255,255,255,.1)}
@@ -133,7 +142,7 @@ a{color:inherit}
 h1{font-family:var(--display);font-weight:800;font-size:clamp(68px,15vw,250px);line-height:.88;letter-spacing:-.05em;white-space:nowrap}
 
 /* ---------- Sketches ---------- */
-.sketch{position:absolute;z-index:2;color:var(--ink);translate:var(--px,0px) var(--py,0px);transition:translate var(--slide) var(--ease)}
+.sketch{position:absolute;z-index:2;color:var(--ink);transition:translate var(--slide) var(--ease)}
 .sketch svg{display:block;width:100%;height:auto;overflow:visible}
 .hatch{stroke-width:1.4;opacity:.65}
 .sk-left{left:1%;top:330px;width:min(25vw,360px);rotate:-5deg}
@@ -169,7 +178,7 @@ kbd{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.75rem;padding:1
 
 /* ---------- Expanded "rail" that slides in on the right ---------- */
 .rail{
-  position:absolute;z-index:4;top:50%;right:4vw;width:min(30vw,330px);text-align:left;
+  text-align:left;position:absolute;z-index:4;top:50%;right:4vw;width:min(30vw,330px);text-align:left;
   translate:calc(100% + 14vw) -50%;transition:translate var(--slide) var(--ease);
 }
 .rail-k{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 10px 4px}
@@ -183,7 +192,9 @@ kbd{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.75rem;padding:1
 .rail-link:hover{background:#fff;transform:translateY(-2px)}
 .rail-link small{display:block;font-weight:400;font-size:.78rem;color:var(--ink-soft);margin-top:2px}
 .rail-link span{color:var(--blue);font-weight:600}
-.rail-tip{font-size:.82rem;line-height:1.55;color:var(--ink-soft);border-left:2px solid var(--sel);padding-left:12px}
+.rail-tip{font-size:.8rem;line-height:1.75;color:var(--ink-soft);border-left:2px solid var(--sel);padding-left:12px;overflow-wrap:anywhere}
+.rail-tip kbd{white-space:nowrap;display:inline-block;font-size:.72rem;padding:2px 6px;margin:1px 0}
+.rail-link small{line-height:1.35}
 
 /* ---------- Small screens ---------- */
 @media (max-width:820px){
@@ -209,7 +220,16 @@ kbd{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.75rem;padding:1
 .page>*{position:relative;z-index:1}
 .page h2{font-family:var(--display);font-weight:800;font-size:clamp(44px,7vw,100px);line-height:.92;letter-spacing:-.05em;margin-bottom:30px}
 .page .sel{display:inline-block;text-align:left}
-.calc.sci{width:min(calc(100vw - 64px),440px)}
+.calc.sci{width:min(calc(100vw - 68px),500px)}
+.keys.six{grid-template-columns:repeat(6,1fr);gap:7px}
+.keys.six .k{height:42px;font-size:.92rem;border-radius:11px}
+.keys.six .k.tiny{font-size:.8rem;letter-spacing:-.01em}
+.keys.six .k.eq{font-size:1.2rem}
+.keys.six .k.nd.on{background:var(--sel);color:#241008;font-weight:600}
+.k.w6{grid-column:span 6}
+.page.mid{display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:92px;padding-bottom:56px}
+@media (max-width:820px){.page.mid{padding-top:96px;padding-bottom:104px} .eyebrow{margin-bottom:16px}}
+.eyebrow{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:20px}
 .calc.fin{width:min(calc(100vw - 64px),420px)}
 .keys.five{grid-template-columns:repeat(5,1fr);gap:8px}
 .keys.five .k{height:42px;font-size:.98rem}
@@ -242,7 +262,7 @@ kbd{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.75rem;padding:1
   .sk-left{translate:calc(-160% * var(--k)) 0}
   .sk-right{translate:calc(160% * var(--k)) 0}
   .foot{translate:0 calc(180% * var(--k))}
-  .rail{translate:calc((100% + 14vw) * (1 - var(--k))) -50%;right:3vw;width:min(28vw,300px)}
+  .rail{translate:calc((100% + 14vw) * (1 - var(--k))) -50%;right:2.5vw;width:min(32vw,352px)}
   .stage.open .face1{display:none}
   .stage.open .face2{display:block}
   .stage.open .canvas .sel{animation:pop .4s var(--ease)}
@@ -265,81 +285,160 @@ kbd{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.75rem;padding:1
 .ask-eg a{color:var(--blue);text-decoration:none}
 .ask-eg a:hover{text-decoration:underline}
 
-/* ---------- Chat page ---------- */
+/* ---------- Chat page — glass ---------- */
 body[data-view="chat"]{overflow:hidden}
 body[data-view="chat"] .nav .tabs{display:none}
 @media (max-width:820px){body[data-view="chat"] .nav{display:none}}
-.chatpage{display:grid;grid-template-columns:266px 1fr;height:100svh;padding-top:78px;background:var(--paper)}
-.side{display:flex;flex-direction:column;min-height:0;border-right:1px solid var(--line);padding:14px 12px 12px;text-align:left}
+.chatpage{position:relative;display:grid;grid-template-columns:282px 1fr;height:100svh;padding-top:78px;isolation:isolate}
+.chatpage::before{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(58% 48% at 6% 2%, rgba(63,130,224,.22), transparent 72%),
+    radial-gradient(50% 42% at 98% 12%, rgba(238,122,75,.17), transparent 72%),
+    radial-gradient(85% 60% at 50% 110%, rgba(63,130,224,.13), transparent 70%),
+    var(--paper);
+}
+.side{
+  display:flex;flex-direction:column;min-height:0;padding:16px 14px 14px;text-align:left;
+  background:rgba(255,255,255,.44);
+  -webkit-backdrop-filter:blur(26px) saturate(1.6);backdrop-filter:blur(26px) saturate(1.6);
+  border-right:1px solid rgba(255,255,255,.7);
+  box-shadow:inset -1px 0 0 rgba(21,21,21,.05), 8px 0 30px -28px rgba(21,21,21,.55);
+}
 .sideclose{display:none}
-.newchat{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px;border-radius:12px;background:var(--pill);color:#fff;font-weight:600;font-size:.92rem;margin-bottom:12px}
-.newchat:hover{filter:brightness(1.25)}
-.chats{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:4px;padding-right:2px}
-.chatitem{display:flex;align-items:center;gap:8px;padding:10px 10px 10px 12px;border-radius:10px;font-size:.88rem;text-align:left;color:var(--ink);width:100%}
-.chatitem:hover{background:rgba(21,21,21,.05)}
-.chatitem.on{background:rgba(21,21,21,.09);font-weight:500}
+.newchat{
+  display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px;border-radius:14px;
+  background:linear-gradient(150deg,#33343a,#141417);color:#fff;font-weight:600;font-size:.92rem;margin-bottom:14px;
+  border:1px solid rgba(255,255,255,.15);
+  box-shadow:0 14px 28px -18px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.18);
+  transition:transform .24s var(--ease), box-shadow .24s var(--ease), filter .24s;
+}
+.newchat:hover{transform:translateY(-1px);filter:brightness(1.16);box-shadow:0 18px 32px -18px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.22)}
+.newchat:active{transform:scale(.985)}
+.chats{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:3px;padding-right:4px;scrollbar-width:thin;scrollbar-color:rgba(21,21,21,.16) transparent}
+.chats::-webkit-scrollbar,.chatwrap::-webkit-scrollbar{width:9px}
+.chats::-webkit-scrollbar-thumb,.chatwrap::-webkit-scrollbar-thumb{background:rgba(21,21,21,.16);border-radius:99px;border:3px solid transparent;background-clip:content-box}
+.chats::-webkit-scrollbar-thumb:hover,.chatwrap::-webkit-scrollbar-thumb:hover{background:rgba(21,21,21,.3);background-clip:content-box}
+.chatitem{
+  display:flex;align-items:center;gap:8px;padding:10px 8px 10px 12px;border-radius:11px;font-size:.88rem;text-align:left;
+  color:var(--ink);width:100%;border:1px solid transparent;
+  transition:background .2s, border-color .2s, transform .2s var(--ease), box-shadow .2s;
+}
+.chatitem:hover{background:rgba(255,255,255,.66);border-color:rgba(255,255,255,.9);transform:translateX(2px);box-shadow:0 8px 20px -18px rgba(21,21,21,.6)}
+.chatitem.on{background:rgba(255,255,255,.85);border-color:rgba(255,255,255,.95);font-weight:500;box-shadow:0 10px 22px -20px rgba(21,21,21,.65)}
 .chatitem b{flex:1;min-width:0;font-weight:inherit;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.chatitem .del{flex:none;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;color:var(--ink-soft);font-size:1rem;line-height:1;opacity:0;transition:opacity .15s,background .15s}
-.chatitem:hover .del,.chatitem.on .del{opacity:1}
-.chatitem .del:hover{background:rgba(21,21,21,.12);color:#c0392b}
-.side-empty{font-size:.82rem;color:var(--ink-soft);padding:10px 12px;line-height:1.5}
-.side-foot{display:flex;flex-wrap:wrap;gap:6px;padding-top:10px;border-top:1px solid var(--line)}
-.side-foot a{font-size:.78rem;color:var(--ink-soft);text-decoration:none;padding:6px 10px;border-radius:8px;background:rgba(255,255,255,.6);border:1px solid var(--line)}
-.side-foot a:hover{color:var(--ink);background:#fff}
+.chatitem .del{flex:none;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;color:var(--ink-soft);font-size:1rem;line-height:1;opacity:0;transform:scale(.85);transition:opacity .18s, transform .18s var(--ease), background .18s, color .18s}
+.chatitem:hover .del,.chatitem.on .del{opacity:1;transform:none}
+.chatitem .del:hover{background:rgba(192,57,43,.12);color:#c0392b}
+.side-empty{font-size:.82rem;color:var(--ink-soft);padding:10px 12px;line-height:1.55}
+.side-foot{display:flex;flex-wrap:wrap;gap:6px;padding-top:12px;border-top:1px solid rgba(21,21,21,.07)}
+.side-foot a{font-size:.78rem;color:var(--ink-soft);text-decoration:none;padding:6px 10px;border-radius:9px;background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.9);transition:color .2s, background .2s, transform .2s var(--ease)}
+.side-foot a:hover{color:var(--ink);background:#fff;transform:translateY(-1px)}
 
-.chatmain{display:flex;flex-direction:column;min-height:0;min-width:0}
-.chathead{display:flex;align-items:center;gap:10px;padding:10px 20px;border-bottom:1px solid var(--line)}
+.chatmain{display:flex;flex-direction:column;min-height:0;min-width:0;background:rgba(255,255,255,.16)}
+.chathead{
+  display:flex;align-items:center;gap:10px;padding:12px 22px;
+  background:rgba(255,255,255,.4);
+  -webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);
+  border-bottom:1px solid rgba(255,255,255,.65);
+  box-shadow:0 14px 28px -28px rgba(21,21,21,.55);
+}
 .chathead h2{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.02em;margin:0;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left}
-.snapbtn{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:10px;background:rgba(255,255,255,.75);border:1px solid var(--line);font-size:.83rem;font-weight:500;color:var(--ink)}
-.snapbtn:hover{background:#fff;border-color:rgba(21,21,21,.18)}
-.chatwrap{flex:1;min-height:0;overflow-y:auto;padding:22px 20px 8px}
+.snapbtn{
+  display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:11px;font-size:.83rem;font-weight:500;color:var(--ink);
+  background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  box-shadow:0 8px 20px -18px rgba(21,21,21,.6);
+  transition:transform .22s var(--ease), background .22s, box-shadow .22s;
+}
+.snapbtn:hover{background:#fff;transform:translateY(-1px);box-shadow:0 12px 24px -18px rgba(21,21,21,.65)}
+.snapbtn:active{transform:scale(.97)}
+.chatwrap{flex:1;min-height:0;overflow-y:auto;padding:24px 22px 8px;scroll-behavior:smooth}
 .log{width:min(760px,100%);margin:0 auto;display:flex;flex-direction:column;gap:14px;min-height:100%}
-.msg{width:fit-content;max-width:min(88%,680px);padding:12px 16px;border-radius:16px;font-size:.95rem;line-height:1.62;background:#fff;border:1px solid var(--line);align-self:flex-start;overflow-wrap:anywhere;text-align:left;box-shadow:0 1px 2px rgba(21,21,21,.04)}
-.msg.u{align-self:flex-end;background:var(--ink);color:#fff;border-color:transparent}
+.msg{
+  width:fit-content;max-width:min(88%,700px);padding:13px 17px;border-radius:18px;font-size:.95rem;line-height:1.62;
+  text-align:left;overflow-wrap:anywhere;align-self:flex-start;
+  background:rgba(255,255,255,.6);
+  -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
+  border:1px solid rgba(255,255,255,.85);
+  box-shadow:0 16px 34px -26px rgba(21,21,21,.55), inset 0 1px 0 rgba(255,255,255,.9);
+  animation:rise .36s var(--ease) both;
+}
+@keyframes rise{from{opacity:0;transform:translateY(10px) scale(.99)}to{opacity:1;transform:none}}
+.msg.u{
+  align-self:flex-end;color:#fff;border-color:rgba(255,255,255,.24);
+  background:linear-gradient(152deg,rgba(78,145,234,.97),rgba(44,96,180,.98));
+  box-shadow:0 18px 36px -24px rgba(44,96,180,.85), inset 0 1px 0 rgba(255,255,255,.3);
+}
 .msg p{margin:0 0 9px}.msg>:last-child{margin-bottom:0}
 .msg ul,.msg ol{padding-left:20px;margin:0 0 9px}
 .msg h1,.msg h2,.msg h3{font-size:1rem;margin:10px 0 6px}
 .msg code{background:rgba(21,21,21,.07);padding:1px 5px;border-radius:5px;font-size:.86em}
-.msg.u code{background:rgba(255,255,255,.16)}
-.msg pre{overflow-x:auto;background:#0b0c0e;color:#e8e8ec;padding:12px;border-radius:10px;margin:0 0 9px}
+.msg.u code{background:rgba(255,255,255,.18)}
+.msg pre{overflow-x:auto;background:rgba(11,12,14,.92);color:#e8e8ec;padding:12px;border-radius:12px;margin:0 0 9px;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .msg pre code{background:none;padding:0}
-.msg img{max-width:240px;border-radius:10px;display:block;margin-bottom:8px}
-.msg .att-note{font-size:.78rem;opacity:.7;margin-bottom:6px}
-.typing{display:inline-flex;gap:5px;padding:4px 0}
-.typing i{width:6px;height:6px;border-radius:50%;background:#9a9a9a;animation:bl 1.2s infinite}
+.msg img{max-width:240px;border-radius:12px;display:block;margin-bottom:8px;border:1px solid rgba(255,255,255,.5)}
+.msg .att-note{font-size:.78rem;opacity:.72;margin-bottom:6px}
+.typing{display:inline-flex;gap:5px;padding:3px 0}
+.typing i{width:6px;height:6px;border-radius:50%;background:#9a9a9a;animation:bl 1.15s infinite ease-in-out}
 .typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
-@keyframes bl{0%,80%,100%{opacity:.25}40%{opacity:1}}
-.welcome{max-width:640px;margin:6vh auto 0;text-align:center;color:var(--ink-soft)}
+@keyframes bl{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-2px)}}
+.welcome{max-width:640px;margin:5vh auto 0;text-align:center;color:var(--ink-soft);animation:rise .55s var(--ease) both}
 .welcome h3{font-family:var(--display);color:var(--ink);font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:-.03em;margin-bottom:8px}
 .welcome p{font-size:.92rem;line-height:1.6;margin-bottom:18px}
 .chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
-.chips button{padding:9px 14px;border-radius:999px;background:rgba(255,255,255,.8);border:1px solid var(--line);font-size:.83rem;color:var(--ink)}
-.chips button:hover{background:#fff;border-color:rgba(21,21,21,.2)}
+.chips button{
+  padding:9px 15px;border-radius:999px;font-size:.83rem;color:var(--ink);
+  background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.9);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  box-shadow:0 8px 20px -20px rgba(21,21,21,.6);
+  transition:transform .22s var(--ease), background .22s, box-shadow .22s;
+}
+.chips button:hover{background:#fff;transform:translateY(-2px);box-shadow:0 14px 26px -20px rgba(21,21,21,.6)}
+.chips button:active{transform:scale(.97)}
 
-.composer{width:min(760px,100%);margin:0 auto;padding:8px 20px 20px}
+.composer{width:min(760px,100%);margin:0 auto;padding:10px 22px 18px}
 .attached{display:none;align-items:center;gap:10px;font-size:.8rem;color:var(--ink-soft);margin-bottom:8px}
-.attached img{width:52px;height:40px;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+.attached img{width:52px;height:40px;object-fit:cover;border-radius:9px;border:1px solid rgba(255,255,255,.9);box-shadow:0 8px 18px -14px rgba(21,21,21,.7)}
 .attached button{color:#c0392b;font-size:.78rem;text-decoration:underline}
-.bar{display:flex;align-items:flex-end;gap:6px;background:var(--pill);border-radius:16px;padding:8px;box-shadow:0 18px 40px -30px rgba(0,0,0,.8)}
-.bar textarea{flex:1;min-width:0;background:none;border:0;outline:0;resize:none;color:#fff;font:inherit;font-size:.95rem;padding:10px 8px;max-height:150px;line-height:1.45}
+.bar{
+  display:flex;align-items:flex-end;gap:6px;padding:8px;border-radius:19px;
+  background:rgba(29,29,32,.9);
+  -webkit-backdrop-filter:blur(26px) saturate(1.6);backdrop-filter:blur(26px) saturate(1.6);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 26px 52px -32px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.17);
+  transition:border-color .25s, box-shadow .25s;
+}
+.bar:focus-within{border-color:rgba(120,175,255,.55);box-shadow:0 28px 56px -32px rgba(0,0,0,.95), 0 0 0 3px rgba(63,130,224,.16), inset 0 1px 0 rgba(255,255,255,.2)}
+.bar textarea{flex:1;min-width:0;background:none;border:0;outline:0;resize:none;color:#fff;font:inherit;font-size:.95rem;padding:10px 8px;max-height:150px;line-height:1.45;transition:height .18s var(--ease)}
 .bar textarea::placeholder{color:rgba(255,255,255,.42)}
-.ib{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:transparent;color:rgba(255,255,255,.62);flex:none}
+.ib{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:transparent;color:rgba(255,255,255,.62);flex:none;transition:background .2s, color .2s, transform .18s var(--ease), box-shadow .2s}
 .ib:hover{background:rgba(255,255,255,.1);color:#fff}
-.ib.go{background:var(--blue);color:#fff}
-.ib.go:hover{filter:brightness(1.1);background:var(--blue)}
+.ib:active{transform:scale(.92)}
+.ib.go{background:linear-gradient(150deg,#5a97ea,#2f6fce);color:#fff;box-shadow:0 10px 20px -12px rgba(63,130,224,.95), inset 0 1px 0 rgba(255,255,255,.32)}
+.ib.go:hover{filter:brightness(1.08);background:linear-gradient(150deg,#5a97ea,#2f6fce)}
 .composer .fine{font-size:.72rem;color:var(--ink-soft);text-align:center;margin-top:8px}
-.menubtn{display:none}
+.menubtn{display:none;transition:background .2s, transform .2s var(--ease)}
+.menubtn:active{transform:scale(.94)}
+
+/* ---------- view transitions ---------- */
+@keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.page:not([hidden]),.askpage:not([hidden]),.chatpage:not([hidden]),.stage:not([hidden]){animation:pageIn .34s var(--ease) both}
+@media (prefers-reduced-motion:reduce){.page:not([hidden]),.askpage:not([hidden]),.chatpage:not([hidden]),.stage:not([hidden]){animation:none}}
+.ib.go[disabled]{opacity:.55;cursor:default;filter:none}
 
 /* ---------- Snapshot sheet ---------- */
-.sheet{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:20px;background:rgba(21,21,21,.5)}
+.sheet{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:20px;background:rgba(21,21,21,.42);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);animation:sheetIn .28s var(--ease) both}
+@keyframes sheetIn{from{opacity:0}to{opacity:1}}
 .sheet[hidden]{display:none}
-.sheet-card{width:min(440px,100%);background:var(--paper);border-radius:22px;padding:28px 26px 24px;text-align:center;box-shadow:0 40px 80px -40px rgba(0,0,0,.7);border:1px solid var(--line)}
+.sheet-card{width:min(440px,100%);background:rgba(245,243,240,.94);-webkit-backdrop-filter:blur(22px) saturate(1.4);backdrop-filter:blur(22px) saturate(1.4);animation:cardIn .32s var(--ease) both;border-radius:22px;padding:28px 26px 24px;text-align:center;box-shadow:0 40px 80px -40px rgba(0,0,0,.7);border:1px solid var(--line)}
 .sheet-card h3{font-family:var(--display);font-size:1.35rem;letter-spacing:-.03em;margin-bottom:10px}
 .sheet-card p{font-size:.9rem;line-height:1.6;color:var(--ink-soft);margin-bottom:18px}
 .sheet-card .row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
 .sheet-card .go-btn{padding:12px 20px;border-radius:12px;background:var(--blue);color:#fff;font-weight:600;font-size:.92rem}
 .sheet-card .no-btn{padding:12px 18px;border-radius:12px;background:rgba(21,21,21,.06);font-weight:500;font-size:.92rem}
 .sheet-card .err{color:#c0392b;font-size:.82rem;margin-top:12px;min-height:1em}
+@keyframes cardIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
 .snapnote{font-size:.76rem;color:var(--ink-soft);margin-top:14px}
 
 /* ---------- Tools / hub page ---------- */
@@ -376,7 +475,7 @@ body[data-view="chat"] .nav .tabs{display:none}
 /* ---------- Chat page on small screens ---------- */
 @media (max-width:820px){
   .chatpage{grid-template-columns:1fr;padding-top:70px}
-  .side{position:fixed;top:0;left:0;bottom:0;width:min(84vw,300px);z-index:70;background:var(--paper);box-shadow:24px 0 60px -30px rgba(0,0,0,.5);translate:-102% 0;transition:translate .3s var(--ease);padding-top:80px}
+  .side{position:fixed;top:0;left:0;bottom:0;width:min(84vw,300px);z-index:70;background:rgba(243,241,238,.88);-webkit-backdrop-filter:blur(26px) saturate(1.5);backdrop-filter:blur(26px) saturate(1.5);box-shadow:24px 0 60px -30px rgba(0,0,0,.5);translate:-102% 0;transition:translate .34s var(--ease);padding-top:80px}
   .chatpage.menu .side{translate:0 0}
   .chatpage.menu::after{content:"";position:fixed;inset:0;z-index:65;background:rgba(21,21,21,.35)}
   .sideclose{display:block;position:absolute;top:22px;right:16px;width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.7);font-size:1.2rem;line-height:1;color:var(--ink)}
@@ -401,8 +500,19 @@ body[data-view="chat"] .nav .tabs{display:none}
 <header class="nav">
   <div class="nav-in">
     <a class="logo" href="#basic" aria-label="Inquiry Calculator home">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M4 10h16"/><path d="M10 4v16"/></svg>
-      Inquiry Calculator
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 28 28" fill="none">
+          <rect x="2.7" y="2.7" width="22.6" height="22.6" rx="7" stroke="currentColor" stroke-width="1.7" opacity=".92"/>
+          <path d="M7.2 9.7h13.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" opacity=".5"/>
+          <g fill="currentColor" opacity=".85">
+            <circle cx="9.6" cy="14.5" r="1.5"/><circle cx="14.2" cy="14.5" r="1.5"/>
+            <circle cx="9.6" cy="19.2" r="1.5"/><circle cx="14.2" cy="19.2" r="1.5"/>
+          </g>
+          <circle cx="18.8" cy="14.5" r="1.8" fill="#ee7a4b"/>
+          <circle cx="18.8" cy="19.2" r="1.8" fill="#3f82e0"/>
+        </svg>
+      </span>
+      <span class="wordmark">Inquiry<span class="wm-2">Calculator</span></span>
     </a>
     <nav class="tabs" aria-label="Sections">
       <a class="tab on" data-go="basic" href="#basic">Basic</a>
@@ -416,10 +526,10 @@ body[data-view="chat"] .nav .tabs{display:none}
 
 <main class="stage" id="top" data-view-id="basic"><div class="pin">
 
-  <div class="title-wrap"><h1>Work it out.</h1></div>
+  <div class="title-wrap"><h1 data-depth="-0.2">Work it out.</h1></div>
 
   <figure class="sketch sk-left" data-depth="0.5" aria-hidden="true">
-    <svg viewBox="0 0 260 210" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#wobble)">
+    <svg data-depth="0.5" viewBox="0 0 260 210" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#wobble)">
       <g transform="rotate(-12 130 150)">
         <rect x="14" y="118" width="226" height="42" rx="4"/>
         <path d="M38 118v15M62 118v9M86 118v15M110 118v9M134 118v15M158 118v9M182 118v15M206 118v9"/>
@@ -435,7 +545,7 @@ body[data-view="chat"] .nav .tabs{display:none}
   </figure>
 
   <figure class="sketch sk-right" data-depth="0.5" aria-hidden="true">
-    <svg viewBox="0 0 240 220" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#wobble)">
+    <svg data-depth="0.5" viewBox="0 0 240 220" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#wobble)">
       <rect x="16" y="14" width="208" height="192" rx="10"/>
       <path d="M16 56H224M16 98H224M16 140H224M16 182H224"/>
       <circle cx="44" cy="56" r="12"/><circle cx="70" cy="56" r="12"/><circle cx="184" cy="56" r="12"/>
@@ -446,8 +556,8 @@ body[data-view="chat"] .nav .tabs{display:none}
     </svg>
   </figure>
 
-  <section class="canvas" id="calc" data-depth="0.9" aria-label="Calculator">
-    <div class="sel">
+  <section class="canvas" id="calc" aria-label="Calculator">
+    <div class="sel" data-depth="0.9">
       <i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
       <div class="calc face1">
         <div class="screen" role="status" aria-live="polite">
@@ -472,7 +582,7 @@ body[data-view="chat"] .nav .tabs{display:none}
       </div>
       <div class="calc sci face2">
         <div class="screen" role="status" aria-live="polite"><div class="expr" id="hexpr"></div><div class="val" id="hval">0</div></div>
-        <div class="keys five" id="hkeys"></div>
+        <div class="keys six" id="hkeys"></div>
       </div>
     </div>
   </section>
@@ -484,7 +594,7 @@ body[data-view="chat"] .nav .tabs{display:none}
       <a class="rail-link" href="#finance">Finance<small>loans, savings, tip split</small><span>→</span></a>
       <a class="rail-link" href="#ask">Ask the AI<small>solve from a photo or a snapshot</small><span>→</span></a>
     </div>
-    <p class="rail-tip">Type straight into the keypad — <kbd>0–9</kbd> <kbd>+ − × ÷</kbd> <kbd>Enter</kbd> <kbd>Esc</kbd> all work. Scroll up to shrink it again.</p>
+    <p class="rail-tip">Type straight into the keypad: <kbd>0–9</kbd> <kbd>+ − × ÷</kbd> <kbd>Enter</kbd> <kbd>Esc</kbd>. Scroll up to shrink it again.</p>
   </aside>
 
   <div class="foot">
@@ -494,21 +604,19 @@ body[data-view="chat"] .nav .tabs{display:none}
   </div>
 </div></main>
 
-<section class="page" data-view-id="scientific" hidden aria-label="Scientific calculator">
-  <h1 class="sr">Scientific calculator</h1>
-  <h2>Go further.</h2>
+<section class="page mid" data-view-id="scientific" hidden aria-label="Scientific calculator">
+  <p class="eyebrow">Scientific calculator</p>
   <div class="sel"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
     <div class="calc sci">
       <div class="screen" role="status" aria-live="polite"><div class="expr" id="sexpr"></div><div class="val" id="sval">0</div></div>
-      <div class="keys five" id="skeys"></div>
+      <div class="keys six" id="skeys"></div>
     </div>
   </div>
-  <p class="hint" style="margin-top:22px">Type it: <kbd>s</kbd> sin <kbd>c</kbd> cos <kbd>t</kbd> tan <kbd>l</kbd> log <kbd>n</kbd> ln <kbd>r</kbd> √ <kbd>p</kbd> π, then <kbd>Enter</kbd>.</p>
+  <p class="hint" style="margin-top:20px">Type it too: <kbd>s</kbd> sin · <kbd>c</kbd> cos · <kbd>t</kbd> tan · <kbd>l</kbd> log · <kbd>n</kbd> ln · <kbd>r</kbd> √ · <kbd>p</kbd> π · <kbd>e</kbd> e, then <kbd>Enter</kbd>. Press <b>2nd</b> for inverse trig, 10ˣ, eˣ and cube root.</p>
 </section>
 
-<section class="page" data-view-id="finance" hidden aria-label="Finance calculators">
-  <h1 class="sr">Finance calculators</h1>
-  <h2>Money, worked out.</h2>
+<section class="page mid" data-view-id="finance" hidden aria-label="Finance calculators">
+  <p class="eyebrow">Finance · loan, savings, tip</p>
   <div class="sel"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
     <div class="calc fin">
       <div class="seg" id="fseg"></div>
@@ -759,19 +867,35 @@ const stageEl = document.getElementById('top');
    Scientific keypad (used twice: expanded hero + its own page)
    ========================================================= */
 function makeSci(keys, val, expr) {
-  const SK = [['Deg','fn','deg'],['sin','fn','sin('],['cos','fn','cos('],['tan','fn','tan('],['AC','fn','ac'],
-    ['π','fn','π'],['log','fn','log('],['ln','fn','ln('],['√','fn','√('],['⌫','fn','del'],
-    ['e','fn','e'],['x²','fn','^2'],['xʸ','fn','^'],['(','fn','('],[')','fn',')'],
-    ['7','','7'],['8','','8'],['9','','9'],['÷','op','÷'],['!','fn','!'],
-    ['4','','4'],['5','','5'],['6','','6'],['×','op','×'],['%','fn','%'],
-    ['1','','1'],['2','','2'],['3','','3'],['−','op','−'],['+','op','+'],
-    ['0','w2','0'],['.','','.'],['=','eq w2','=']];
-  keys.innerHTML = SK.map(([l, c, t]) => `<button class="k ${c}" data-t="${t}">${l}</button>`).join('');
+  /* [label, class, token, altLabel, altToken] — alt = what the 2nd key turns it into */
+  const SK = [
+    ['2nd','fn nd','nd'],['Deg','fn','deg'],['AC','fn','ac'],['⌫','fn','del'],['|x|','fn tiny','abs('],['1/x','fn tiny','1/('],
+    ['sin','fn','sin(','sin⁻¹','asin('],['cos','fn','cos(','cos⁻¹','acos('],['tan','fn','tan(','tan⁻¹','atan('],
+    ['log','fn','log(','10ˣ','10^('],['ln','fn','ln(','eˣ','e^('],['√','fn','sqrt(','∛','cbrt('],
+    ['x²','fn','^2','x³','^3'],['xʸ','fn','^','ˣ√y','^(1/'],['x!','fn','!'],
+    ['(','fn','('],[')','fn',')'],['÷','op','÷'],
+    ['7','','7'],['8','','8'],['9','','9'],['%','fn','%'],['π','fn','π'],['×','op','×'],
+    ['4','','4'],['5','','5'],['6','','6'],['ANS','fn tiny','ans'],['e','fn','e'],['−','op','−'],
+    ['1','','1'],['2','','2'],['3','','3'],['0','','0'],['.','','.'],['+','op','+'],
+    ['=','eq w6','=']
+  ];
+  keys.innerHTML = SK.map(([l, c, t, al, at]) =>
+    `<button class="k ${c}" data-t="${t}" data-tp="${t}" data-l="${l}"` +
+    (al ? ` data-al="${al}" data-at="${at}"` : '') + `>${l}</button>`).join('');
+  keys.classList.remove('five'); keys.classList.add('six');
 
-  let ex = '', top = '', deg = true, fresh = false, bad = false;
+  let ex = '', top = '', deg = true, fresh = false, bad = false, second = false, lastAns = 0;
   const rad = x => deg ? x * Math.PI / 180 : x;
+  const unrad = x => deg ? x * 180 / Math.PI : x;
   const fact = n => { if (n < 0 || n > 170 || n !== Math.floor(n)) return NaN; let a = 1; for (let i = 2; i <= n; i++) a *= i; return a; };
-  const FN = { sin: x => Math.sin(rad(x)), cos: x => Math.cos(rad(x)), tan: x => Math.tan(rad(x)), log: Math.log10, ln: Math.log, sqrt: Math.sqrt };
+  const FN = {
+    sin: x => Math.sin(rad(x)), cos: x => Math.cos(rad(x)), tan: x => Math.tan(rad(x)),
+    asin: x => unrad(Math.asin(x)), acos: x => unrad(Math.acos(x)), atan: x => unrad(Math.atan(x)),
+    sinh: Math.sinh, cosh: Math.cosh, tanh: Math.tanh,
+    log: Math.log10, log2: Math.log2, ln: Math.log,
+    sqrt: Math.sqrt, cbrt: Math.cbrt, root: Math.sqrt,
+    abs: Math.abs, round: Math.round, floor: Math.floor, ceil: Math.ceil, exp: Math.exp, sign: Math.sign
+  };
 
   function evaluate(src) {
     const s = src.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-').replace(/π/g, 'pi').replace(/√/g, 'sqrt');
@@ -794,7 +918,7 @@ function makeSci(keys, val, expr) {
       if (peek() === '(') { i++; const v = sum(); if (peek() !== ')') throw 0; i++; return v; }
       let m = /^(\d+\.?\d*|\.\d+)(e[+-]?\d+)?/.exec(s.slice(i));
       if (m) { i += m[0].length; return parseFloat(m[0]); }
-      m = /^[a-z]+/.exec(s.slice(i));
+      m = /^[a-z0-9]+/.exec(s.slice(i));
       if (!m) throw 0;
       const n = m[0]; i += n.length;
       if (n === 'pi') return Math.PI;
@@ -810,15 +934,16 @@ function makeSci(keys, val, expr) {
   function show() {
     const t = bad ? 'Error' : fresh ? pretty(parseFloat(ex)) : (ex || '0');
     val.textContent = t.length > 26 ? '…' + t.slice(-25) : t;
-    val.style.fontSize = t.length > 18 ? '1.5rem' : t.length > 12 ? '1.9rem' : t.length > 9 ? '2.2rem' : '';
+    val.style.fontSize = t.length > 18 ? '1.4rem' : t.length > 12 ? '1.8rem' : t.length > 9 ? '2.1rem' : '';
     expr.textContent = top;
   }
   function put(t) {
+    if (t === 'ans') t = String(lastAns);
     if (bad) { ex = ''; bad = false; top = ''; }
     if (fresh) { fresh = false; if (!/^[+−×÷^!%]/.test(t)) ex = ''; top = ''; }
     ex += t; show();
   }
-  function del() { if (fresh || bad) return clr(); ex = ex.replace(/(sin\(|cos\(|tan\(|log\(|ln\(|√\(|.)$/, ''); show(); }
+  function del() { if (fresh || bad) return clr(); ex = ex.replace(/(asin\(|acos\(|atan\(|sinh\(|cosh\(|tanh\(|sin\(|cos\(|tan\(|log2\(|log\(|ln\(|sqrt\(|cbrt\(|abs\(|√\(|.)$/, ''); show(); }
   function clr() { ex = ''; top = ''; fresh = false; bad = false; show(); }
   function eq() {
     if (!ex || fresh) return;
@@ -827,9 +952,20 @@ function makeSci(keys, val, expr) {
       let v = evaluate(ex + ')'.repeat(Math.max(0, open)));
       if (!isFinite(v)) throw 0;
       if (Math.abs(v) < 1e-12) v = 0;
+      lastAns = v;
       top = ex + ' ='; ex = String(parseFloat(v.toPrecision(12))); fresh = true;
     } catch (e) { bad = true; fresh = false; }
     show();
+  }
+  function toggle2nd(b) {
+    second = !second;
+    b.classList.toggle('on', second);
+    b.textContent = second ? '1st' : '2nd';
+    [...keys.children].forEach(k => {
+      if (!k.dataset.al) return;
+      k.textContent = second ? k.dataset.al : k.dataset.l;
+      k.dataset.t = second ? k.dataset.at : k.dataset.tp;
+    });
   }
   keys.addEventListener('click', e => {
     const b = e.target.closest('button'); if (!b) return;
@@ -837,6 +973,7 @@ function makeSci(keys, val, expr) {
     if (t === 'ac') clr();
     else if (t === 'del') del();
     else if (t === '=') eq();
+    else if (t === 'nd') toggle2nd(b);
     else if (t === 'deg') { deg = !deg; b.textContent = deg ? 'Deg' : 'Rad'; }
     else put(t);
   });
@@ -866,38 +1003,41 @@ document.addEventListener('keydown', e => {
 });
 
 /* =========================================================
-   Spatial parallax — calm: turns itself off while the
-   calculator is expanded or hovered, so it stays usable
+   Spatial parallax — full depth on the hero, frozen the
+   moment the calculator enlarges
    ========================================================= */
 (() => {
-  const calc = document.getElementById('calc');
-  const layers = [...stageEl.querySelectorAll('[data-depth]')].map(el => ({ el, d: parseFloat(el.dataset.depth) }));
+  const canvas = document.getElementById('calc');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const small = matchMedia('(max-width: 820px)');
   if (reduce) return;
-  let tx = 0, ty = 0, x = 0, y = 0, running = false, paused = false, lastPx = '', lastPy = '';
 
-  const setPaused = p => {
-    paused = p;
-    if (p) { tx = 0; ty = 0; }
-  };
-  calc.addEventListener('pointerenter', () => setPaused(true));
-  calc.addEventListener('pointerleave', () => setPaused(false));
-  document.addEventListener('pointermove', e => { if (!paused) { tx = e.clientX / innerWidth - .5; ty = e.clientY / innerHeight - .5; } });
+  const layers = [...stageEl.querySelectorAll('[data-depth]')].map(el => ({ el, d: parseFloat(el.dataset.depth) }));
+  let tx = 0, ty = 0, x = 0, y = 0, running = false, lastK = null;
+
+  addEventListener('pointermove', e => {
+    tx = e.clientX / innerWidth - .5;
+    ty = e.clientY / innerHeight - .5;
+  }, { passive: true });
   document.addEventListener('pointerleave', () => { tx = 0; ty = 0; });
 
   function tick() {
     if (!running) return;
-    x += (tx - x) * .09; y += (ty - y) * .09;
-    const k = (small.matches || stageEl.classList.contains('open')) ? 0 : 1;
-    const d = layers[0] ? layers[0].d : .5;
-    const px = (-x * d * 42 * k).toFixed(2) + 'px', py = (-y * d * 30 * k).toFixed(2) + 'px';
-    if (px !== lastPx || py !== lastPy) {
-      stageEl.style.setProperty('--px', px);
-      stageEl.style.setProperty('--py', py);
-      lastPx = px; lastPy = py;
+    x += (tx - x) * .06; y += (ty - y) * .06;
+    const k = (small.matches || stageEl.classList.contains('open') || document.body.dataset.view !== 'basic') ? 0 : 1;
+    if (k !== lastK) {                        // clear once, then let CSS take the wheel
+      if (!k) {
+        layers.forEach(({ el }) => { el.style.translate = ''; });
+        canvas.style.transform = '';
+      }
+      lastK = k;
     }
-    calc.style.transform = k ? `perspective(1200px) rotateY(${x * 5}deg) rotateX(${-y * 4}deg)` : '';
+    if (k) {
+      layers.forEach(({ el, d }) => {
+        el.style.translate = `${(-x * d * 90).toFixed(2)}px ${(-y * d * 60).toFixed(2)}px`;
+      });
+      canvas.style.transform = `perspective(1100px) rotateY(${(x * 9).toFixed(2)}deg) rotateX(${(-y * 7).toFixed(2)}deg)`;
+    }
     requestAnimationFrame(tick);
   }
   new IntersectionObserver(([en]) => {
@@ -948,6 +1088,7 @@ document.addEventListener('keydown', e => {
     document.querySelectorAll('.nav .tab').forEach(t => t.classList.toggle('on', t.dataset.go === v));
     document.querySelector('.chatpage')?.classList.remove('menu');
     if (v !== 'chat') window.scrollTo(0, 0);
+    fitPage(v);
     document.title = ({
       basic: 'Inquiry Calculator — Free Online Basic, Scientific & Finance Calculator + AI Math Solver',
       scientific: 'Free Scientific Calculator Online — sin, cos, tan, log, powers | Inquiry Calculator',
@@ -957,6 +1098,16 @@ document.addEventListener('keydown', e => {
       chat: 'AI Maths Solver — Chat | Inquiry Calculator'
     })[v] || document.title;
   }
+  function fitPage(v) {
+    const page = document.querySelector('[data-view-id="' + v + '"]');
+    const shouldFit = ['scientific', 'finance', 'ask', 'chat'].includes(v);
+    document.body.classList.remove('noscroll');
+    requestAnimationFrame(() => {
+      const fits = page && page.getBoundingClientRect().height <= innerHeight + 1;
+      document.body.classList.toggle('noscroll', shouldFit && fits);
+    });
+  }
+  addEventListener('resize', () => fitPage(document.body.dataset.view));
   addEventListener('hashchange', route);
   route();
 })();
@@ -1225,6 +1376,7 @@ const AI = (() => {
     if ((!text && !pendingImg) || busy) return;
     if (!active) newChat();
     busy = true;
+    document.getElementById('asend').disabled = true;
     const img = pendingImg;
     const prompt = text || 'Read the problem in this image and solve it step by step.';
     const note = img ? (img.label === 'Snapshot of a tab' ? 'Snapshot attached' : 'Image attached') : '';
@@ -1259,10 +1411,14 @@ const AI = (() => {
     wait.innerHTML = md(reply);
     wrap.scrollTop = wrap.scrollHeight;
     busy = false;
+    document.getElementById('asend').disabled = false;
     if (failed) console.warn('AI request failed');
   }
 
-  document.getElementById('asend').addEventListener('click', () => send());
+  const sendBtn = document.getElementById('asend');
+  sendBtn.addEventListener('click', () => send());
+  new MutationObserver(() => { sendBtn.disabled = busy; })
+    .observe(log, { childList: true, subtree: true });
   ta.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } });
   ta.addEventListener('input', () => { ta.style.height = 'auto'; ta.style.height = Math.min(ta.scrollHeight, 150) + 'px'; });
   log.addEventListener('click', e => {
@@ -1339,5 +1495,5 @@ const AI = (() => {
   });
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a521120a7fa28677',t:'MTc5MzI2NTI3MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a5212252286e87b5',t:'MTc5MzI2NTkzOA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
