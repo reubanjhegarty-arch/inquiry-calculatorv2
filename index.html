@@ -2,26 +2,105 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Inquiry Calculator</title>
-<meta name="description" content="A new way to work out the numbers. Inquiry Calculator starts with a basic calculator.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<!-- ============ SEO / DISCOVERY ============ -->
+<title>Inquiry Calculator — Free Online Basic, Scientific &amp; Finance Calculator + AI Math Solver</title>
+<meta name="description" content="Inquiry Calculator is a free online calculator with a basic calculator, scientific calculator (sin, cos, tan, log, powers, factorials), loan &amp; savings calculators and an AI maths solver that reads a photo or a snapshot of your screen. No sign-up, works on phone and desktop.">
+<meta name="keywords" content="online calculator, free calculator, scientific calculator, basic calculator online, math calculator, loan calculator, mortgage calculator, compound interest calculator, savings calculator, tip calculator, percentage calculator, AI math solver, AI maths helper, solve maths with AI, homework calculator, snapshot calculator, screenshot maths solver, trigonometry calculator, log calculator, fraction calculator, finance calculator, split the bill calculator, engineering calculator, student calculator">
+<meta name="author" content="Inquiry Calculator">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#f1eeea">
+<meta name="color-scheme" content="light">
+<!-- ⚠ Replace the domain in the three tags below with your real live URL before launch -->
+<link rel="canonical" href="https://inquirycalculator.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Inquiry Calculator">
+<meta property="og:title" content="Inquiry Calculator — Basic, Scientific &amp; Finance Calculators + AI Math Solver">
+<meta property="og:description" content="Work it out in one place: a clean online calculator that expands into a full scientific keypad, plus money calculators and an AI that solves problems from a photo or a tab snapshot.">
+<meta property="og:url" content="https://inquirycalculator.com/">
+<meta property="og:locale" content="en_AU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Inquiry Calculator — Free Online Calculators + AI Solver">
+<meta name="twitter:description" content="Basic, scientific and finance calculators in one page, plus an AI that solves maths from a photo or a snapshot of your screen.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@800&family=Inter:wght@400;500;600&display=swap">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Inquiry Calculator",
+      "url": "https://inquirycalculator.com/",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (web browser)",
+      "browserRequirements": "Requires JavaScript",
+      "description": "A free online calculator with basic, scientific and finance modes plus an AI maths solver that can analyse a photo or a snapshot of a browser tab.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "AUD" },
+      "featureList": [
+        "Basic calculator with keyboard support",
+        "Scientific calculator with trigonometry, logarithms, powers and factorials",
+        "Loan / mortgage repayment calculator",
+        "Savings and compound interest calculator",
+        "Tip and bill split calculator",
+        "AI maths solver with photo and tab snapshot analysis"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Inquiry Calculator free to use?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every calculator and the AI solver are free, with no account, sign-up or download required." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can it solve a maths problem from a photo or a screenshot?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Use the Snapshot button on the AI page to capture a browser tab, or attach a photo of a worksheet, and the AI will read the problem and explain the working step by step." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the scientific calculator work in degrees or radians?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Both. The Deg/Rad key switches the trigonometry mode, and results update as you type." }
+        },
+        {
+          "@type": "Question",
+          "name": "Are the loan and savings calculators accurate?",
+          "acceptedAnswer": { "@type": "Answer", "text": "They use the standard amortisation and compound interest formulas used by lenders, so they are a close estimate. Fees, offset accounts and rate changes are not included." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the calculator work on a phone?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. The layout adapts to phones and tablets, and the keypad is sized for touch." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 <style>
 :root{
   --paper:#f1eeea; --ink:#151515; --ink-soft:rgba(21,21,21,.62); --line:rgba(21,21,21,.08);
   --blue:#3f82e0; --sel:#ee7a4b; --pill:#1d1d20; --key:#2b2c31; --key-fn:#3b3c43;
   --font:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
   --display:"Bricolage Grotesque","Inter",system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --slide:.55s;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{background:var(--paper);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}
-button{font:inherit;color:inherit;border:0;cursor:pointer}
+button{font:inherit;color:inherit;border:0;cursor:pointer;background:none}
+a{color:inherit}
 :focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* ---------- Stage ---------- */
-.stage{position:relative;--p:0;min-height:max(860px,100svh);text-align:center}
+.stage{position:relative;min-height:max(860px,100svh);text-align:center}
 .pin{position:relative;min-height:inherit;overflow:hidden}
 .pin::before{ /* drafting grid, fading out from the centre */
   content:"";position:absolute;inset:0;pointer-events:none;
@@ -36,31 +115,35 @@ button{font:inherit;color:inherit;border:0;cursor:pointer}
 }
 
 /* ---------- Floating pill nav ---------- */
-.nav{position:fixed;top:12px;left:0;right:0;z-index:20;display:flex;justify-content:center;padding:0 12px;pointer-events:none}
+.nav{position:fixed;top:12px;left:0;right:0;z-index:40;display:flex;justify-content:center;padding:0 12px;pointer-events:none}
 .nav-in{
-  pointer-events:auto;display:flex;align-items:center;gap:6px;width:min(860px,100%);height:54px;
+  pointer-events:auto;display:flex;align-items:center;gap:6px;width:min(1000px,100%);height:54px;
   padding:0 8px 0 22px;background:var(--pill);border-radius:18px;color:#fff;box-shadow:0 14px 40px -18px rgba(0,0,0,.5);
 }
 .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:.95rem;letter-spacing:-.01em;white-space:nowrap;margin-right:auto;color:#fff;text-decoration:none}
-.tab{padding:8px 14px;border-radius:10px;font-size:.88rem;color:rgba(255,255,255,.62);white-space:nowrap;background:none}
+.tab{padding:8px 14px;border-radius:10px;font-size:.88rem;color:rgba(255,255,255,.62);white-space:nowrap;background:none;text-decoration:none}
+.tab:hover{color:#fff}
 .tab.on{color:#fff;background:rgba(255,255,255,.1)}
-.tab[aria-disabled="true"]{cursor:default}
 .cta{margin-left:8px;padding:10px 18px;border-radius:12px;background:var(--blue);color:#fff;font-weight:600;font-size:.9rem;text-decoration:none;white-space:nowrap}
 .cta:hover{filter:brightness(1.08)}
+.tabs{display:flex;gap:2px}
 
 /* ---------- Headline ---------- */
-.title-wrap{position:absolute;top:116px;left:0;right:0;z-index:1;will-change:translate}
+.title-wrap{position:absolute;top:116px;left:0;right:0;z-index:1;transition:translate var(--slide) var(--ease)}
 h1{font-family:var(--display);font-weight:800;font-size:clamp(68px,15vw,250px);line-height:.88;letter-spacing:-.05em;white-space:nowrap}
 
 /* ---------- Sketches ---------- */
-.sketch{position:absolute;z-index:2;color:var(--ink);will-change:translate}
+.sketch{position:absolute;z-index:2;color:var(--ink);translate:var(--px,0px) var(--py,0px);transition:translate var(--slide) var(--ease)}
 .sketch svg{display:block;width:100%;height:auto;overflow:visible}
 .hatch{stroke-width:1.4;opacity:.65}
 .sk-left{left:1%;top:330px;width:min(25vw,360px);rotate:-5deg}
 .sk-right{right:2%;top:300px;width:min(20vw,290px);rotate:6deg}
 
-/* ---------- Calculator in a selection box ---------- */
-.canvas{position:absolute;z-index:3;top:236px;left:50%;margin-left:calc(var(--w)/-2);width:var(--w);--w:min(86vw,356px);will-change:translate,transform}
+/* ---------- Calculator ---------- */
+.canvas{
+  position:absolute;z-index:3;top:50%;left:50%;translate:-50% -50%;width:min(86vw,356px);
+  transition:width var(--slide) var(--ease),translate var(--slide) var(--ease);
+}
 .sel{position:relative;padding:16px;border:2px solid var(--sel)}
 .sel i{position:absolute;width:11px;height:11px;background:var(--paper);border:2px solid var(--sel)}
 .sel .tl{left:-7px;top:-7px}.sel .tr{right:-7px;top:-7px}.sel .bl{left:-7px;bottom:-7px}.sel .br{right:-7px;bottom:-7px}
@@ -79,40 +162,57 @@ h1{font-family:var(--display);font-weight:800;font-size:clamp(68px,15vw,250px);l
 .k.wide{grid-column:span 2}
 
 /* ---------- Footer line ---------- */
-.foot{position:absolute;left:0;right:0;bottom:34px;z-index:4;padding:0 24px}
+.foot{position:absolute;left:0;right:0;bottom:34px;z-index:4;padding:0 24px;transition:translate var(--slide) var(--ease)}
 .tag{font-size:clamp(1.05rem,1.6vw,1.35rem);margin-bottom:10px}
 .hint{font-size:.85rem;color:var(--ink-soft)}
 kbd{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.75rem;padding:1px 6px;border:1px solid currentColor;border-radius:5px}
 
+/* ---------- Expanded "rail" that slides in on the right ---------- */
+.rail{
+  position:absolute;z-index:4;top:50%;right:4vw;width:min(30vw,330px);text-align:left;
+  translate:calc(100% + 14vw) -50%;transition:translate var(--slide) var(--ease);
+}
+.rail-k{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 10px 4px}
+.rail-list{display:grid;gap:8px;margin-bottom:26px}
+.rail-link{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.72);border:1px solid var(--line);
+  text-decoration:none;font-weight:500;font-size:.95rem;box-shadow:0 10px 24px -22px rgba(0,0,0,.6);
+  transition:background .2s,transform .2s;
+}
+.rail-link:hover{background:#fff;transform:translateY(-2px)}
+.rail-link small{display:block;font-weight:400;font-size:.78rem;color:var(--ink-soft);margin-top:2px}
+.rail-link span{color:var(--blue);font-weight:600}
+.rail-tip{font-size:.82rem;line-height:1.55;color:var(--ink-soft);border-left:2px solid var(--sel);padding-left:12px}
+
 /* ---------- Small screens ---------- */
 @media (max-width:820px){
   .stage{min-height:0}
-  .pin{padding:104px 16px 96px}
-  .title-wrap,.canvas,.foot{position:relative;top:auto;left:auto;right:auto;bottom:auto;padding:0}
+  .pin{padding:104px 16px 132px}
+  .title-wrap,.canvas,.foot{position:relative;top:auto;left:auto;right:auto;bottom:auto;translate:none;padding:0}
   h1{white-space:normal;font-size:clamp(64px,22vw,120px)}
-  .canvas{margin:28px auto 0}
+  .canvas{margin:28px auto 0;width:min(86vw,356px)}
   .sketch{display:none}
+  .rail{display:none}
   .foot{margin-top:36px}
-  .tabs{position:fixed;left:12px;right:12px;bottom:12px;z-index:30;justify-content:space-between;padding:6px;background:var(--pill);border-radius:16px;box-shadow:0 14px 40px -12px rgba(0,0,0,.5)}
+  .tabs{position:fixed;left:12px;right:12px;bottom:12px;z-index:50;justify-content:space-between;padding:6px;background:var(--pill);border-radius:16px;box-shadow:0 14px 40px -12px rgba(0,0,0,.5)}
   .tabs .tab{flex:1;text-align:center;padding:11px 4px}
-  .page{padding:100px 14px 100px}
+  .page{padding:100px 14px 110px}
 }
-@media (prefers-reduced-motion:reduce){.title-wrap,.sketch,.canvas{translate:none!important;transform:none!important}}
+@media (prefers-reduced-motion:reduce){
+  *{transition-duration:.001s!important;animation-duration:.001s!important}
+}
 
-/* ---------- Extra sections ---------- */
+/* ---------- Pages ---------- */
 [hidden]{display:none!important}
-.tabs{display:flex;gap:2px}
-a.tab{text-decoration:none}
 .page{position:relative;min-height:100svh;padding:112px 16px 64px;text-align:center;overflow:hidden}
 .page>*{position:relative;z-index:1}
 .page h2{font-family:var(--display);font-weight:800;font-size:clamp(44px,7vw,100px);line-height:.92;letter-spacing:-.05em;margin-bottom:30px}
 .page .sel{display:inline-block;text-align:left}
-.page .hint{margin-top:26px;text-align:center}
 .calc.sci{width:min(calc(100vw - 64px),440px)}
 .calc.fin{width:min(calc(100vw - 64px),420px)}
-.calc.chat{width:min(calc(100vw - 64px),720px)}
 .keys.five{grid-template-columns:repeat(5,1fr);gap:8px}
-.keys.five .k{height:46px;font-size:1rem}
+.keys.five .k{height:42px;font-size:.98rem}
 .k.w2{grid-column:span 2}
 .seg{display:flex;gap:6px;margin-bottom:12px}
 .seg button{flex:1;padding:9px 6px;border-radius:10px;background:var(--key);color:rgba(255,255,255,.7);font-size:.85rem}
@@ -122,54 +222,174 @@ a.tab{text-decoration:none}
 .fld div{display:flex;align-items:center;background:var(--key);border-radius:10px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
 .fld div:focus-within{box-shadow:inset 0 0 0 2px var(--blue)}
 .fld input{flex:1;min-width:0;background:none;border:0;color:#fff;font:500 1.05rem var(--font);padding:11px 12px;outline:none}
-.fld em{font-style:normal;padding-right:12px;color:rgba(255,255,255,.5);font-size:.85rem}
+.fld em{font-style:normal;text-align:left;padding-right:12px;color:rgba(255,255,255,.5);font-size:.85rem}
 .rows{margin-top:12px;border-top:1px solid rgba(255,255,255,.1)}
 .rows p{display:flex;justify-content:space-between;padding:9px 2px;color:rgba(255,255,255,.75);font-size:.92rem;border-bottom:1px solid rgba(255,255,255,.06)}
 .rows b{color:#fff;font-variant-numeric:tabular-nums}
-.log{height:min(50vh,430px);overflow-y:auto;display:flex;flex-direction:column;gap:12px;padding:2px 2px 12px}
-.msg{max-width:88%;padding:10px 14px;border-radius:14px;font-size:.93rem;line-height:1.55;color:#eaeaf0;background:#26272c;align-self:flex-start;overflow-wrap:anywhere}
-.msg.u{align-self:flex-end;background:var(--blue);color:#fff}
-.msg p{margin:0 0 8px}.msg>:last-child{margin-bottom:0}.msg ul,.msg ol{padding-left:20px;margin:0 0 8px}
-.msg code{background:rgba(255,255,255,.1);padding:1px 5px;border-radius:5px;font-size:.85em}
-.msg pre{overflow-x:auto;background:#0b0c0e;padding:10px;border-radius:10px;margin:0 0 8px}
-.msg img{max-width:220px;border-radius:8px;display:block;margin-bottom:6px}
+
+.canvas .sel{display:grid}
+.canvas .sel>.calc{grid-area:1/1;align-self:center;width:100%}
+.canvas .sel>.calc.sci{width:100%}
+
+/* ---------- Hero expand (desktop only): scroll-linked slide, no fades ---------- */
+.stage{--k:0}
+.face2{display:none}
+@media (min-width:821px){
+  .stage{height:calc(max(860px,100svh) + 45svh);min-height:0}
+  .pin{position:sticky;top:0;height:max(860px,100svh);min-height:0}
+  .canvas{width:min(calc(356px + 204px * var(--k)),56vw);translate:calc(-50% - 21vw * var(--k)) -50%}
+  .title-wrap{translate:calc(-30% * var(--k)) calc(-330% * var(--k))}
+  .sk-left{translate:calc(-160% * var(--k)) 0}
+  .sk-right{translate:calc(160% * var(--k)) 0}
+  .foot{translate:0 calc(180% * var(--k))}
+  .rail{translate:calc((100% + 14vw) * (1 - var(--k))) -50%;right:3vw;width:min(28vw,300px)}
+  .stage.open .face1{display:none}
+  .stage.open .face2{display:block}
+  .stage.open .canvas .sel{animation:pop .4s var(--ease)}
+  @keyframes pop{from{transform:scale(.985)}to{transform:scale(1)}}
+}
+.cue{margin-top:6px}
+@media (max-width:820px){.cue{display:none}}
+
+/* ---------- Ask page (one bar) ---------- */
+.askpage{display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:100svh;padding:120px 16px 72px;text-align:center}
+.askpage h2{margin-bottom:26px}
+.askbar{
+  width:min(720px,100%);display:flex;align-items:flex-end;gap:8px;background:var(--pill);
+  border-radius:20px;padding:8px 8px 8px 22px;box-shadow:0 24px 60px -34px rgba(0,0,0,.75);
+}
+.askbar textarea{flex:1;min-width:0;background:none;border:0;outline:0;color:#fff;font:inherit;font-size:1.05rem;resize:none;padding:14px 0;max-height:180px;line-height:1.45}
+.askbar textarea::placeholder{color:rgba(255,255,255,.42)}
+.askbar .ib.go{width:46px;height:46px;border-radius:14px}
+.ask-eg{margin-top:18px;font-size:.85rem;color:var(--ink-soft)}
+.ask-eg a{color:var(--blue);text-decoration:none}
+.ask-eg a:hover{text-decoration:underline}
+
+/* ---------- Chat page ---------- */
+body[data-view="chat"]{overflow:hidden}
+body[data-view="chat"] .nav .tabs{display:none}
+@media (max-width:820px){body[data-view="chat"] .nav{display:none}}
+.chatpage{display:grid;grid-template-columns:266px 1fr;height:100svh;padding-top:78px;background:var(--paper)}
+.side{display:flex;flex-direction:column;min-height:0;border-right:1px solid var(--line);padding:14px 12px 12px;text-align:left}
+.sideclose{display:none}
+.newchat{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px;border-radius:12px;background:var(--pill);color:#fff;font-weight:600;font-size:.92rem;margin-bottom:12px}
+.newchat:hover{filter:brightness(1.25)}
+.chats{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:4px;padding-right:2px}
+.chatitem{display:flex;align-items:center;gap:8px;padding:10px 10px 10px 12px;border-radius:10px;font-size:.88rem;text-align:left;color:var(--ink);width:100%}
+.chatitem:hover{background:rgba(21,21,21,.05)}
+.chatitem.on{background:rgba(21,21,21,.09);font-weight:500}
+.chatitem b{flex:1;min-width:0;font-weight:inherit;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chatitem .del{flex:none;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;color:var(--ink-soft);font-size:1rem;line-height:1;opacity:0;transition:opacity .15s,background .15s}
+.chatitem:hover .del,.chatitem.on .del{opacity:1}
+.chatitem .del:hover{background:rgba(21,21,21,.12);color:#c0392b}
+.side-empty{font-size:.82rem;color:var(--ink-soft);padding:10px 12px;line-height:1.5}
+.side-foot{display:flex;flex-wrap:wrap;gap:6px;padding-top:10px;border-top:1px solid var(--line)}
+.side-foot a{font-size:.78rem;color:var(--ink-soft);text-decoration:none;padding:6px 10px;border-radius:8px;background:rgba(255,255,255,.6);border:1px solid var(--line)}
+.side-foot a:hover{color:var(--ink);background:#fff}
+
+.chatmain{display:flex;flex-direction:column;min-height:0;min-width:0}
+.chathead{display:flex;align-items:center;gap:10px;padding:10px 20px;border-bottom:1px solid var(--line)}
+.chathead h2{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.02em;margin:0;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left}
+.snapbtn{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:10px;background:rgba(255,255,255,.75);border:1px solid var(--line);font-size:.83rem;font-weight:500;color:var(--ink)}
+.snapbtn:hover{background:#fff;border-color:rgba(21,21,21,.18)}
+.chatwrap{flex:1;min-height:0;overflow-y:auto;padding:22px 20px 8px}
+.log{width:min(760px,100%);margin:0 auto;display:flex;flex-direction:column;gap:14px;min-height:100%}
+.msg{width:fit-content;max-width:min(88%,680px);padding:12px 16px;border-radius:16px;font-size:.95rem;line-height:1.62;background:#fff;border:1px solid var(--line);align-self:flex-start;overflow-wrap:anywhere;text-align:left;box-shadow:0 1px 2px rgba(21,21,21,.04)}
+.msg.u{align-self:flex-end;background:var(--ink);color:#fff;border-color:transparent}
+.msg p{margin:0 0 9px}.msg>:last-child{margin-bottom:0}
+.msg ul,.msg ol{padding-left:20px;margin:0 0 9px}
+.msg h1,.msg h2,.msg h3{font-size:1rem;margin:10px 0 6px}
+.msg code{background:rgba(21,21,21,.07);padding:1px 5px;border-radius:5px;font-size:.86em}
+.msg.u code{background:rgba(255,255,255,.16)}
+.msg pre{overflow-x:auto;background:#0b0c0e;color:#e8e8ec;padding:12px;border-radius:10px;margin:0 0 9px}
+.msg pre code{background:none;padding:0}
+.msg img{max-width:240px;border-radius:10px;display:block;margin-bottom:8px}
+.msg .att-note{font-size:.78rem;opacity:.7;margin-bottom:6px}
 .typing{display:inline-flex;gap:5px;padding:4px 0}
-.typing i{width:6px;height:6px;border-radius:50%;background:#aaa;animation:bl 1.2s infinite}
+.typing i{width:6px;height:6px;border-radius:50%;background:#9a9a9a;animation:bl 1.2s infinite}
 .typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
 @keyframes bl{0%,80%,100%{opacity:.25}40%{opacity:1}}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
-.chips button{padding:7px 12px;border-radius:999px;background:var(--key);color:rgba(255,255,255,.8);font-size:.82rem}
-.chips button:hover{background:var(--key-fn)}
-.attached{display:none;font-size:.78rem;color:rgba(255,255,255,.6);margin-bottom:8px}
-.bar{display:flex;align-items:flex-end;gap:6px;background:#0b0c0e;border-radius:14px;padding:6px}
-.bar textarea{flex:1;min-width:0;background:none;border:0;outline:0;resize:none;color:#fff;font:inherit;font-size:.95rem;padding:9px 6px;max-height:120px;line-height:1.4}
-.ib{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:transparent;color:rgba(255,255,255,.6)}
-.ib:hover{background:rgba(255,255,255,.08);color:#fff}
-.ib.go{background:var(--blue);color:#fff}
+.welcome{max-width:640px;margin:6vh auto 0;text-align:center;color:var(--ink-soft)}
+.welcome h3{font-family:var(--display);color:var(--ink);font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:-.03em;margin-bottom:8px}
+.welcome p{font-size:.92rem;line-height:1.6;margin-bottom:18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.chips button{padding:9px 14px;border-radius:999px;background:rgba(255,255,255,.8);border:1px solid var(--line);font-size:.83rem;color:var(--ink)}
+.chips button:hover{background:#fff;border-color:rgba(21,21,21,.2)}
 
-/* ---------- Scroll: basic calculator unfolds into the scientific one ---------- */
-.canvas .sel{display:grid}
-.canvas .sel>.calc{grid-area:1/1;align-self:center;width:auto}
-.canvas .sel>.face1{justify-self:center}
-.face2{display:none}
-.cue{margin-top:6px}
-@media (min-width:821px){
-  .canvas .sel>.face1{width:320px}
-  .stage{height:calc(max(860px,100svh) + 170svh);min-height:0}
-  .pin{position:sticky;top:0;height:max(860px,100svh);min-height:0}
-  .title-wrap{top:calc(116px - var(--p)*150px);opacity:calc(1 - var(--p)*1.7)}
-  .sk-left{left:calc(1% - var(--p)*32vw);opacity:calc(1 - var(--p)*2)}
-  .sk-right{right:calc(2% - var(--p)*32vw);opacity:calc(1 - var(--p)*2)}
-  .canvas{top:calc(236px - var(--p)*60px)}
-  .foot{opacity:calc(1 - var(--p)*3)}
-  .face1{opacity:calc(1 - (var(--p) - .33)*6)}
-  .face2{display:block;opacity:calc((var(--p) - .38)*6)}
-  .canvas:not(.x) .face2,.canvas.x .face1{pointer-events:none}
+.composer{width:min(760px,100%);margin:0 auto;padding:8px 20px 20px}
+.attached{display:none;align-items:center;gap:10px;font-size:.8rem;color:var(--ink-soft);margin-bottom:8px}
+.attached img{width:52px;height:40px;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+.attached button{color:#c0392b;font-size:.78rem;text-decoration:underline}
+.bar{display:flex;align-items:flex-end;gap:6px;background:var(--pill);border-radius:16px;padding:8px;box-shadow:0 18px 40px -30px rgba(0,0,0,.8)}
+.bar textarea{flex:1;min-width:0;background:none;border:0;outline:0;resize:none;color:#fff;font:inherit;font-size:.95rem;padding:10px 8px;max-height:150px;line-height:1.45}
+.bar textarea::placeholder{color:rgba(255,255,255,.42)}
+.ib{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:transparent;color:rgba(255,255,255,.62);flex:none}
+.ib:hover{background:rgba(255,255,255,.1);color:#fff}
+.ib.go{background:var(--blue);color:#fff}
+.ib.go:hover{filter:brightness(1.1);background:var(--blue)}
+.composer .fine{font-size:.72rem;color:var(--ink-soft);text-align:center;margin-top:8px}
+.menubtn{display:none}
+
+/* ---------- Snapshot sheet ---------- */
+.sheet{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:20px;background:rgba(21,21,21,.5)}
+.sheet[hidden]{display:none}
+.sheet-card{width:min(440px,100%);background:var(--paper);border-radius:22px;padding:28px 26px 24px;text-align:center;box-shadow:0 40px 80px -40px rgba(0,0,0,.7);border:1px solid var(--line)}
+.sheet-card h3{font-family:var(--display);font-size:1.35rem;letter-spacing:-.03em;margin-bottom:10px}
+.sheet-card p{font-size:.9rem;line-height:1.6;color:var(--ink-soft);margin-bottom:18px}
+.sheet-card .row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.sheet-card .go-btn{padding:12px 20px;border-radius:12px;background:var(--blue);color:#fff;font-weight:600;font-size:.92rem}
+.sheet-card .no-btn{padding:12px 18px;border-radius:12px;background:rgba(21,21,21,.06);font-weight:500;font-size:.92rem}
+.sheet-card .err{color:#c0392b;font-size:.82rem;margin-top:12px;min-height:1em}
+.snapnote{font-size:.76rem;color:var(--ink-soft);margin-top:14px}
+
+/* ---------- Tools / hub page ---------- */
+.wrap{width:min(1020px,100%);margin:0 auto}
+.tools{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));text-align:left}
+.tool{display:flex;flex-direction:column;background:rgba(255,255,255,.78);border:1px solid var(--line);border-radius:18px;padding:20px;text-decoration:none;transition:transform .2s var(--ease),box-shadow .2s,background .2s}
+.tool:hover{transform:translateY(-4px);background:#fff;box-shadow:0 22px 46px -30px rgba(0,0,0,.5)}
+.tool .ico{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--pill);color:#fff;margin-bottom:12px}
+.tool h3{font-family:var(--display);font-size:1.12rem;letter-spacing:-.02em;margin-bottom:6px}
+.tool p{font-size:.87rem;color:var(--ink-soft);line-height:1.55;flex:1}
+.tool span{margin-top:12px;color:var(--blue);font-weight:600;font-size:.82rem}
+.tool.hl{background:var(--pill);color:#fff;border-color:transparent}
+.tool.hl p{color:rgba(255,255,255,.66)}
+.tool.hl .ico{background:var(--blue)}
+.tool.hl span{color:#8fb8f2}
+.faq{width:min(760px,100%);margin:60px auto 0;text-align:left}
+.faq h2{font-size:clamp(28px,4vw,42px);margin-bottom:18px;text-align:center}
+.faq details{background:rgba(255,255,255,.8);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:10px}
+.faq summary{font-weight:600;font-size:.95rem;cursor:pointer;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";float:right;color:var(--ink-soft);font-weight:400}
+.faq details[open] summary::after{content:"–"}
+.faq p{margin-top:10px;color:var(--ink-soft);font-size:.9rem;line-height:1.65}
+.seo-note{width:min(760px,100%);margin:44px auto 0;text-align:left;font-size:.88rem;line-height:1.7;color:var(--ink-soft)}
+.seo-note h2{font-size:clamp(24px,3.4vw,34px);color:var(--ink);text-align:left;margin-bottom:12px}
+.sharebar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:34px}
+.sharebar button,.sharebar a{padding:10px 16px;border-radius:999px;background:rgba(255,255,255,.8);border:1px solid var(--line);font-size:.82rem;text-decoration:none}
+.sharebar button:hover,.sharebar a:hover{background:#fff}
+.sitefoot{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:.8rem;color:var(--ink-soft);display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.sitefoot a{color:var(--ink-soft);text-decoration:none}
+.sitefoot a:hover{color:var(--blue)}
+.toast{position:fixed;left:50%;bottom:26px;translate:-50% 0;z-index:90;background:var(--pill);color:#fff;padding:12px 20px;border-radius:999px;font-size:.85rem;box-shadow:0 18px 40px -22px rgba(0,0,0,.8)}
+
+/* ---------- Chat page on small screens ---------- */
+@media (max-width:820px){
+  .chatpage{grid-template-columns:1fr;padding-top:70px}
+  .side{position:fixed;top:0;left:0;bottom:0;width:min(84vw,300px);z-index:70;background:var(--paper);box-shadow:24px 0 60px -30px rgba(0,0,0,.5);translate:-102% 0;transition:translate .3s var(--ease);padding-top:80px}
+  .chatpage.menu .side{translate:0 0}
+  .chatpage.menu::after{content:"";position:fixed;inset:0;z-index:65;background:rgba(21,21,21,.35)}
+  .sideclose{display:block;position:absolute;top:22px;right:16px;width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.7);font-size:1.2rem;line-height:1;color:var(--ink)}
+  .menubtn{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.75)}
+  .chathead{padding:8px 14px}
+  .chatwrap{padding:16px 14px 4px}
+  .composer{padding:6px 14px 14px}
+  .msg{max-width:92%}
+  .askpage{padding-top:110px}
 }
-@media (max-width:820px){.cue,.page .hint{display:none}}
 </style>
 </head>
-<body>
+<body data-view="basic">
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
   <filter id="wobble" x="-5%" y="-5%" width="110%" height="110%">
@@ -180,7 +400,7 @@ a.tab{text-decoration:none}
 
 <header class="nav">
   <div class="nav-in">
-    <a class="logo" href="#basic">
+    <a class="logo" href="#basic" aria-label="Inquiry Calculator home">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M4 10h16"/><path d="M10 4v16"/></svg>
       Inquiry Calculator
     </a>
@@ -188,17 +408,16 @@ a.tab{text-decoration:none}
       <a class="tab on" data-go="basic" href="#basic">Basic</a>
       <a class="tab" data-go="scientific" href="#scientific">Scientific</a>
       <a class="tab" data-go="finance" href="#finance">Finance</a>
-      <a class="tab" data-go="ai" href="#ai">AI Solver</a>
+      <a class="tab" data-go="tools" href="#tools">All tools</a>
     </nav>
-    <a class="cta" href="#ai">Ask the AI</a>
+    <a class="cta" href="#ask">Ask AI</a>
   </div>
 </header>
 
 <main class="stage" id="top" data-view-id="basic"><div class="pin">
 
-  <div class="title-wrap" data-depth="-0.2"><h1>Work it out.</h1></div>
+  <div class="title-wrap"><h1>Work it out.</h1></div>
 
-  <!-- left: pencil and ruler -->
   <figure class="sketch sk-left" data-depth="0.5" aria-hidden="true">
     <svg viewBox="0 0 260 210" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#wobble)">
       <g transform="rotate(-12 130 150)">
@@ -215,7 +434,6 @@ a.tab{text-decoration:none}
     </svg>
   </figure>
 
-  <!-- right: abacus -->
   <figure class="sketch sk-right" data-depth="0.5" aria-hidden="true">
     <svg viewBox="0 0 240 220" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#wobble)">
       <rect x="16" y="14" width="208" height="192" rx="10"/>
@@ -228,8 +446,7 @@ a.tab{text-decoration:none}
     </svg>
   </figure>
 
-  <!-- the calculator -->
-  <section class="canvas" id="calc" data-depth="0.9" aria-label="Basic calculator">
+  <section class="canvas" id="calc" data-depth="0.9" aria-label="Calculator">
     <div class="sel">
       <i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
       <div class="calc face1">
@@ -260,14 +477,25 @@ a.tab{text-decoration:none}
     </div>
   </section>
 
+  <aside class="rail" aria-label="More calculators">
+    <p class="rail-k">More functions</p>
+    <div class="rail-list">
+      <a class="rail-link" href="#scientific">Scientific<small>trig, logs, powers, factorials</small><span>→</span></a>
+      <a class="rail-link" href="#finance">Finance<small>loans, savings, tip split</small><span>→</span></a>
+      <a class="rail-link" href="#ask">Ask the AI<small>solve from a photo or a snapshot</small><span>→</span></a>
+    </div>
+    <p class="rail-tip">Type straight into the keypad — <kbd>0–9</kbd> <kbd>+ − × ÷</kbd> <kbd>Enter</kbd> <kbd>Esc</kbd> all work. Scroll up to shrink it again.</p>
+  </aside>
+
   <div class="foot">
     <p class="tag">A new way to work out the numbers.</p>
     <p class="hint">Type it, or press <kbd>0–9</kbd> <kbd>+ − × ÷</kbd> <kbd>Enter</kbd> <kbd>Esc</kbd></p>
-    <p class="hint cue">Scroll down to go scientific ↓</p>
+    <p class="hint cue">Scroll down to expand the calculator ↓</p>
   </div>
 </div></main>
 
 <section class="page" data-view-id="scientific" hidden aria-label="Scientific calculator">
+  <h1 class="sr">Scientific calculator</h1>
   <h2>Go further.</h2>
   <div class="sel"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
     <div class="calc sci">
@@ -275,10 +503,11 @@ a.tab{text-decoration:none}
       <div class="keys five" id="skeys"></div>
     </div>
   </div>
-  <p class="hint">Type it: <kbd>s</kbd> sin <kbd>c</kbd> cos <kbd>t</kbd> tan <kbd>l</kbd> log <kbd>r</kbd> √ <kbd>p</kbd> π, then <kbd>Enter</kbd>.</p>
+  <p class="hint" style="margin-top:22px">Type it: <kbd>s</kbd> sin <kbd>c</kbd> cos <kbd>t</kbd> tan <kbd>l</kbd> log <kbd>n</kbd> ln <kbd>r</kbd> √ <kbd>p</kbd> π, then <kbd>Enter</kbd>.</p>
 </section>
 
 <section class="page" data-view-id="finance" hidden aria-label="Finance calculators">
+  <h1 class="sr">Finance calculators</h1>
   <h2>Money, worked out.</h2>
   <div class="sel"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
     <div class="calc fin">
@@ -290,32 +519,158 @@ a.tab{text-decoration:none}
   </div>
 </section>
 
-<section class="page" data-view-id="ai" hidden aria-label="AI solver">
+<section class="page" data-view-id="tools" hidden aria-label="All calculators and tools">
+  <div class="wrap">
+    <h1 class="sr">All calculators and AI tools</h1>
+    <h2>Everything,<br>in one place.</h2>
+
+    <div class="tools">
+      <a class="tool" href="#basic">
+        <div class="ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M4 10h16"/><path d="M10 4v16"/></svg></div>
+        <h3>Basic calculator</h3>
+        <p>The everyday calculator. Scroll to expand it into a full scientific keypad without leaving the page.</p>
+        <span>Open →</span>
+      </a>
+      <a class="tool" href="#scientific">
+        <div class="ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 16c4-12 12 8 16-8"/></svg></div>
+        <h3>Scientific calculator</h3>
+        <p>sin, cos, tan, log, ln, roots, powers and factorials — with degrees or radians and keyboard entry.</p>
+        <span>Open →</span>
+      </a>
+      <a class="tool" href="#finance">
+        <div class="ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 18V8m5 10V5m5 13v-7m5 7V9"/></svg></div>
+        <h3>Finance calculators</h3>
+        <p>Work out a loan repayment, project your savings with compound interest, or split a bill and tip.</p>
+        <span>Open →</span>
+      </a>
+      <a class="tool hl" href="#ask">
+        <div class="ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 3v4m0 10v4M3 12h4m10 0h4"/><circle cx="12" cy="12" r="3.4"/></svg></div>
+        <h3>Ask the AI</h3>
+        <p>Type a question, attach a photo, or take a snapshot of a browser tab and let the AI walk through the working.</p>
+        <span>Ask anything →</span>
+      </a>
+    </div>
+
+    <section class="faq" aria-label="Frequently asked questions">
+      <h2>Questions people ask</h2>
+      <details open><summary>Is Inquiry Calculator free to use?</summary><p>Yes. Every calculator and the AI solver are free, with no account, sign-up or download required.</p></details>
+      <details><summary>Can it solve a maths problem from a photo or a screenshot?</summary><p>Yes. Use the Snapshot button on the AI page to capture a browser tab, or attach a photo of a worksheet, and the AI will read the problem and explain the working step by step.</p></details>
+      <details><summary>Does the scientific calculator work in degrees or radians?</summary><p>Both. The Deg/Rad key switches the trigonometry mode, and results update as you type.</p></details>
+      <details><summary>Are the loan and savings calculators accurate?</summary><p>They use the standard amortisation and compound interest formulas used by lenders, so they are a close estimate. Fees, offset accounts and rate changes are not included.</p></details>
+      <details><summary>Does it work on a phone?</summary><p>Yes. The layout adapts to phones and tablets, and the keypad is sized for touch.</p></details>
+    </section>
+
+    <section class="seo-note">
+      <h2>One calculator, every job</h2>
+      <p>Most people keep three tabs open to do one sum: a basic calculator for quick arithmetic, a scientific calculator for trigonometry or logarithms, and a spreadsheet for a loan or a savings goal. Inquiry Calculator puts them on one page. You start on the basic keypad, scroll once, and the same calculator slides over and expands into a full scientific keypad with sin, cos, tan, log, ln, square roots, powers, factorials and π — so the number on your screen carries straight across.</p>
+      <p>Need money answers instead of numbers? The finance tab has a loan and mortgage repayment calculator, a savings calculator with monthly contributions and compound interest, and a tip split calculator for the end of a meal. If you are stuck on the method rather than the arithmetic, the AI solver will work through the problem with you, and the snapshot tool can read a question straight off a browser tab.</p>
+    </section>
+
+    <div class="sharebar">
+      <button id="sharebtn" type="button">Share this site</button>
+      <button id="copybtn" type="button">Copy link</button>
+      <a href="#ask">Ask the AI →</a>
+    </div>
+
+    <footer class="sitefoot">
+      <a href="#basic">Basic calculator</a>
+      <a href="#scientific">Scientific calculator</a>
+      <a href="#finance">Loan &amp; savings calculator</a>
+      <a href="#ask">AI maths solver</a>
+      <span>© <span id="yr">2026</span> Inquiry Calculator</span>
+    </footer>
+  </div>
+</section>
+
+<section class="page askpage" data-view-id="ask" hidden aria-label="Ask the AI">
+  <h1 class="sr">Ask the AI a maths, science or money question</h1>
   <h2>Ask anything.</h2>
-  <div class="sel"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i>
-    <div class="calc chat">
-      <div class="chips" id="chips">
-        <button type="button">What is 15% of 240?</button>
-        <button type="button">Solve 2x² − 5x + 3 = 0</button>
-        <button type="button">Explain compound interest</button>
-        <button type="button" id="newchat">New chat</button>
-      </div>
+  <form class="askbar" id="askform">
+    <label class="sr" for="askin">Your question</label>
+    <textarea id="askin" rows="1" placeholder="Ask a maths, science or money question…"></textarea>
+    <button class="ib go" type="submit" aria-label="Ask the AI">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+    </button>
+  </form>
+  <p class="ask-eg">Press <kbd>Enter</kbd> to ask. Need to show it something? Attach a photo or take a <b>snapshot</b> of a tab on the next screen.</p>
+</section>
+
+<section class="chatpage" data-view-id="chat" hidden aria-label="AI chat">
+  <aside class="side" id="side">
+    <button class="sideclose" id="sideclose" type="button" aria-label="Close chat list">×</button>
+    <button class="newchat" id="newchatbtn" type="button"><span aria-hidden="true">＋</span> New chat</button>
+    <div class="chats" id="chatlist"></div>
+    <div class="side-foot">
+      <a href="#tools">All tools</a>
+      <a href="#basic">Calculator</a>
+      <a href="#scientific">Scientific</a>
+      <a href="#finance">Finance</a>
+    </div>
+  </aside>
+
+  <main class="chatmain">
+    <header class="chathead">
+      <button class="menubtn" id="menubtn" type="button" aria-label="Show chats">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <h2 id="chattitle">New chat</h2>
+      <button class="snapbtn" id="snapbtn" type="button">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h1.7l1.2-2h7.2l1.2 2h1.7A2.5 2.5 0 0 1 21 8.5v8A2.5 2.5 0 0 1 18.5 19h-13A2.5 2.5 0 0 1 3 16.5z"/><circle cx="12" cy="12.5" r="3.4"/></svg>
+        Snapshot
+      </button>
+    </header>
+
+    <div class="chatwrap" id="chatwrap">
       <div class="log" id="log" aria-live="polite"></div>
+    </div>
+
+    <div class="composer">
       <div class="attached" id="attached"></div>
       <div class="bar">
         <input type="file" id="afile" accept="image/*" hidden>
-        <button class="ib" id="aattach" type="button" aria-label="Attach an image"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></button>
-        <textarea id="ain" rows="1" placeholder="Type a problem, or attach a photo"></textarea>
-        <button class="ib go" id="asend" type="button" aria-label="Send"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>
+        <button class="ib" id="aattach" type="button" aria-label="Attach an image">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        </button>
+        <button class="ib" id="asnap" type="button" aria-label="Snapshot a tab">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h1.7l1.2-2h7.2l1.2 2h1.7A2.5 2.5 0 0 1 21 8.5v8A2.5 2.5 0 0 1 18.5 19h-13A2.5 2.5 0 0 1 3 16.5z"/><circle cx="12" cy="12.5" r="3.4"/></svg>
+        </button>
+        <label class="sr" for="ain">Message</label>
+        <textarea id="ain" rows="1" placeholder="Type a problem…"></textarea>
+        <button class="ib go" id="asend" type="button" aria-label="Send">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+        </button>
       </div>
+      <p class="fine">The AI can make mistakes — check anything important.</p>
     </div>
-  </div>
+  </main>
 </section>
+
+<div class="sheet" id="snapsheet" hidden role="dialog" aria-modal="true" aria-labelledby="snaptitle">
+  <div class="sheet-card">
+    <h3 id="snaptitle">Snapshot a tab</h3>
+    <p>Press choose, then pick the browser tab you want the AI to look at. The image is sent with your next message so it can be read and solved.</p>
+    <div class="row">
+      <button class="go-btn" id="snapgo" type="button">Choose a tab</button>
+      <button class="no-btn" id="snapcancel" type="button">Cancel</button>
+    </div>
+    <p class="err" id="snaperr"></p>
+    <p class="snapnote">Needs Chrome, Edge or Safari on a secure (https) page. Nothing is recorded — only one still frame is captured.</p>
+  </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
 <script>
-/* ---------- Calculator ---------- */
+/* =========================================================
+   Shared helpers
+   ========================================================= */
+const $ = (s, r = document) => r.querySelector(s);
+const API = 'https://inquiry-ai.reubanjhegarty.workers.dev/';
+const stageEl = document.getElementById('top');
+
+/* =========================================================
+   Basic calculator
+   ========================================================= */
 (() => {
   const val = document.getElementById('val'), expr = document.getElementById('expr');
   const SYM = { '+': '+', '-': '−', '*': '×', '/': '÷' };
@@ -383,7 +738,8 @@ a.tab{text-decoration:none}
   });
 
   document.addEventListener('keydown', e => {
-    if (document.body.dataset.view !== 'basic' || window.__p > 0.45 || /INPUT|TEXTAREA/.test(document.activeElement.tagName)) return;
+    if (document.body.dataset.view !== 'basic' || stageEl.classList.contains('open')) return;
+    if (/INPUT|TEXTAREA/.test(document.activeElement.tagName)) return;
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     const k = e.key;
     let sel = null;
@@ -399,51 +755,9 @@ a.tab{text-decoration:none}
   });
 })();
 
-/* ---------- Spatial effect: layers drift at different depths, calculator tilts ---------- */
-(() => {
-  const stage = document.getElementById('top');
-  const calc = document.getElementById('calc');
-  const layers = [...stage.querySelectorAll('[data-depth]')].map(el => ({ el, d: parseFloat(el.dataset.depth) }));
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const small = matchMedia('(max-width: 820px)');
-  if (reduce) return;
-  let tx = 0, ty = 0, x = 0, y = 0, running = false;
-
-  window.addEventListener('pointermove', e => {
-    tx = e.clientX / innerWidth - 0.5;
-    ty = e.clientY / innerHeight - 0.5;
-  });
-  document.addEventListener('pointerleave', () => { tx = 0; ty = 0; });
-
-  function tick() {
-    if (!running) return;
-    x += (tx - x) * 0.08; y += (ty - y) * 0.08;
-    const k = small.matches ? 0 : 1;
-    layers.forEach(({ el, d }) => { el.style.translate = `${-x * d * 90 * k}px ${-y * d * 60 * k}px`; });
-    calc.style.transform = `perspective(1100px) rotateY(${x * 9 * k}deg) rotateX(${-y * 7 * k}deg)`;
-    requestAnimationFrame(tick);
-  }
-  new IntersectionObserver(([en]) => {
-    if (en.isIntersecting && !running) { running = true; requestAnimationFrame(tick); }
-    else if (!en.isIntersecting) running = false;
-  }).observe(stage);
-})();
-
-/* ---------- Routing between sections ---------- */
-(() => {
-  const VIEWS = ['basic', 'scientific', 'finance', 'ai'];
-  function route() {
-    const h = location.hash.slice(1), v = VIEWS.includes(h) ? h : 'basic';
-    document.body.dataset.view = v;
-    document.querySelectorAll('[data-view-id]').forEach(el => { el.hidden = el.dataset.viewId !== v; });
-    document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', t.dataset.go === v));
-    window.scrollTo(0, 0);
-  }
-  addEventListener('hashchange', route);
-  route();
-})();
-
-/* ---------- Scientific ---------- */
+/* =========================================================
+   Scientific keypad (used twice: expanded hero + its own page)
+   ========================================================= */
 function makeSci(keys, val, expr) {
   const SK = [['Deg','fn','deg'],['sin','fn','sin('],['cos','fn','cos('],['tan','fn','tan('],['AC','fn','ac'],
     ['π','fn','π'],['log','fn','log('],['ln','fn','ln('],['√','fn','√('],['⌫','fn','del'],
@@ -535,7 +849,7 @@ const SCI = {
 };
 document.addEventListener('keydown', e => {
   const v = document.body.dataset.view;
-  const c = v === 'scientific' ? SCI.page : (v === 'basic' && window.__p > 0.45 ? SCI.home : null);
+  const c = v === 'scientific' ? SCI.page : (v === 'basic' && stageEl.classList.contains('open') ? SCI.home : null);
   if (!c || e.metaKey || e.ctrlKey || e.altKey || /INPUT|TEXTAREA/.test(document.activeElement.tagName)) return;
   const k = e.key; let t = null;
   if (/^[0-9.()+!%^]$/.test(k)) t = k;
@@ -551,29 +865,69 @@ document.addEventListener('keydown', e => {
   if (b) { b.classList.add('press'); setTimeout(() => b.classList.remove('press'), 110); }
 });
 
-/* ---------- Scroll: the basic calculator unfolds into the scientific one ---------- */
+/* =========================================================
+   Spatial parallax — calm: turns itself off while the
+   calculator is expanded or hovered, so it stays usable
+   ========================================================= */
 (() => {
-  const stage = document.getElementById('top'), pin = stage.querySelector('.pin'), canvas = document.getElementById('calc');
-  const sel = canvas.querySelector('.sel'), f1 = sel.querySelector('.face1'), f2 = sel.querySelector('.face2');
+  const calc = document.getElementById('calc');
+  const layers = [...stageEl.querySelectorAll('[data-depth]')].map(el => ({ el, d: parseFloat(el.dataset.depth) }));
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const small = matchMedia('(max-width: 820px)');
+  if (reduce) return;
+  let tx = 0, ty = 0, x = 0, y = 0, running = false, paused = false, lastPx = '', lastPy = '';
+
+  const setPaused = p => {
+    paused = p;
+    if (p) { tx = 0; ty = 0; }
+  };
+  calc.addEventListener('pointerenter', () => setPaused(true));
+  calc.addEventListener('pointerleave', () => setPaused(false));
+  document.addEventListener('pointermove', e => { if (!paused) { tx = e.clientX / innerWidth - .5; ty = e.clientY / innerHeight - .5; } });
+  document.addEventListener('pointerleave', () => { tx = 0; ty = 0; });
+
+  function tick() {
+    if (!running) return;
+    x += (tx - x) * .09; y += (ty - y) * .09;
+    const k = (small.matches || stageEl.classList.contains('open')) ? 0 : 1;
+    const d = layers[0] ? layers[0].d : .5;
+    const px = (-x * d * 42 * k).toFixed(2) + 'px', py = (-y * d * 30 * k).toFixed(2) + 'px';
+    if (px !== lastPx || py !== lastPy) {
+      stageEl.style.setProperty('--px', px);
+      stageEl.style.setProperty('--py', py);
+      lastPx = px; lastPy = py;
+    }
+    calc.style.transform = k ? `perspective(1200px) rotateY(${x * 5}deg) rotateX(${-y * 4}deg)` : '';
+    requestAnimationFrame(tick);
+  }
+  new IntersectionObserver(([en]) => {
+    if (en.isIntersecting && !running) { running = true; requestAnimationFrame(tick); }
+    else if (!en.isIntersecting) running = false;
+  }).observe(stageEl);
+})();
+
+/* =========================================================
+   Scroll: the calculator slides left and expands (no fades)
+   ========================================================= */
+(() => {
+  const pin = stageEl.querySelector('.pin');
   const small = matchMedia('(max-width: 820px)');
   let was = false;
+
   function update() {
     if (small.matches || document.body.dataset.view !== 'basic') {
-      stage.style.setProperty('--p', 0); window.__p = 0; was = false;
-      canvas.style.removeProperty('--w'); sel.style.height = ''; canvas.classList.remove('x'); return;
+      stageEl.classList.remove('open'); stageEl.style.setProperty('--k', 0); was = false; return;
     }
-    const range = stage.offsetHeight - pin.offsetHeight;
-    const p = Math.min(1, Math.max(0, -stage.getBoundingClientRect().top / range));
-    const t = Math.min(1, Math.max(0, (p - 0.05) / 0.45)), k = t * t * (3 - 2 * t);
-    stage.style.setProperty('--p', p.toFixed(3)); window.__p = p;
-    canvas.style.setProperty('--w', (356 + k * 130) + 'px');
-    sel.style.height = (f1.offsetHeight + (f2.offsetHeight - f1.offsetHeight) * k + 36) + 'px';
-    const open = p > 0.45;
-    if (open && !was) {   // carry the number on screen across into the scientific display
+    const range = stageEl.offsetHeight - pin.offsetHeight;
+    let p = Math.min(1, Math.max(0, -stageEl.getBoundingClientRect().top / range));
+    p = p * p * (3 - 2 * p);                                  // gentle ease in/out on the slide
+    stageEl.style.setProperty('--k', p.toFixed(3));
+    const open = p > 0.55;
+    if (open && !was) {                                       // carry the number across
       const n = document.getElementById('val').textContent.replace(/,/g, '');
       if (/^-?\d*\.?\d+(e[+-]?\d+)?$/i.test(n) && parseFloat(n) !== 0) SCI.home.load(n);
     }
-    if (open !== was) canvas.classList.toggle('x', open);
+    if (open !== was) stageEl.classList.toggle('open', open);
     was = open;
   }
   addEventListener('scroll', update, { passive: true });
@@ -582,19 +936,46 @@ document.addEventListener('keydown', e => {
   update();
 })();
 
-/* ---------- Finance ---------- */
+/* =========================================================
+   Router
+   ========================================================= */
 (() => {
-  const m = n => isFinite(n) ? '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '—';
+  const VIEWS = ['basic', 'scientific', 'finance', 'tools', 'ask', 'chat'];
+  function route() {
+    const h = location.hash.slice(1), v = VIEWS.includes(h) ? h : 'basic';
+    document.body.dataset.view = v;
+    document.querySelectorAll('[data-view-id]').forEach(el => { el.hidden = el.dataset.viewId !== v; });
+    document.querySelectorAll('.nav .tab').forEach(t => t.classList.toggle('on', t.dataset.go === v));
+    document.querySelector('.chatpage')?.classList.remove('menu');
+    if (v !== 'chat') window.scrollTo(0, 0);
+    document.title = ({
+      basic: 'Inquiry Calculator — Free Online Basic, Scientific & Finance Calculator + AI Math Solver',
+      scientific: 'Free Scientific Calculator Online — sin, cos, tan, log, powers | Inquiry Calculator',
+      finance: 'Free Loan, Savings & Tip Calculators — Work Out Repayments | Inquiry Calculator',
+      tools: 'All Calculators & AI Maths Tools | Inquiry Calculator',
+      ask: 'Ask the AI — Maths, Science & Money Questions | Inquiry Calculator',
+      chat: 'AI Maths Solver — Chat | Inquiry Calculator'
+    })[v] || document.title;
+  }
+  addEventListener('hashchange', route);
+  route();
+})();
+
+/* =========================================================
+   Finance calculators
+   ========================================================= */
+(() => {
+  const m2 = n => isFinite(n) ? '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '—';
   const FIN = {
     loan: { tab: 'Loan', label: 'Monthly payment',
       f: [['amount', 'Loan amount', '$', 300000], ['rate', 'Interest rate, per year', '%', 6.5], ['years', 'Term', 'years', 30]],
-      run: v => { const r = v.rate / 1200, n = v.years * 12, p = r ? v.amount * r / (1 - Math.pow(1 + r, -n)) : v.amount / n; return [m(p), [['Total repaid', m(p * n)], ['Total interest', m(p * n - v.amount)]]]; } },
+      run: v => { const r = v.rate / 1200, n = v.years * 12, p = r ? v.amount * r / (1 - Math.pow(1 + r, -n)) : v.amount / n; return [m2(p), [['Total repaid', m2(p * n)], ['Total interest', m2(p * n - v.amount)]]]; } },
     save: { tab: 'Savings', label: 'Balance at the end',
       f: [['start', 'Starting amount', '$', 10000], ['add', 'Added each month', '$', 500], ['rate', 'Interest rate, per year', '%', 5], ['years', 'Time', 'years', 10]],
-      run: v => { const r = v.rate / 1200, n = v.years * 12, g = Math.pow(1 + r, n), fv = v.start * g + v.add * (r ? (g - 1) / r : n), put = v.start + v.add * n; return [m(fv), [['You put in', m(put)], ['Interest earned', m(fv - put)]]]; } },
+      run: v => { const r = v.rate / 1200, n = v.years * 12, g = Math.pow(1 + r, n), fv = v.start * g + v.add * (r ? (g - 1) / r : n), put = v.start + v.add * n; return [m2(fv), [['You put in', m2(put)], ['Interest earned', m2(fv - put)]]]; } },
     tip: { tab: 'Tip split', label: 'Each person pays',
       f: [['bill', 'Bill', '$', 85], ['tip', 'Tip', '%', 15], ['people', 'People', '', 2]],
-      run: v => { const t = v.bill * v.tip / 100, tot = v.bill + t; return [m(tot / v.people), [['Tip', m(t)], ['Total', m(tot)]]]; } }
+      run: v => { const t = v.bill * v.tip / 100, tot = v.bill + t; return [m2(tot / v.people), [['Tip', m2(t)], ['Total', m2(tot)]]]; } }
   };
   const seg = document.getElementById('fseg'), fields = document.getElementById('ffields'), rows = document.getElementById('frows');
   const main = document.getElementById('fmain'), key = document.getElementById('fkey');
@@ -608,6 +989,7 @@ document.addEventListener('keydown', e => {
     if (cur !== 'tip' && !(v.years > 0)) ok = false;
     const out = ok ? def.run(v) : ['—', []];
     key.textContent = def.label; main.textContent = out[0];
+    main.style.fontSize = out[0].length > 12 ? '1.9rem' : '2.6rem';
     rows.innerHTML = out[1].map(([a, b]) => `<p><span>${a}</span><b>${b}</b></p>`).join('');
   }
   function pick(id) {
@@ -620,60 +1002,342 @@ document.addEventListener('keydown', e => {
   fields.addEventListener('input', calc);
   pick('loan');
 })();
+</script>
 
-/* ---------- AI Solver (Cloudflare worker) ---------- */
-(() => {
-  const API = 'https://inquiry-ai.reubanjhegarty.workers.dev/';
-  const log = document.getElementById('log'), ta = document.getElementById('ain'), file = document.getElementById('afile'), tag = document.getElementById('attached');
-  let hist = [], img = null, busy = false;
+<script>
+/* =========================================================
+   AI solver: chats, history, snapshot
+   ========================================================= */
+const AI = (() => {
+  const KEY = 'ic.chats.v2';
+  const log = document.getElementById('log');
+  const wrap = document.getElementById('chatwrap');
+  const list = document.getElementById('chatlist');
+  const titleEl = document.getElementById('chattitle');
+  const ta = document.getElementById('ain');
+  const file = document.getElementById('afile');
+  const att = document.getElementById('attached');
+  const chatpage = document.querySelector('.chatpage');
 
+  let chats = [], active = null, pendingImg = null, busy = false;
+
+  /* ---------- storage ---------- */
+  function load() {
+    try { chats = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { chats = []; }
+    if (!Array.isArray(chats)) chats = [];
+  }
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(chats)); }
+    catch {
+      // out of room: strip images from older chats and retry once
+      chats.forEach((c, i) => { if (i > 0) c.msgs.forEach(m => { delete m.img; }); });
+      try { localStorage.setItem(KEY, JSON.stringify(chats)); } catch {}
+    }
+  }
+  const uid = () => 'c' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+
+  /* ---------- markdown ---------- */
   const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const md = t => (window.marked && window.DOMPurify) ? DOMPurify.sanitize(marked.parse(t)) : esc(t).replace(/\n/g, '<br>');
-  function add(cls, html) {
-    const d = document.createElement('div'); d.className = 'msg ' + cls; d.innerHTML = html;
-    log.appendChild(d); log.scrollTop = log.scrollHeight; return d;
+
+  /* ---------- chat list ---------- */
+  function renderList() {
+    list.innerHTML = '';
+    if (!chats.length) {
+      list.innerHTML = '<p class="side-empty">No chats yet. Ask something and it will show up here.</p>';
+      return;
+    }
+    chats.forEach(c => {
+      const row = document.createElement('div');
+      row.className = 'chatitem' + (c.id === active ? ' on' : '');
+      row.dataset.id = c.id;
+      row.tabIndex = 0;
+      row.innerHTML = `<b>${esc(c.title || 'New chat')}</b><button class="del" type="button" aria-label="Delete chat" title="Delete chat">×</button>`;
+      row.addEventListener('click', e => {
+        if (e.target.closest('.del')) { e.stopPropagation(); deleteChat(c.id); return; }
+        open(c.id);
+      });
+      row.addEventListener('keydown', e => { if (e.key === 'Enter') open(c.id); });
+      list.appendChild(row);
+    });
   }
-  function hello() { add('', 'Hi! Ask me any math, science or money question, or attach a photo of a problem and I will walk through it step by step.'); }
-  function reset() { hist = []; log.innerHTML = ''; clearImg(); hello(); }
-  function clearImg() { img = null; file.value = ''; tag.style.display = 'none'; }
+
+  /* ---------- message rendering ---------- */
+  function bubble(m) {
+    const d = document.createElement('div');
+    d.className = 'msg ' + (m.role === 'user' ? 'u' : '');
+    const img = m.img ? `<img src="${m.img}" alt="Attached image">` : '';
+    const note = m.note ? `<div class="att-note">${esc(m.note)}</div>` : '';
+    if (m.html) d.innerHTML = m.html;
+    else if (m.role === 'user') d.innerHTML = note + img + md(m.content);
+    else d.innerHTML = md(m.content);
+    return d;
+  }
+
+  const WELCOME = `<div class="welcome">
+      <h3>Ask anything.</h3>
+      <p>Maths, science or money — type a question, attach a photo, or snapshot the tab you are looking at. Chats are saved in this browser.</p>
+      <div class="chips">
+        <button type="button">What is 15% of 240?</button>
+        <button type="button">Solve 2x² − 5x + 3 = 0</button>
+        <button type="button">Explain compound interest simply</button>
+        <button type="button">Convert 68°F to Celsius</button>
+      </div>
+    </div>`;
+
+  function renderLog() {
+    log.innerHTML = '';
+    titleEl.textContent = active ? (chats.find(c => c.id === active)?.title || 'New chat') : 'New chat';
+    const c = chats.find(x => x.id === active);
+    if (!c || !c.msgs.length) { log.innerHTML = WELCOME; return; }
+    c.msgs.forEach(m => log.appendChild(bubble(m)));
+    wrap.scrollTop = wrap.scrollHeight;
+  }
+
+  function pushMsg(m) {
+    const c = chats.find(x => x.id === active);
+    if (!c) return null;
+    c.msgs.push(m);
+    if (m.role === 'user' && (!c.title || c.title === 'New chat')) c.title = (m.content || 'Image question').slice(0, 44);
+    c.ts = Date.now();
+    save(); renderList();
+    titleEl.textContent = c.title;
+    return c;
+  }
+
+  /* ---------- actions ---------- */
+  function newChat(keepEmpty) {
+    const existing = chats.find(c => !c.msgs.length);
+    if (existing) { active = existing.id; }
+    else { const c = { id: uid(), title: 'New chat', ts: Date.now(), msgs: [] }; chats.unshift(c); active = c.id; }
+    save(); renderList(); renderLog();
+    if (window.matchMedia('(max-width: 820px)').matches) chatpage.classList.remove('menu');
+    ta && ta.focus();
+  }
+  function open(id) { active = id; renderList(); renderLog(); chatpage.classList.remove('menu'); }
+  function deleteChat(id) {
+    const i = chats.findIndex(c => c.id === id);
+    if (i < 0) return;
+    chats.splice(i, 1);
+    save();
+    if (active === id) { active = chats[0]?.id || null; if (!active) { chats = [{ id: uid(), title: 'New chat', ts: Date.now(), msgs: [] }]; active = chats[0].id; } }
+    renderList(); renderLog();
+  }
+
+  /* ---------- image handling ---------- */
+  function downscale(canvas) {
+    let { width: w, height: h } = canvas;
+    const max = 1100;
+    if (w > max) { h = Math.round(h * max / w); w = max; }
+    const out = document.createElement('canvas');
+    out.width = w; out.height = h;
+    out.getContext('2d').drawImage(canvas, 0, 0, w, h);
+    return out.toDataURL('image/jpeg', .72);
+  }
+  function dataUrlBytes(url) {
+    const b = atob(url.split(',')[1]);
+    const arr = new Array(b.length);
+    for (let i = 0; i < b.length; i++) arr[i] = b.charCodeAt(i);
+    return arr;
+  }
+  function showAtt(label, url) {
+    att.style.display = 'flex';
+    att.innerHTML = `<img src="${url}" alt=""><span>${esc(label)}</span><button type="button" id="attclear">Remove</button>`;
+    document.getElementById('attclear').onclick = () => { pendingImg = null; att.style.display = 'none'; att.innerHTML = ''; };
+  }
 
   file.addEventListener('change', () => {
     const f = file.files[0]; if (!f) return;
     const rd = new FileReader();
-    rd.onload = () => { img = { bytes: Array.from(new Uint8Array(rd.result)), url: URL.createObjectURL(f) }; tag.textContent = 'Attached: ' + f.name; tag.style.display = 'block'; };
-    rd.readAsArrayBuffer(f);
+    rd.onload = () => {
+      const im = new Image();
+      im.onload = () => {
+        const cv = document.createElement('canvas');
+        cv.width = im.width; cv.height = im.height;
+        cv.getContext('2d').drawImage(im, 0, 0);
+        pendingImg = { url: downscale(cv), label: f.name };
+        showAtt(f.name, pendingImg.url);
+      };
+      im.src = rd.result;
+    };
+    rd.readAsDataURL(f);
+    file.value = '';
   });
   document.getElementById('aattach').addEventListener('click', () => file.click());
 
+  /* ---------- snapshot ---------- */
+  const sheet = document.getElementById('snapsheet'), snapErr = document.getElementById('snaperr');
+  function openSheet() { snapErr.textContent = ''; sheet.hidden = false; }
+  function closeSheet() { sheet.hidden = true; }
+  document.getElementById('snapbtn').addEventListener('click', openSheet);
+  document.getElementById('asnap').addEventListener('click', openSheet);
+  document.getElementById('snapcancel').addEventListener('click', closeSheet);
+  sheet.addEventListener('click', e => { if (e.target === sheet) closeSheet(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && !sheet.hidden) closeSheet(); });
+
+  async function snapshot() {
+    snapErr.textContent = '';
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
+      snapErr.textContent = 'This browser cannot capture a tab. Try Chrome, Edge or Safari on https, or attach a photo instead.';
+      return;
+    }
+    let stream;
+    try {
+      stream = await navigator.mediaDevices.getDisplayMedia({
+        video: { displaySurface: 'browser' }, audio: false, preferCurrentTab: false, selfBrowserSurface: 'exclude'
+      });
+    } catch (err) {
+      snapErr.textContent = err && err.name === 'NotAllowedError' ? 'No tab was picked — press choose and select a tab to snapshot.' : 'Could not start the capture: ' + (err.message || err.name);
+      return;
+    }
+    try {
+      const video = document.createElement('video');
+      video.srcObject = stream; video.muted = true; video.playsInline = true;
+      await video.play();
+      await new Promise(r => setTimeout(r, 260));
+      const cv = document.createElement('canvas');
+      cv.width = video.videoWidth || 1280;
+      cv.height = video.videoHeight || 720;
+      cv.getContext('2d').drawImage(video, 0, 0, cv.width, cv.height);
+      pendingImg = { url: downscale(cv), label: 'Snapshot of a tab' };
+      showAtt('Snapshot of a tab', pendingImg.url);
+      closeSheet();
+      ta.focus();
+    } catch (err) {
+      snapErr.textContent = 'Could not grab the frame: ' + (err.message || err.name);
+    } finally {
+      stream.getTracks().forEach(t => t.stop());
+    }
+  }
+  document.getElementById('snapgo').addEventListener('click', snapshot);
+
+  /* ---------- send ---------- */
+  function addTyping() {
+    const d = document.createElement('div');
+    d.className = 'msg';
+    d.innerHTML = '<span class="typing"><i></i><i></i><i></i></span>';
+    log.appendChild(d); wrap.scrollTop = wrap.scrollHeight;
+    return d;
+  }
+
   async function send(text) {
     text = (text !== undefined ? text : ta.value).trim();
-    if ((!text && !img) || busy) return;
+    if ((!text && !pendingImg) || busy) return;
+    if (!active) newChat();
     busy = true;
-    const prompt = text || 'Solve and explain the math or science problem in this image step-by-step.';
-    add('u', (img ? `<img src="${img.url}" alt="">` : '') + esc(text || 'Solve the problem in this image.'));
-    hist.push({ role: 'user', content: (prompt + (img ? ' [An image was attached]' : '')).slice(0, 12000) });
-    const body = { prompt, messages: hist.slice(-16), imageArray: img ? img.bytes : null };
-    ta.value = ''; ta.style.height = 'auto'; clearImg();
-    const wait = add('', '<span class="typing"><i></i><i></i><i></i></span>');
+    const img = pendingImg;
+    const prompt = text || 'Read the problem in this image and solve it step by step.';
+    const note = img ? (img.label === 'Snapshot of a tab' ? 'Snapshot attached' : 'Image attached') : '';
+
+    log.querySelector('.welcome')?.remove();
+    const userMsg = { role: 'user', content: text || prompt, img: img ? img.url : null, note };
+    pushMsg(userMsg);
+    log.appendChild(bubble(userMsg));
+    wrap.scrollTop = wrap.scrollHeight;
+
+    if (img) { pendingImg = null; att.style.display = 'none'; att.innerHTML = ''; }
+    ta.value = ''; ta.style.height = 'auto';
+
+    const c = chats.find(x => x.id === active);
+    const hist = c.msgs.filter(m => m.role === 'user' || m.role === 'assistant').slice(-16)
+      .map(m => ({ role: m.role, content: String(m.content).slice(0, 12000) }));
+    const body = { prompt, messages: hist, imageArray: img ? dataUrlBytes(img.url) : null };
+
+    const wait = addTyping();
+    let reply = '', failed = false;
     try {
       const r = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
       if (!r.ok) { const e = await r.json().catch(() => ({})); throw new Error(e.error || r.statusText); }
-      const d = await r.json(), reply = d.response || 'No response generated.';
-      wait.innerHTML = md(reply); hist.push({ role: 'assistant', content: reply });
+      const d = await r.json();
+      reply = d.response || 'No response was generated — try asking again.';
     } catch (e) {
-      hist.pop(); wait.innerHTML = md('**Something went wrong:** ' + (e.message || 'could not reach the AI server. Check your connection and try again.'));
+      failed = true;
+      reply = '**Something went wrong:** ' + (e.message || 'could not reach the AI server. Check your connection and try again.');
     }
-    log.scrollTop = log.scrollHeight; busy = false;
+    const msg = { role: 'assistant', content: reply };
+    pushMsg(msg);
+    wait.innerHTML = md(reply);
+    wrap.scrollTop = wrap.scrollHeight;
+    busy = false;
+    if (failed) console.warn('AI request failed');
   }
+
   document.getElementById('asend').addEventListener('click', () => send());
   ta.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } });
-  ta.addEventListener('input', () => { ta.style.height = 'auto'; ta.style.height = Math.min(ta.scrollHeight, 120) + 'px'; });
-  document.getElementById('chips').addEventListener('click', e => {
-    const b = e.target.closest('button'); if (!b) return;
-    if (b.id === 'newchat') reset(); else send(b.textContent);
+  ta.addEventListener('input', () => { ta.style.height = 'auto'; ta.style.height = Math.min(ta.scrollHeight, 150) + 'px'; });
+  log.addEventListener('click', e => {
+    const b = e.target.closest('.chips button'); if (b) send(b.textContent);
   });
-  hello();
+  document.getElementById('newchatbtn').addEventListener('click', () => newChat());
+  document.getElementById('menubtn').addEventListener('click', () => chatpage.classList.add('menu'));
+  document.getElementById('sideclose').addEventListener('click', () => chatpage.classList.remove('menu'));
+  chatpage.addEventListener('pointerdown', e => {
+    if (chatpage.classList.contains('menu') && !e.target.closest('.side')) chatpage.classList.remove('menu');
+  });
+
+  /* ---------- boot ---------- */
+  load();
+  if (!chats.length) chats = [{ id: uid(), title: 'New chat', ts: Date.now(), msgs: [] }];
+  chats.sort((a, b) => (b.ts || 0) - (a.ts || 0));
+  active = chats[0].id;
+  renderList(); renderLog();
+
+  addEventListener('hashchange', () => {
+    if (location.hash.slice(1) !== 'chat') return;
+    const q = sessionStorage.getItem('ic.pending');
+    if (q) {
+      sessionStorage.removeItem('ic.pending');
+      newChat();
+      setTimeout(() => send(q), 120);
+    }
+  });
+
+  return { send, get busy() { return busy; }, newChat };
+})();
+
+/* =========================================================
+   Ask page: one bar, then off to the chat
+   ========================================================= */
+(() => {
+  const form = document.getElementById('askform'), input = document.getElementById('askin');
+  input.addEventListener('input', () => { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 180) + 'px'; });
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); form.requestSubmit(); }
+  });
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const q = input.value.trim();
+    if (!q) { input.focus(); return; }
+    sessionStorage.setItem('ic.pending', q);
+    input.value = ''; input.style.height = 'auto';
+    location.hash = 'chat';
+  });
+  addEventListener('hashchange', () => {
+    if (location.hash.slice(1) === 'ask') setTimeout(() => input.focus(), 60);
+  });
+})();
+
+/* =========================================================
+   Little extras: share, copy, year
+   ========================================================= */
+(() => {
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const toast = m => {
+    const t = document.createElement('div');
+    t.className = 'toast'; t.textContent = m;
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 2200);
+  };
+  document.getElementById('copybtn').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(location.origin + location.pathname); toast('Link copied'); }
+    catch { toast('Copy failed — long-press the address bar'); }
+  });
+  document.getElementById('sharebtn').addEventListener('click', async () => {
+    const data = { title: 'Inquiry Calculator', text: 'Free basic, scientific and finance calculators plus an AI maths solver.', url: location.origin + location.pathname };
+    if (navigator.share) { try { await navigator.share(data); return; } catch {} }
+    try { await navigator.clipboard.writeText(data.url); toast('Link copied'); } catch { toast('Sharing is not available here'); }
+  });
 })();
 </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a521120a7fa28677',t:'MTc5MzI2NTI3MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
