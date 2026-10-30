@@ -1832,6 +1832,11 @@ const AI = (() => {
 
   let chats = [], active = null, pendingImg = null, busy = false;
 
+  /* A short style steer prepended to every prompt. */
+  const AI_STYLE = 'Answer directly as a maths and money assistant. Show the working in two or three short lines, '
+    + 'then the answer in bold. Use light markdown. Do not explain your reasoning, do not describe what you think '
+    + 'the user wants, and never output control tokens. Output only the reply the user should read.';
+
   /* ---------- storage ---------- */
   function load() {
     try { chats = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { chats = []; }
@@ -1849,7 +1854,93 @@ const AI = (() => {
 
   /* ---------- markdown ---------- */
   const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  const md = t => (window.marked && window.DOMPurify) ? DOMPurify.sanitize(marked.parse(t)) : esc(t).replace(/\n/g, '<br>');
+  /* The model sprinkles LaTeX into prose; marked would print it raw. Flatten the
+     common constructs to characters the page can actually render. */
+  function tidyMath(t) {
+    let s = String(t);
+    s = s.replace(/\\\(([\s\S]*?)\\\)/g, '$1').replace(/\\\[([\s\S]*?)\\\]/g, '$1');
+    /* \frac{a}{b}, with braces nested to any depth -> (a)/(b) */
+    const group = (str, i) => {
+      if (str[i] !== '{') return null;
+      let d = 0;
+      for (let k = i; k < str.length; k++) {
+        if (str[k] === '{') d++;
+        else if (str[k] === '}' && --d === 0) return { inner: str.slice(i + 1, k), end: k };
+      }
+      return null;
+    };
+    s = s.replace(/\\([dt])frac/g, '\\frac');
+    for (let pass = 0; pass < 8; pass++) {
+      const at = s.indexOf('\\frac');
+      if (at < 0) break;
+      let j = at + 5;
+      while (s[j] === ' ') j++;
+      const a = group(s, j);
+      if (!a) { s = s.slice(0, at) + s.slice(at + 5); continue; }
+      let k = a.end + 1;
+      while (s[k] === ' ') k++;
+      const b = group(s, k);
+      if (!b) { s = s.slice(0, at) + s.slice(at + 5); continue; }
+      s = s.slice(0, at) + '(' + a.inner + ')/(' + b.inner + ')' + s.slice(b.end + 1);
+    }
+    s = s.replace(/\\(?:text|mathrm|operatorname|mbox)\s*\{([^{}]*)\}/g, '$1');
+    s = s.replace(/\^\{([^{}]*)\}/g, '^($1)').replace(/_\{([^{}]*)\}/g, '_($1)');
+    return s
+      .replace(/\\q?quad\b/g, ' ').replace(/\\[,;:!]/g, ' ')
+      .replace(/\\sqrt\s*\{([^{}]*)\}/g, '√($1)')
+      .replace(/\\times\b/g, '×').replace(/\\div\b/g, '÷').replace(/\\cdot\b/g, '·')
+      .replace(/\\approx\b/g, '≈').replace(/\\neq\b/g, '≠').replace(/\\pm\b/g, '±')
+      .replace(/\\leq?\b/g, '≤').replace(/\\geq?\b/g, '≥')
+      .replace(/\\(?:left|right|big|Big|bigl|bigr)\b/g, '')
+      .replace(/\\%/g, '%').replace(/\\\$/g, '$').replace(/\\_/g, '_')
+      .replace(/\{,\}/g, ',').replace(/\{(\d)\}/g, '$1')
+      .replace(/\\[a-zA-Z]+\b\s*/g, ' ')
+      .replace(/\$/g, '$')
+      .replace(/\$\s*([^$\n]{1,120}?)\s*\$/g, '$1')
+      .replace(/[{}]/g, '')
+      .replace(/[ \t]{2,}/g, ' ');
+  }
+  const md = t => (window.marked && window.DOMPurify) ? DOMPurify.sanitize(marked.parse(tidyMath(t))) : esc(tidyMath(t)).replace(/\n/g, '<br>');
+
+  /* ---------- reply sanitiser ----------
+     The upstream model sometimes returns its own scratchpad: "Interpretation: …"
+     reasoning plus raw <|end|>/assistantfinal control tokens. None of that is
+     meant for a reader, so strip it before it reaches the DOM. */
+  const AI_META_HEAD = /^\s*(?:#{0,4}\s*)?(?:interpretation|analysis|reasoning|thought|thinking|plan|intent|internal|clarification|notes?)\s*[:\-–]/i;
+  const AI_META_BODY = /\b(?:I should|I need to|I'll ask|I will ask|need to ask|need ask|let me think|probably they|the user (?:says|is asking|wants|seems|has)|user (?:says|wants|is asking)|maybe they want|they (?:probably )?(?:want|are asking))\b/i;
+  const aiLooksMeta = t => { const h = t.slice(0, 260); return AI_META_HEAD.test(h) || AI_META_BODY.test(h); };
+  function cleanAI(raw) {
+    let s = String(raw == null ? '' : raw);
+    if (!s.trim()) return '';
+    /* keep only what follows the model's final-channel marker */
+    const finalRe = /<\|start\|>|assistant\s*final|<\|\s*channel\s*\|\s*>\s*final/gi;
+    let cut = -1, m;
+    while ((m = finalRe.exec(s))) cut = m.index + m[0].length;
+    if (cut > -1) s = s.slice(cut);
+    s = s.replace(/<\|\s*[a-z_]+\s*\|>/gi, ' ')
+         .replace(/&lt;\|\s*[a-z_]+\s*\|&gt;/gi, ' ')
+         .replace(/\|end\|>/gi, ' ').replace(/\|>+/g, ' ');
+    s = s.replace(/^\s*(?:assistant)?\s*final\b[\s:—–-]*/i, '');
+    /* peel reasoning preamble, one sentence at a time */
+    const before = s;
+    for (let i = 0; i < 4 && s && aiLooksMeta(s); i++) {
+      const q = s.indexOf('?');
+      if (q > -1 && q < Math.min(s.length - 1, 420)) { s = s.slice(q + 1).trim(); continue; }
+      const next = s.search(/[.!]\s+|\n+/);
+      if (next > -1) { s = s.slice(next + 1).trim(); continue; }
+      s = '';
+    }
+    if (s !== before) {
+      s = s.replace(/\s+(?:Let me (?:lay|walk|explain|break)|I(?:'ll| will) (?:now )?(?:lay|walk|explain|break|compute|dive)\b)[^.?!]*[.?!]?\s*$/i, '').trim();
+    }
+    /* strip leftover list markers: 1️⃣, 1. / 1), bullets, stray emoji */
+    s = s.replace(/^(?:\s|[\uFE0F\u20E3\u2460-\u24FF]|\d\ufe0f?\u20e3|[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}])+/u, '');
+    s = s.replace(/^(?:\d{1,2}[.)]\s+|[-•*]\s+)/, '');
+    s = s.replace(/^[\s:;,.—–-]+/, '').trim();
+    s = s.replace(/\n{3,}/g, '\n\n').replace(/[ \t]{2,}/g, ' ').trim();
+    if (!s) return "I didn't manage to put that into words — ask me again and I'll take another run at it.";
+    return s;
+  }
 
   /* ---------- chat list ---------- */
   function renderList() {
@@ -2063,7 +2154,10 @@ const AI = (() => {
     const c = chats.find(x => x.id === active);
     const hist = c.msgs.filter(m => m.role === 'user' || m.role === 'assistant').slice(-16)
       .map(m => ({ role: m.role, content: String(m.content).slice(0, 12000) }));
-    const body = { prompt, messages: hist, imageArray: img ? dataUrlBytes(img.url) : null };
+    /* The worker ignores a system role and mis-answers when it sees one, so the
+       style steer rides along as a prompt prefix instead — invisible to the user. */
+    const wire = AI_STYLE + '\n\nUser question: ' + prompt;
+    const body = { prompt: wire, messages: hist, imageArray: img ? dataUrlBytes(img.url) : null };
 
     const wait = addTyping();
     let reply = '', failed = false;
@@ -2071,7 +2165,7 @@ const AI = (() => {
       const r = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
       if (!r.ok) { const e = await r.json().catch(() => ({})); throw new Error(e.error || r.statusText); }
       const d = await r.json();
-      reply = d.response || 'No response was generated — try asking again.';
+      reply = cleanAI(d.response) || 'No response was generated — try asking again.';
     } catch (e) {
       failed = true;
       reply = '**Something went wrong:** ' + (e.message || 'could not reach the AI server. Check your connection and try again.');
@@ -2878,5 +2972,5 @@ const MINI = (() => {
   });
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a526beab4d388e94',t:'MTc5MzMyNDc3MQ=='};var l=window.parent.location,o;try{o=new URL(l.origin).origin}catch(e){try{o=new URL(new URL(l.href).origin).origin}catch(e){o=''}}var u='/cdn-cgi/challenge-platform/scripts/jsd/main.js?ray=a526beab4d388e94',a=document.createElement('script');a.src=o?new URL(u,o).href:u;document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
