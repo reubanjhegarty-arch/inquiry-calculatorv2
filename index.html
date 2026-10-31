@@ -350,6 +350,12 @@ body:not([data-view="basic"]) .scrollcue{opacity:0;translate:0 12px}
 .keys.six .k.solve{background:var(--blue);color:#fff;font-size:.72rem;letter-spacing:.07em;font-weight:600}
 .keys.six .k.solve.press{filter:brightness(1.15)}
 .keys.six .k.press{transform:translateY(1px) scale(.98);filter:brightness(1.25)}
+.calc.sci .seg.smode{margin-bottom:10px}
+.calc.sci .seg.smode button{font-size:.8rem;padding:8px 6px;letter-spacing:.01em}
+.solvbar{font-size:.75rem;line-height:1.5;color:rgba(255,255,255,.62);margin:0 0 7px;display:flex;gap:5px;align-items:baseline;flex-wrap:wrap}
+.solvbar b{color:#fff;font-weight:600}
+.solvbar .ok{color:#63c98a;font-weight:700}
+.solvbar .no{color:#f1844f;font-weight:700}
 .page.mid{display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:92px;padding-bottom:56px}
 @media (max-width:820px){.page.mid{padding-top:96px;padding-bottom:104px} .eyebrow{margin-bottom:16px}}
 .eyebrow{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:20px}
@@ -1149,7 +1155,7 @@ html[data-theme="dark"] .palette{background:rgba(0,0,0,.6)}
     </div>
   </div>
   <p class="hint" style="margin-top:20px">Type it too: <kbd>s</kbd> sin · <kbd>c</kbd> cos · <kbd>t</kbd> tan · <kbd>l</kbd> log · <kbd>n</kbd> ln · <kbd>r</kbd> √ · <kbd>p</kbd> π · <kbd>e</kbd> e, then <kbd>Enter</kbd>. Press <b>2nd</b> for inverse trig, 10ˣ, eˣ and cube root.</p>
-  <p class="hint" style="margin-top:10px"><b>Solve for x:</b> type the equation — <code>2=x+2</code>, <code>3x+4=2x−1</code>, <code>x²−5x+6=0</code> — and press <b>SOLVE</b>. With no <b>=</b> sign it solves for zero. Answers come back exact where they can (<code>x = 3/2</code>). The <b>=</b> key writes an equals sign while you are still building the equation, and computes when you have a finished number.</p>
+  <p class="hint" style="margin-top:10px"><b>Solve for x:</b> switch the calculator to <b>Solve</b>, type the equation — <code>14400=x×0.08×3</code>, <code>2=x+2</code>, <code>x²−5x+6=0</code> — and press <b>SOLVE</b>. The <b>=</b> key writes the equals sign in Solve mode and computes in Calculate mode, so it works like a normal calculator the rest of the time. Answers come back exact where they can (<code>x = 3/2</code>) and are checked by putting them back into both sides.</p>
 </section>
 
 <section class="page mid" data-view-id="finance" hidden aria-label="Finance calculators">
@@ -1285,7 +1291,7 @@ html[data-theme="dark"] .palette{background:rgba(0,0,0,.6)}
       <details open><summary>Is Inquiry Calculator free to use?</summary><p>Yes. Every calculator and the AI solver are free, with no account, sign-up or download required.</p></details>
       <details><summary>Can it solve a maths problem from a photo or a screenshot?</summary><p>Yes. Use the Snapshot button on the AI page to capture a browser tab, or attach a photo of a worksheet, and the AI will read the problem and explain the working step by step.</p></details>
       <details><summary>Does the scientific calculator work in degrees or radians?</summary><p>Both. The Deg/Rad key switches the trigonometry mode, and results update as you type.</p></details>
-      <details><summary>Can it solve an equation for x?</summary><p>Yes. Type the equation with the <b>x</b> key and press <b>SOLVE</b> — <code>2=x+2</code>, <code>3x+4=2x−1</code>, <code>x²−5x+6=0</code>, <code>sin(x)=0.5</code>, <code>e^x=5</code>. It searches numerically, so it finds real roots rather than rearranging the algebra, and it offers an exact fraction when one is close (<code>x = 3/2</code>). If you type an expression with no equals sign it solves for zero.</p></details>
+      <details><summary>Can it solve an equation for x?</summary><p>Yes — switch the calculator to <b>Solve</b>. Type the equation with the <b>x</b> key and press <b>SOLVE</b>: <code>14400=x×0.08×3</code>, <code>2=x+2</code>, <code>3x+4=2x−1</code>, <code>x²−5x+6=0</code>, <code>sin(x)=0.5</code>, <code>e^x=5</code>, <code>5000×(1+x)^8=8000</code>. It searches numerically, so it finds real roots rather than rearranging the algebra, works at any scale from 0.0001 to millions, and offers an exact fraction when one is close (<code>x = 3/2</code>). Every answer is checked by substituting it back into both sides. In Calculate mode nothing changes — the keypad stays an ordinary calculator.</p></details>
       <details><summary>Are the loan and savings calculators accurate?</summary><p>They use the standard amortisation and compound interest formulas used by lenders, so they are a close estimate. Fees, offset accounts and rate changes are not included.</p></details>
       <details><summary>Does it work on a phone?</summary><p>Yes. The layout adapts to phones and tablets, and the keypad is sized for touch.</p></details>
     </section>
@@ -1524,7 +1530,9 @@ const stageEl = document.getElementById('top');
 /* =========================================================
    Scientific keypad (used twice: expanded hero + its own page)
    ========================================================= */
-function makeSci(keys, val, expr) {
+function makeSci(keys, val, expr, opts) {
+  opts = opts || {};
+  const canSolve = !!opts.solve;
   /* [label, class, token, altLabel, altToken] — alt = what the 2nd key turns it into */
   const SK = [
     ['2nd','fn nd','nd'],['Deg','fn','deg'],['AC','fn','ac'],['⌫','fn','del'],['|x|','fn tiny','abs('],['1/x','fn tiny','1/('],
@@ -1534,15 +1542,39 @@ function makeSci(keys, val, expr) {
     ['(','fn','('],[')','fn',')'],['÷','op','÷'],
     ['7','','7'],['8','','8'],['9','','9'],['%','fn','%'],['π','fn','π'],['×','op','×'],
     ['4','','4'],['5','','5'],['6','','6'],['ANS','fn tiny','ans'],['e','fn','e'],['−','op','−'],
-    ['1','','1'],['2','','2'],['3','','3'],['0','','0'],['.','','.'],['+','op','+'],
-    ['x','fn var','x'],['SOLVE','eq solve w2','solve'],['=','eq w3','=']
+    ['1','','1'],['2','','2'],['3','','3'],['0','','0'],['.','','.'],['+','op','+']
   ];
+  if (canSolve) SK.push(['x','fn var','x'], ['SOLVE','eq solve w2','solve'], ['=','eq w3','=']);
+  else SK.push(['=','eq w6','=']);
+
   keys.innerHTML = SK.map(([l, c, t, al, at]) =>
     `<button class="k ${c}" data-t="${t}" data-tp="${t}" data-l="${l}"` +
     (al ? ` data-al="${al}" data-at="${at}"` : '') + `>${l}</button>`).join('');
   keys.classList.remove('five'); keys.classList.add('six');
 
   let ex = '', top = '', deg = true, fresh = false, bad = false, second = false, lastAns = 0, solved = null;
+  let smode = false;
+
+  /* ---------- Calculate / Solve switch ---------- */
+  const HINT = 'Solve for x — type the equation, <b>=</b> writes the equals sign, then <b>SOLVE</b>.';
+  let seg = null, sbar = null;
+  if (canSolve) {
+    const host = keys.parentNode;
+    const screen = host.querySelector('.screen');
+    seg = document.createElement('div');
+    seg.className = 'seg smode';
+    seg.innerHTML = '<button type="button" data-m="calc" class="on">Calculate</button><button type="button" data-m="solve">Solve</button>';
+    if (screen && screen.parentNode === host) host.insertBefore(seg, screen); else host.insertBefore(seg, keys);
+    sbar = document.createElement('div');
+    sbar.className = 'solvbar';
+    sbar.hidden = true;
+    host.insertBefore(sbar, keys);
+    seg.addEventListener('click', e => {
+      const b = e.target.closest('button');
+      if (b) setMode(b.dataset.m);
+    });
+  }
+
   const rad = x => deg ? x * Math.PI / 180 : x;
   const unrad = x => deg ? x * 180 / Math.PI : x;
   const fact = n => { if (n < 0 || n > 170 || n !== Math.floor(n)) return NaN; let a = 1; for (let i = 2; i <= n; i++) a *= i; return a; };
@@ -1556,7 +1588,8 @@ function makeSci(keys, val, expr) {
   };
 
   function evaluate(src, xv) {
-    const s = src.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-').replace(/π/g, 'pi').replace(/√/g, 'sqrt').replace(/X/g, 'x');
+    const s = src.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-').replace(/π/g, 'pi').replace(/√/g, 'sqrt').replace(/X/g, 'x')
+      .replace(/²/g, '^2').replace(/³/g, '^3').replace(/⁴/g, '^4');
     let i = 0;
     const peek = () => s[i];
     function sum() { let v = prod(); while (peek() === '+' || peek() === '-') { const o = s[i++], r = prod(); v = o === '+' ? v + r : v - r; } return v; }
@@ -1603,27 +1636,36 @@ function makeSci(keys, val, expr) {
       : t.length > 9 ? '2.1rem' : '';
     expr.textContent = top;
   }
+  function setBar(html) { if (sbar) { sbar.hidden = !html; sbar.innerHTML = html || ''; } }
+
   function put(t) {
     solved = null;
     if (t === 'ans') t = String(lastAns);
     if (bad) { ex = ''; bad = false; top = ''; }
     if (fresh) { fresh = false; if (!/^[+−×÷^!%]/.test(t)) ex = ''; top = ''; }
-    ex += t; show();
+    ex += t;
+    if (smode) setBar(HINT);
+    show();
   }
   function del() { solved = null; if (fresh || bad) return clr(); ex = ex.replace(/(asin\(|acos\(|atan\(|sinh\(|cosh\(|tanh\(|sin\(|cos\(|tan\(|log2\(|log\(|ln\(|sqrt\(|cbrt\(|abs\(|√\(|.)$/, ''); show(); }
-  function clr() { ex = ''; top = ''; fresh = false; bad = false; solved = null; show(); }
+  function clr() { ex = ''; top = ''; fresh = false; bad = false; solved = null; setBar(smode ? HINT : ''); show(); }
+  function setMode(m) {
+    if (!canSolve) return;
+    const was = smode;
+    smode = m === 'solve';
+    /* entering Solve with a plain number on screen would silently glue the two
+       together ("144" + "14400=…") — start the equation clean unless what is
+       already typed is actually an equation worth keeping. */
+    if (smode && !was && !/x/i.test(ex) && ex.indexOf('=') < 0) { ex = ''; }
+    if (!smode && was && /x/i.test(ex) && ex.indexOf('=') < 0) { ex = ''; }
+    if (seg) [...seg.children].forEach(b => b.classList.toggle('on', b.dataset.m === m));
+    solved = null; bad = false; fresh = false; top = '';
+    setBar(smode ? HINT : '');
+    keys.classList.toggle('solving', smode);
+    show();
+  }
   function eq() {
     if (!ex || fresh) return;
-    /* "2" then "=" then "x+2": an '=' typed while writing an equation is the
-       equation's own sign, not a request to compute. A bare number counts too
-       (nobody needs the calculator to tell them 2 = 2). */
-    if (ex.indexOf('=') > -1) return solve();
-    if (/x/i.test(ex) || /^[0-9.]+$/.test(ex)) {
-      put('=');
-      top = 'now the other side, then SOLVE';
-      show();
-      return;
-    }
     try {
       const open = (ex.match(/\(/g) || []).length - (ex.match(/\)/g) || []).length;
       let v = evaluate(ex + ')'.repeat(Math.max(0, open)));
@@ -1634,7 +1676,8 @@ function makeSci(keys, val, expr) {
     } catch (e) { bad = true; fresh = false; }
     show();
   }
-  /* ---------- SOLVE: find x such that LHS = RHS (ClassPad-style) ---------- */
+
+  /* ======== SOLVE — find x such that LHS = RHS ======== */
   const balance = t => t + ')'.repeat(Math.max(0, (t.match(/\(/g) || []).length - (t.match(/\)/g) || []).length));
 
   function fOf(l, r) {
@@ -1646,12 +1689,14 @@ function makeSci(keys, val, expr) {
       } catch (e) { return NaN; }
     };
   }
+  function sideVal(src, x) { try { const v = evaluate(balance(src), x); return isFinite(v) ? v : NaN; } catch (e) { return NaN; } }
 
-  /* bisection on a bracket that already changes sign */
   function bisect(f, a, b) {
     let fa = f(a), fb = f(b);
-    if (!isFinite(fa) || !isFinite(fb) || fa === 0) return fa === 0 ? a : NaN;
-    for (let i = 0; i < 120; i++) {
+    if (!isFinite(fa) || !isFinite(fb)) return NaN;
+    if (fa === 0) return a;
+    if (fb === 0) return b;
+    for (let i = 0; i < 100; i++) {
       const m = (a + b) / 2, fm = f(m);
       if (!isFinite(fm)) return NaN;
       if (fm === 0) return m;
@@ -1659,13 +1704,12 @@ function makeSci(keys, val, expr) {
     }
     return (a + b) / 2;
   }
-
-  /* golden-section on |f| — catches double roots, where f never changes sign */
+  /* golden-section on |f| — catches roots where the curve only touches zero */
   function minimise(f, a, b) {
     const g = x => { const v = f(x); return isFinite(v) ? Math.abs(v) : Infinity; };
     const phi = 0.6180339887498949;
     let c = b - phi * (b - a), d = a + phi * (b - a), gc = g(c), gd = g(d);
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < 90; i++) {
       if (gc < gd) { b = d; d = c; gd = gc; c = b - phi * (b - a); gc = g(c); }
       else { a = c; c = d; gc = gd; d = a + phi * (b - a); gd = g(d); }
     }
@@ -1675,45 +1719,46 @@ function makeSci(keys, val, expr) {
   function findRoots(f) {
     const roots = [];
     const add = r => {
-      if (!isFinite(r) || Math.abs(r) > 1e12) return;
+      if (!isFinite(r) || Math.abs(r) > 1e13) return;
       const v = Math.abs(r) < 1e-11 ? 0 : r;
       if (roots.some(q => Math.abs(q - v) <= 1e-7 * Math.max(1, Math.abs(v)))) return;
       roots.push(v);
     };
-    /* two sweeps: a fine one near the origin, a coarse one out to ±10,000 */
-    const sweeps = [[-50, 50, 5000], [-1e4, 1e4, 4000]];
+    /* sweep a ladder of scales: a root at 60,000 has to be as easy to bracket
+       as one at 2 — a single fixed window is what missed the 14,400 case. */
+    const scales = [1, 10, 100, 1e3, 1e4, 1e5, 1e6, 1e8, 1e10, 1e12];
     let peak = 0, finite = 0;
-    for (const [lo, hi, n] of sweeps) {
-      const step = (hi - lo) / n;
-      let px = lo, pf = f(lo);
-      for (let i = 1; i <= n; i++) {
-        const x = lo + step * i, fx = f(x);
-        if (isFinite(pf)) { finite++; peak = Math.max(peak, Math.abs(pf)); }
+    for (const R of scales) {
+      const N = 600, step = (2 * R) / N;
+      let ppx = -R - step, px = -R, pf = f(px);
+      for (let i = 1; i <= N; i++) {
+        const x = -R + step * i, fx = f(x);
+        if (isFinite(pf)) { finite++; if (Math.abs(pf) > peak) peak = Math.abs(pf); }
         if (isFinite(pf) && isFinite(fx)) {
           if (pf === 0) add(px);
           else if (fx === 0) add(x);
-          else if ((pf < 0) !== (fx < 0)) {
-            const r = bisect(f, px, x);
-            if (isFinite(r) && Math.abs(f(r)) <= 1e-6 * Math.max(1, Math.abs(pf))) add(r);
-          } else if (Math.abs(pf) < Math.abs(fx) && Math.abs(pf) <= Math.abs(f(px - step))) {
-            const r = minimise(f, px - step, x);
-            if (Math.abs(f(r)) <= 1e-9 * Math.max(1, peak)) add(r);
+          else if ((pf < 0) !== (fx < 0)) add(bisect(f, px, x));
+          else if (Math.abs(pf) < Math.abs(fx) && Math.abs(pf) < Math.abs(f(ppx))) {
+            /* local dip in |f| — worth a proper look */
+            const r = minimise(f, ppx, x);
+            const fa = Math.abs(f(r)), ref = Math.max(Math.abs(pf), Math.abs(fx));
+            if (fa <= 1e-9 * Math.max(1, ref)) add(r);
           }
         }
-        px = x; pf = fx;
+        ppx = px; px = x; pf = fx;
       }
+      if (roots.length >= 40) break;
     }
     roots.sort((a, b) => a - b);
-    const flat = peak <= 1e-11;                       // f is zero everywhere
-    return { roots, flat, peak, finite };
+    return { roots, flat: peak <= 1e-11, peak, finite };
   }
 
-  /* exact-looking answers: 4/3 reads better than 1.333333333 */
+  /* exact-looking answers: 3/2 reads better than 1.333333333 */
   function asFraction(v) {
-    if (!isFinite(v) || Math.abs(v) > 1e4) return null;
+    if (!isFinite(v) || Math.abs(v) > 1e6) return null;
     for (let d = 1; d <= 16; d++) {
       const n = Math.round(v * d);
-      if (Math.abs(v - n / d) < 1e-10) return d === 1 ? String(n) : n + '/' + d;
+      if (Math.abs(v - n / d) < 1e-10 * Math.max(1, Math.abs(v))) return d === 1 ? String(n) : n + '/' + d;
     }
     return null;
   }
@@ -1721,8 +1766,9 @@ function makeSci(keys, val, expr) {
     const r = Math.abs(v) < 1e-10 ? 0 : v;
     const f = asFraction(r);
     if (f !== null) return f;
-    const d = digits || 8;
-    return Math.abs(r) >= 1e6 || (Math.abs(r) < 1e-5 && r !== 0) ? r.toExponential(4).replace(/\.?0+e/, 'e') : String(parseFloat(r.toPrecision(d)));
+    return Math.abs(r) >= 1e7 || (Math.abs(r) < 1e-5 && r !== 0)
+      ? r.toExponential(4).replace(/\.?0+e/, 'e')
+      : String(parseFloat(r.toPrecision(digits || 8)));
   };
 
   function solve() {
@@ -1730,14 +1776,25 @@ function makeSci(keys, val, expr) {
     let lhs = ex, rhs = '0';
     const cut = ex.indexOf('=');
     if (cut > -1) { lhs = ex.slice(0, cut); rhs = ex.slice(cut + 1); }
-    if (!lhs.trim()) return;
+    if (!lhs.trim() || !rhs.trim()) { setBar('<b>Finish the equation</b> — there is nothing on both sides of the =.'); return; }
     if (!/x/i.test(lhs + rhs)) {
-      if (ex.indexOf('=') < 0) { if (fresh) return; top = ex + ' ='; fresh = false; bad = false; solved = null; return eq(); }
+      setBar('No <b>x</b> to solve for. Add the variable, or use Calculate.');
+      return;
     }
 
     const f = fOf(lhs, rhs);
     const { roots, flat, finite } = findRoots(f);
     const eqn = ex.replace(/=/g, ' = ');
+
+    if (!roots.length && !(flat && finite > 20)) {
+      solved = 'no real solution';
+      top = eqn + '  ·  no real solution';
+      bad = true; fresh = true;
+      setBar('No real value of <b>x</b> makes this true. Check the equation, or the ± sign.');
+      show();
+      return;
+    }
+
     /* periodic things (sin, tan) have endless roots — show the principal window first */
     let list = roots, inWindow = false;
     if (roots.length > 6) {
@@ -1750,22 +1807,37 @@ function makeSci(keys, val, expr) {
     if (says.join(', ').length > 18) says = list.slice(0, 4).map(r => fmtRoot(r, 6));
     let verdict, note;
     if (flat && finite > 20) { verdict = 'true for every x'; note = 'every x works'; }
-    else if (!roots.length) { verdict = 'no real solution'; note = 'no real solution'; }
     else if (says.length === 1) { verdict = 'x = ' + says[0]; note = 'solved'; }
     else if (says.length === 2) {
       const two = 'x = ' + says[0] + '  or  x = ' + says[1];
       verdict = two.length <= 30 ? two : 'x = ' + says[0] + ', ' + says[1];
       note = inWindow ? '2 solutions in 0–' + (deg ? '360°' : '2π') : '2 solutions';
-    }
-    else { verdict = 'x = ' + says.join(', '); note = roots.length > 4 ? roots.length + '+ solutions' : says.length + ' solutions'; }
+    } else { verdict = 'x = ' + says.join(', '); note = roots.length > 4 ? roots.length + '+ solutions' : says.length + ' solutions'; }
 
     solved = verdict;
     top = eqn + '  ·  ' + note;
-    bad = !roots.length && !(flat && finite > 20);
-    if (roots.length) { lastAns = roots[0]; ex = String(parseFloat(roots[0].toPrecision(12))); }
+    bad = false;
+
+    /* sanity check: put the answer back into both sides */
+    if (flat && finite > 20) {
+      setBar('Any value of <b>x</b> works — the two sides are the same.');
+    } else if (roots.length) {
+      const r = roots[0];
+      lastAns = r;
+      const a = sideVal(lhs, r), b = sideVal(rhs, r);
+      const ok = isFinite(a) && isFinite(b) && Math.abs(a - b) <= 1e-6 * Math.max(1, Math.abs(a), Math.abs(b));
+      const fmt = v => pretty(parseFloat(Number(Math.abs(v) < 1e-9 ? 0 : v).toPrecision(10)));
+      setBar((ok ? '<span class="ok">✓</span> put it back: ' : '<span class="no">≈</span> put it back: ') +
+        fmt(a) + ' = ' + fmt(b) + (inWindow ? ' · more solutions outside 0–' + (deg ? '360°' : '2π') : ''));
+      ex = String(parseFloat(r.toPrecision(12)));
+    } else {
+      setBar('Any value of <b>x</b> works — the two sides are the same.');
+    }
     fresh = true;
     show();
   }
+
+  function enter() { return smode ? solve() : eq(); }
 
   function toggle2nd(b) {
     second = !second;
@@ -1782,17 +1854,17 @@ function makeSci(keys, val, expr) {
     const t = b.dataset.t;
     if (t === 'ac') clr();
     else if (t === 'del') del();
-    else if (t === '=') eq();
-    else if (t === 'solve') solve();
+    else if (t === '=') { if (smode) put('='); else eq(); }
+    else if (t === 'solve') { if (!smode) { setMode('solve'); if (ex.indexOf('=') > -1) solve(); } else solve(); }
     else if (t === 'nd') toggle2nd(b);
     else if (t === 'deg') { deg = !deg; b.textContent = deg ? 'Deg' : 'Rad'; }
     else put(t);
   });
   const load = t => { ex = t; top = ''; fresh = true; bad = false; solved = null; show(); };
-  return { keys, put, del, clr, eq, solve, load };
+  return { keys, put, del, clr, eq, enter, solve, load, setMode, mode: () => smode ? 'solve' : 'calc' };
 }
 const SCI = {
-  page: makeSci(document.getElementById('skeys'), document.getElementById('sval'), document.getElementById('sexpr')),
+  page: makeSci(document.getElementById('skeys'), document.getElementById('sval'), document.getElementById('sexpr'), { solve: true }),
   home: makeSci(document.getElementById('hkeys'), document.getElementById('hval'), document.getElementById('hexpr'))
 };
 document.addEventListener('keydown', e => {
@@ -1802,10 +1874,11 @@ document.addEventListener('keydown', e => {
   const k = e.key; let t = null;
   if (/^[0-9.()+!%^]$/.test(k)) t = k;
   else if (k === '-') t = '−'; else if (k === '*') t = '×'; else if (k === '/') t = '÷';
-  else if (k === 'x' || k === 'X') t = 'x';
+  else if (k === 'x' || k === 'X') t = c.mode() === 'solve' ? 'x' : '×';
   else if (k === 'p') t = 'π'; else if (k === 'e') t = 'e';
   else if ('sctlnr'.includes(k) && k.length === 1) t = { s: 'sin(', c: 'cos(', t: 'tan(', l: 'log(', n: 'ln(', r: '√(' }[k];
-  else if (k === 'Enter' || k === '=') { e.preventDefault(); return c.eq(); }
+  else if (k === 'Enter') { e.preventDefault(); return c.enter ? c.enter() : c.eq(); }
+  else if (k === '=') { e.preventDefault(); return c.mode && c.mode() === 'solve' ? c.put('=') : c.eq(); }
   else if (k === 'Backspace') return c.del();
   else if (k === 'Escape') return c.clr();
   if (!t) return;
@@ -3133,5 +3206,5 @@ const MINI = (() => {
   });
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a52fb962c851865b',t:'MTc5MzQxODkyNg=='};var l=window.parent.location,o;try{o=new URL(l.origin).origin}catch(e){try{o=new URL(new URL(l.href).origin).origin}catch(e){o=''}}var u='/cdn-cgi/challenge-platform/scripts/jsd/main.js?ray=a52fb962c851865b',a=document.createElement('script');a.src=o?new URL(u,o).href:u;document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a52fc451ef71865b',t:'MTc5MzQxOTM3NA=='};var l=window.parent.location,o;try{o=new URL(l.origin).origin}catch(e){try{o=new URL(new URL(l.href).origin).origin}catch(e){o=''}}var u='/cdn-cgi/challenge-platform/scripts/jsd/main.js?ray=a52fc451ef71865b',a=document.createElement('script');a.src=o?new URL(u,o).href:u;document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
